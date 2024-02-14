@@ -18,7 +18,7 @@ corresp:
     code: "00F1E1"
     examples:
       - images/examples/pilcrow/pilcrow_gamma_CML13027.png
-      - images/examples/pilcrow/pilcrow_Laurentianus39.34.png\
+      - images/examples/pilcrow/pilcrow_Laurentianus39.34.png
   - transcription:  §
     name: SECTION SIGN
     code: 0000A7

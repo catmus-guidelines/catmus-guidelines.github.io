@@ -1,12 +1,12 @@
 ---
 label: Omission sign
 name: "CARET"
+group: "punctuation"
 other-names:
   - "Division Slash"
 code: "002038"
 char: "‸"
 description: This sign is used to indicate that a marginal or interlinear line provides correction, addenda, etc.
-group: punctuation
 position:
   - A
   - B

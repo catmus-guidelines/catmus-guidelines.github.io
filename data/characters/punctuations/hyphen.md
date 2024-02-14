@@ -14,8 +14,8 @@ position:
   - D
 corresp:
   - transcription: "‐"
-    name: HYPHEN
     code: "002010"
+    name: IDK
   - transcription: "‑"
     name: NON-BREAKING HYPHEN
     code: "002011"
@@ -26,8 +26,8 @@ corresp:
     code: "002014"
     name: "EM DASH"
   - transcription: "⸗"
-    code: "DOUBLE OBLIQUE HYPHEN"
-    name: "002E17"
+    name: "DOUBLE OBLIQUE HYPHEN"
+    code: "002E17"
   - transcription: "="
     code: "00003D"
     name: "EQUALS SIGN"
@@ -35,7 +35,7 @@ corresp:
     code: "0000AC"
     name: "NOT SIGN"
 examples:
-  - images/examples/hyphen/hyphen_CCCC165.png
+  - images/examples/hyphen/hyphen CCCC165.png
   - images/examples/hyphen/hyphen_Plut 53.08.png
   - images/examples/hyphen/hyphen_Plut.53.09.png
 ---
