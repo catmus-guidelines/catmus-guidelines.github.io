@@ -37,4 +37,7 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Test with YAML validator
       run: |
-        python3 -u scripts/yaml_validator.py
+        output=$(python3 -u scripts/yaml_validator.py)
+        echo $output
+       
+        
