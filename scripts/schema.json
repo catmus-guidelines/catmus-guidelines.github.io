@@ -1,5 +1,5 @@
 {
-  "$schema": "http://json-schema.org/draft-04/schema#",
+  "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
   "properties": {
     "label": {
@@ -17,7 +17,17 @@
       ]
     },
     "code": {
-      "type": "string"
+      "type": "string",
+      "pattern": "^[0-8ABCDEFG]+$"
+    },
+    "position": {
+      "type": "array",
+      "items": [
+        {
+          "type": "string",
+          "pattern": "^[A-I]$"
+        }
+      ]
     },
     "char": {
       "type": "string"
@@ -30,60 +40,43 @@
     },
     "corresp": {
       "type": "array",
-      "items": [
-        {
-          "type": "object",
-          "properties": {
-            "transcription": {
-              "type": "string"
-            },
-            "name": {
-              "type": "string"
-            },
-            "resolution": {
-              "type": "null"
-            },
-            "code": {
-              "type": "string"
-            },
-            "position": {
-              "type": "array",
-              "items": [
-                {
-                  "type": "string"
-                }
-              ]
+      "items": {
+        "type": "object",
+        "properties": {
+          "transcription": {
+            "type": "string"
+          },
+          "examples": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[^\\s]+$"
             }
           },
-          "required": [
-            "transcription",
-            "name",
-            "code"
-          ]
-        } ]
+          "name": {
+            "type": "string"
+          },
+          "resolution": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string",
+            "pattern": "[0-8A-G]+"
+          }
+        },
+        "required": [
+          "transcription",
+          "name",
+          "code"
+        ]
+      }
     },
     "examples": {
       "type": "array",
-      "items": [
-        {
-          "type": "string"
-        },
-        {
-          "type": "string"
-        },
-        {
-          "type": "string"
-        },
-        {
-          "type": "string"
-        },
-        {
-          "type": "string"
-        },
-        {
-          "type": "string"
-        }
-      ]
+      "items": {
+        "type": "string",
+        "pattern": "^[^\\s]+$"
+      }
     }
   },
   "required": [

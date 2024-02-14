@@ -23,31 +23,27 @@ class Validator:
         try:
             jsonschema.validate(self.json_data, self.schema)
             print("Document is valid.")
-        except jsonschema.exceptions.ValidationError as e:
-            print(e.message)
-            print(e.validator_value)
-            if len(e.absolute_path) == 0:
+        except jsonschema.exceptions.ValidationError as error:
+            print(error.message)
+            if len(error.absolute_path) == 0:
                 print("Level of the error: root")
             else:
-                print(e.absolute_path)
+                print(error.absolute_path)
 
     def convert_code(self):
         """
         Convert every "code" property to a string with zfill to get 6 chars length
         :return: same json object, normalized
         """
-        if check_hexa(self.json_data['code'].zfill(6)):
-            self.json_data['code'] = str(self.json_data['code'].zfill(6))
-        else:
-            print(f"{self.json_data['code']} is not an hexadecimal value. Please check char code.")
         try:
-            for corresp in self.json_data['corresp']:
-                if check_hexa(corresp['code'].zfill(6)):
+            self.json_data['code'] = str(self.json_data['code'].zfill(6))
+            try:
+                for corresp in self.json_data['corresp']:
                     corresp['code'] = str(corresp['code'].zfill(6))
-                else:
-                    print(f"{corresp['code']} is not an hexadecimal value. Please check char code.")
+            except KeyError:
+                pass
         except KeyError:
-            pass
+            print("The character must be identified by an hexa code.")
 
     def convert_to_json(self):
         """
@@ -72,18 +68,6 @@ class Validator:
         self.yaml_data = md_file.split("---")[1]
 
 
-def check_hexa(val) -> bool:
-    """
-    Function that checks if given string is heaxdecimal
-    :param val: 
-    :return: Bool
-    """
-    try:
-        int(str(val), 16)
-        result = True
-    except ValueError:
-        result = False
-    return result
 
 
 if __name__ == '__main__':
