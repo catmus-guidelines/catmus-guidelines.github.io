@@ -89,5 +89,5 @@ if __name__ == '__main__':
         print("One document or more are not correctly formatted")
         exit(2)
     else:
-        print("Succes")
+        print("Succès")
         exit(0)

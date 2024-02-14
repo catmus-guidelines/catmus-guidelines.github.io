@@ -18,7 +18,7 @@
     },
     "code": {
       "type": "string",
-      "pattern": "^[0-9a-f]+$"
+      "pattern": "^[0-9a-fA-F]+$"
     },
     "position": {
       "type": "array",
@@ -61,7 +61,7 @@
           },
           "code": {
             "type": "string",
-            "pattern": "^[0-9a-f]+$"
+            "pattern": "^[0-9a-fA-F]+$"
           }
         },
         "required": [
