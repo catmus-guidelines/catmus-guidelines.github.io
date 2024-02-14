@@ -30,6 +30,6 @@ jobs:
     - name: Test with YAML validator
       run: |
         python3 scripts/yaml_validator.py > results.txt
-        echo results.txt
+        cat results.txt
        
         
