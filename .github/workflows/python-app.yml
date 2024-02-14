@@ -29,8 +29,6 @@ jobs:
         pip3 install -r scripts/requirements.txt
     - name: Test with YAML validator
       run: |
-        set +e
         python3 -u scripts/yaml_validator.py
-        echo "exitcode=$?" >> $GITHUB_OUTPUT
        
         
