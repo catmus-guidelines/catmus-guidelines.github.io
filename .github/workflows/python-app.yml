@@ -29,6 +29,7 @@ jobs:
         pip3 install -r scripts/requirements.txt
     - name: Test with YAML validator
       run: |
-        python3 scripts/yaml_validator.py
+        python3 scripts/yaml_validator.py > results.txt
+        echo results.txt
        
         
