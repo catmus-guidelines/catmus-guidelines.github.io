@@ -1,0 +1,99 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "label": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "other-names": {
+      "type": "array",
+      "items": [
+        {
+          "type": "string"
+        }
+      ]
+    },
+    "code": {
+      "type": "string"
+    },
+    "char": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "group": {
+      "type": "string"
+    },
+    "corresp": {
+      "type": "array",
+      "items": [
+        {
+          "type": "object",
+          "properties": {
+            "transcription": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "resolution": {
+              "type": "null"
+            },
+            "code": {
+              "type": "string"
+            },
+            "position": {
+              "type": "array",
+              "items": [
+                {
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          "required": [
+            "transcription",
+            "name",
+            "code"
+          ]
+        } ]
+    },
+    "examples": {
+      "type": "array",
+      "items": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "string"
+        },
+        {
+          "type": "string"
+        },
+        {
+          "type": "string"
+        },
+        {
+          "type": "string"
+        },
+        {
+          "type": "string"
+        }
+      ]
+    }
+  },
+  "required": [
+    "label",
+    "name",
+    "other-names",
+    "code",
+    "char",
+    "description",
+    "group",
+    "examples"
+  ]
+}
