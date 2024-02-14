@@ -5,6 +5,7 @@ import traceback
 import jsonschema
 import json
 
+
 class Validator:
     def __init__(self, filepath):
         self.filepath = filepath
@@ -18,8 +19,7 @@ class Validator:
         Validate JSON against schema.
         :return: 
         """
-        
-        print(f"--- Validating {self.filepath.replace('../data', '')} --- ")
+
         try:
             jsonschema.validate(self.json_data, self.schema)
             print("Document is valid.")
@@ -31,20 +31,24 @@ class Validator:
             else:
                 print(e.absolute_path)
 
-        print("---\n")
-
     def convert_code(self):
         """
         Convert every "code" property to a string with zfill to get 6 chars length
         :return: same json object, normalized
         """
-        self.json_data['code'] = str(self.json_data['code'].zfill(6))
+        if check_hexa(self.json_data['code'].zfill(6)):
+            self.json_data['code'] = str(self.json_data['code'].zfill(6))
+        else:
+            print(f"{self.json_data['code']} is not an hexadecimal value. Please check char code.")
         try:
             for corresp in self.json_data['corresp']:
-                corresp['code'] = str(corresp['code'].zfill(6))
+                if check_hexa(corresp['code'].zfill(6)):
+                    corresp['code'] = str(corresp['code'].zfill(6))
+                else:
+                    print(f"{corresp['code']} is not an hexadecimal value. Please check char code.")
         except KeyError:
             pass
-    
+
     def convert_to_json(self):
         """
         Takes the YAML data extracted (as string) and converts it to json. 
@@ -57,7 +61,7 @@ class Validator:
             print(traceback.print_exc())
             print(f"YAML section of {self.filepath} is not well formed. Please verify the indentation.")
             exit(0)
-    
+
     def extract_yaml(self):
         """
         Extracts YAML data from string
@@ -68,10 +72,26 @@ class Validator:
         self.yaml_data = md_file.split("---")[1]
 
 
+def check_hexa(val) -> bool:
+    """
+    Function that checks if given string is heaxdecimal
+    :param val: 
+    :return: Bool
+    """
+    try:
+        int(str(val), 16)
+        result = True
+    except ValueError:
+        result = False
+    return result
+
+
 if __name__ == '__main__':
     for file in glob.glob("../data/characters/*/*.md"):
+        print(f"--- Validating {file.replace('../data', '')} --- ")
         FileValidator = Validator(file)
         FileValidator.extract_yaml()
         FileValidator.convert_to_json()
         FileValidator.convert_code()
         FileValidator.validate()
+        print("---\n")
