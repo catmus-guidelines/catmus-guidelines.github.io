@@ -1,3 +1,5 @@
+import argparse
+
 import jsonschema as jsonschema
 import yaml
 import glob
@@ -7,11 +9,11 @@ import json
 
 
 class Validator:
-    def __init__(self, filepath):
+    def __init__(self, filepath, schema_path):
         self.filepath = filepath
         self.yaml_data = None
         self.json_data = {}
-        with open("schema.json", "r") as schema:
+        with open(schema_path, "r") as schema:
             self.schema = json.load(schema)
 
     def validate(self) -> bool:
@@ -77,9 +79,14 @@ class Validator:
 
 if __name__ == '__main__':
     validations = []
-    for file in glob.glob("../data/characters/*/*.md"):
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-s", "--schema", default="scripts/schema.json",
+                        help="Path to schema.")
+    args = parser.parse_args()
+    schema = args.schema
+    for file in glob.glob("data/characters/*/*.md"):
         print(f"--- Validating {file.replace('../data', '')} --- ")
-        FileValidator = Validator(file)
+        FileValidator = Validator(file, schema)
         FileValidator.extract_yaml()
         FileValidator.convert_to_json()
         FileValidator.convert_code()
