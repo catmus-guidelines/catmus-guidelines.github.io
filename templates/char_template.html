@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ name }} -- CATMuS guidelines</title>
+    <!--<link rel="stylesheet" href="bootstrap.min.css">-->
+    <link
+      rel="stylesheet"
+      href="/home/mgl/Bureau/Travail/projets/HTR/CatMus/jekyll-theme-zendesk-garden-based/assets/css/style.scss"
+    />
+    <link
+      rel="stylesheet"
+      href="/home/mgl/Bureau/Travail/projets/HTR/CatMus/jekyll-theme-zendesk-garden-based/assets/css/rouge.css"
+    />
+</head>
+<body>
+  <div class="chrome:nav">
+  <div class="chrome:logo_nav_item" title="GitHub Repository">
+    <a href="/home/mgl/Bureau/Travail/projets/HTR/CatMus/jekyll-theme-zendesk-garden-based/index.html" rel="noreferrer noopener">
+      <img src="/home/mgl/Bureau/Travail/projets/HTR/CatMus/jekyll-theme-zendesk-garden-based/assets/images/catmus.png" alt="Catmus logotype">
+    </a>
+  </div> 
+ <!-- <div class="chrome:logo_nav_item bottom" title="GitHub Repository">
+    <a href="https://github.com/matgille/DrJekyllMrCatmus" target="_blank" rel="noreferrer noopener">
+      <img src="/home/mgl/Bureau/Travail/projets/HTR/CatMus/jekyll-theme-zendesk-garden-based/assets/images/github-mark-white.svg" alt="Link to GitHub Repository">
+    </a>
+  </div>-->
+  </div>
+  
+<div class="container"><h1>{{ label }}</h1></div>
+<hr/>
+    <div class="container">
+        <div>
+            <h3>Name: {{ name }}</h3>
+        </div>
+        <div>
+            <h3>Code: {{ code }}</h3>
+        </div>
+        <div>
+            <h3>char: {{ char }}</h3>
+        </div>
+        <div>
+            <h3>Group: {{ group }}</h3>
+        </div>
+        <div>
+            <h3>Position:</h3>
+            <table class="position_table" >
+                <tbody>
+                <tr>
+                    {% if "A" in position %}
+                    <td class="active">X</td>
+                    {% else %}
+                    <td class="inactive">X</td>
+                    {% endif %}
+                    {% if "B" in position %}
+                    <td class="active">X</td>
+                    {% else %}
+                    <td class="inactive">X</td>
+                    {% endif %}
+                    {% if "C" in position %}
+                    <td class="active">X</td>
+                    {% else %}
+                    <td class="inactive">X</td>
+                    {% endif %}
+                </tr>
+                <tr>
+                    {% if "D" in position %}
+                    <td class="active">X</td>
+                    {% else %}
+                    <td class="inactive">X</td>
+                    {% endif %}
+                    {% if "E" in position %}
+                    <td class="active">X</td>
+                    {% else %}
+                    <td class="inactive">X</td>
+                    {% endif %}
+                    {% if "F" in position %}
+                    <td class="active">X</td>
+                    {% else %}
+                    <td class="inactive">X</td>
+                    {% endif %}
+                </tr>
+                <tr>
+                    {% if "G" in position %}
+                    <td class="active">X</td>
+                    {% else %}
+                    <td class="inactive">X</td>
+                    {% endif %}
+                    {% if "H" in position %}
+                    <td class="active">X</td>
+                    {% else %}
+                    <td class="inactive">X</td>
+                    {% endif %}
+                    {% if "I" in position %}
+                    <td class="active">X</td>
+                    {% else %}
+                    <td class="inactive">X</td>
+                    {% endif %}
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div>
+            <h3>Description</h3>
+        <p>{{ description }}</p>
+        </div>
+        
+        {% if other_names %}
+        <div><h3>Other names</h3>
+            <ul>
+                {% for other_name in other_names %}
+                    <li>{{ other_name }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+        
+        
+        <div>
+            <h3>Examples</h3>
+                <ul>
+                {% for example in examples %}
+                    <li><img src="{{ example }}" alt="Some char image"/></li>
+                {% endfor %}
+                </ul>
+        </div>
+         
+        <div>
+            <h3>Related characters</h3>
+            
+                <ul>
+                    {% for corresp_char in corresp %}
+                    <li><ul>
+                        <li>{{ corresp_char['name'] }}</li>
+                        <li>{{ corresp_char['transcription'] }}</li>
+                        <li>{{ corresp_char['code'] }}</li>
+                        {% if corresp_char['examples'] %}
+                        <li>
+                            <ul>
+                            {% for corresponding_example in corresp_char['examples'] %}
+                        <li><img search="{{ corresponding_example }}" alt="some other image"/></li>
+                            {% endfor %}
+                            </ul>
+                        </li>
+                        {% endif %}
+                    </ul></li>
+                    {% endfor %}
+                </ul>
+            
+        </div>
+       
+    </div>
+  <script src="/home/mgl/Bureau/Travail/projets/HTR/CatMus/jekyll-theme-zendesk-garden-based/assets/js/accordian.js"></script>
+  
+</body>
+</html>
