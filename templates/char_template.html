@@ -131,8 +131,8 @@
             
                 <ul>
                     {% for corresp_char in corresp %}
+                    {{ corresp_char['name'] }}
                     <li><ul>
-                        <li>{{ corresp_char['name'] }}</li>
                         <li>{{ corresp_char['transcription'] }}</li>
                         <li>{{ corresp_char['code'] }}</li>
                         {% if corresp_char['examples'] %}
