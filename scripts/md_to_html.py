@@ -101,6 +101,10 @@ def htmlify(path, surrounding_files):
     character_table_body[0].insert(2, character_description)
     character_table_body[0].insert(-1, next_and_previous)
     
+    try:
+        os.mkdir("html")
+    except FileExistsError:
+        pass
     with open(f"html/{filename}.html", 'w') as file:
         file.write(ET.tostring(character_table, encoding='utf-8').decode())
 
