@@ -7,6 +7,7 @@ code: 00003A
 char: ":"
 description: This sign covers any sign that is using two dots vertically
 group: punctuation
+examples: some/example.png
 position:
   - D
 corresp:
