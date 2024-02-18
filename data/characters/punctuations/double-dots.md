@@ -12,7 +12,7 @@ position:
 corresp:
   - name: "PUNCTUS ELEVATUS"
     code: 00F161
-    char: ""
+    transcription: ""
     examples:
       - images/examples/punctuation/punctus_elevattus_MsWettF_15.png
       - images/examples/punctuation/punctus_elevatus_CML13027.png
@@ -24,12 +24,12 @@ corresp:
       - images/examples/punctuation/punctus_elevatus_Plut_53.08.png
   - name: "PUNCTUS INTERROGATIVUS"
     code : 00f160
-    char: ""
+    transcription: ""
     examples:
       - images/examples/punctuation/punctus_interrogativus_CCCC165n.png
       - images/examples/punctuation/punctus_interrogativus_Laurentianus39.34.png
       - images/examples/punctuation/punctus_interrogativus_Montpelier.H_318.png
   - name: "REVERSED QUESTION MARK"
     code: 002E2E
-    char: "⸮"
+    transcription: "⸮"
 ---
