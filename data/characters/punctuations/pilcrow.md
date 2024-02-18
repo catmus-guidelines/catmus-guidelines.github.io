@@ -1,7 +1,7 @@
 ---
 label: Pilcrow
 name: PILCROW SIGN
-other-names:
+other_names:
   - "Paragraph"
 code: 0000B6
 char: ¶
@@ -26,7 +26,7 @@ examples:
   - images/examples/pilcrow/pilcrow_CML13027.png
   - images/examples/pilcrow/pilcrow_Maz915.png
   - images/examples/pilcrow/pilcrow_faded_CML13027.png
-  - images/examples/pilcrow/pilcrow_Montpelier.H 318.png
+  - images/examples/pilcrow/pilcrow_Montpelier.H_318.png
   - images/examples/pilcrow/pilcrow_red_CML13027.png
   - images/examples/pilcrow/pilcrow_Latin6395.png
 ---
