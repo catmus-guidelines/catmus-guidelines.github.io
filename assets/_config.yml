@@ -1,0 +1,51 @@
+title: Zendesk Garden Jekyll Theme
+description: A Jekyll theme using the Zendesk Garden design patterns
+
+permalink: pretty
+
+search_enabled: true
+auto_page_title: true
+
+mermaid_enabled: true
+mermaid_theme: forest
+
+sidebar:
+  - getting-started
+  - label: Customization
+    children:
+      - sidebar
+      - search
+      - relative-nav
+      - additional-config
+  - development
+
+highlighter: rouge
+markdown: kramdown
+kramdown:
+  input: GFM
+  auto_ids: true
+  hard_wrap: false
+  syntax_highlighter: rouge
+
+exclude:
+  - .bundle
+  - .jekyll-assets-cache
+  - .sass-cache
+  - .prettierrc
+  - .prettierignore
+  - .tool-versions
+  - Gemfile
+  - LICENSE*
+  - node_modules
+  - package.json
+  - package-lock.json
+  - README*
+  - '*.gemspec'
+  - '*.config.js'
+
+defaults:
+  - scope:
+      path: ''
+      type: 'pages'
+    values:
+      layout: default

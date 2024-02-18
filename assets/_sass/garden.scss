@@ -1,0 +1,377 @@
+/* Reset font element sizes to support Markdown better */
+
+h1 {
+  @extend .text-4xl;
+  @extend .mb-6;
+}
+
+h2 {
+  @extend .text-3xl;
+  @extend .mt-6;
+  @extend .mb-2;
+}
+
+h3 {
+  @extend .text-2xl;
+  @extend .mt-6;
+  @extend .mb-2;
+}
+
+h4 {
+  @extend .text-xl;
+  @extend .mt-6;
+  @extend .mb-2;
+}
+
+h5 {
+  @extend .text-lg;
+  @extend .mt-4;
+  @extend .mb-2;
+}
+
+h6 {
+  @extend .font-semibold;
+  @extend .mt-4;
+  @extend .mb-2;
+}
+
+ol {
+  @extend .my-4;
+  @extend .pl-8;
+  @extend .list-decimal;
+}
+
+ul,
+ol {
+  @extend .space-y-2;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  &:first-child {
+    @extend .mt-0;
+  }
+}
+
+table {
+  word-break: break-word;
+  white-space: break-spaces;
+  @extend .w-full;
+}
+
+tbody tr:nth-child(even) {
+  @extend .bg-grey-100;
+}
+
+tr {
+  @extend .border-t;
+  @extend .border-b;
+  @extend .border-grey-300;
+}
+
+th,
+td {
+  @extend .border;
+  @extend .border-grey-300;
+  @extend .py-2;
+  @extend .px-3;
+}
+
+/* Add our custom styles here */
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  @extend .text-blue-600;
+  @extend .hover\:underline;
+}
+
+/* Inline code styling */
+code.highlighter-rouge {
+  background-color: #f8f8f8;
+  @extend .px-2;
+  @extend .py-px;
+  @extend .rounded-sm;
+}
+
+/* block code styling */
+div.highlighter-rouge {
+  @extend .mb-4;
+}
+
+.highlight {
+  word-break: break-word;
+  white-space: break-spaces;
+  @extend .my-2;
+  @extend .p-2;
+  @extend .rounded;
+}
+
+p {
+  @extend .mb-4;
+}
+
+ul {
+  @extend .list-disc;
+  @extend .list-inside;
+  @extend .my-2;
+  @extend .mb-4;
+  @extend .ml-4;
+}
+
+blockquote {
+  @extend .mb-4;
+  @extend .px-3;
+  @extend .border-l-4;
+  @extend .border-grey-400;
+  @extend .text-grey-600;
+}
+
+.pagination {
+  @extend .flex;
+  @extend .items-center;
+  @extend .justify-center;
+  @extend .box-border;
+  @extend .text-grey-800;
+  padding: 0;
+  height: 50px;
+}
+
+.pagination_item {
+  @extend .inline-flex;
+  @extend .relative;
+  @extend .items-center;
+  @extend .justify-center;
+  @extend .order-1;
+  margin: 0 12px;
+  padding: 0 3px;
+  height: 30px;
+  min-width: 30px;
+}
+
+.pagination_gap {
+  @extend .inline-flex;
+  @extend .relative;
+  @extend .items-center;
+  @extend .justify-center;
+  @extend .order-1;
+  @extend .flex-grow;
+  margin: 0 12px;
+  padding: 0 3px;
+  height: 30px;
+  min-width: 30px;
+}
+
+/* Chrome stylings */
+.chrome {
+  @extend .flex;
+  @extend .relative;
+  @extend .m-0;
+  @extend .h-screen;
+  @extend .min-w-full;
+  @extend .overflow-y-hidden;
+}
+
+.chrome\:nav {
+  @extend .flex;
+  @extend .relative;
+  @extend .flex-col;
+  @extend .flex-shrink-0;
+  @extend .order-first;
+  @extend .bg-kale-800;
+  width: 120px;
+}
+
+.chrome\:logo_nav_item {
+  @extend .flex;
+  @extend .flex-shrink-0;
+  @extend .items-center;
+  @extend .box-border;
+  @extend .justify-center;
+  @extend .order-first;
+  @extend .no-underline;
+  @extend .text-white;
+  padding: 13px 8.5px;
+  min-height: 52px;
+}
+
+.chrome\:body {
+  @extend .flex-grow;
+  @extend .flex-shrink;
+  @extend .order-1;
+  flex-basis: 0%;
+  overflow: auto;
+}
+
+.chrome\:header {
+  @extend .flex;
+  @extend .items-center;
+  @extend .justify-end;
+  @extend .box-border;
+  @extend .border-b;
+  @extend .border-solid;
+  @extend .border-grey-200;
+  @extend .text-grey-500;
+  padding: 0 4px;
+  height: 52px;
+}
+
+.chrome\:header_title {
+  @extend .inline-flex;
+  @extend .relative;
+  @extend .items-center;
+  @extend .justify-start;
+  @extend .order-1;
+  @extend .flex-grow;
+  @extend .text-kale-800;
+  @extend .font-semibold;
+  margin: 0 12px;
+  padding: 0 3px;
+  height: 30px;
+  min-width: 30px;
+}
+
+.chrome\:header_item {
+  @extend .inline-flex;
+  @extend .relative;
+  @extend .items-center;
+  @extend .justify-center;
+  @extend .order-1;
+  margin: 0 12px;
+  padding: 0 3px;
+  height: 30px;
+  min-width: 30px;
+}
+
+.chrome\:content {
+  @extend .flex;
+  @extend .text-grey-800;
+  @extend .leading-normal;
+  height: calc(100% - 52px - 50px); /* full height - header - footer */
+}
+
+.chrome\:sidebar {
+  @extend .flex-col;
+  @extend .order-none;
+  @extend .bg-grey-100;
+  @extend .box-border;
+  @extend .border-r;
+  @extend .border-solid;
+  @extend .border-grey-200;
+  @extend .overflow-auto;
+  width: 220px;
+  padding: 28px;
+}
+
+.chrome\:main {
+  @extend .flex-grow;
+  @extend .flex-shrink;
+  @extend .order-1;
+  @extend .overflow-auto;
+  flex-basis: 0%;
+  padding: 28px;
+}
+
+.chrome\:footer {
+  @extend .flex;
+  @extend .items-center;
+  @extend .justify-center;
+  @extend .box-border;
+  @extend .border-t;
+  @extend .border-solid;
+  @extend .border-grey-200;
+  @extend .text-grey-700;
+  padding: 0 36px;
+  height: 50px;
+}
+
+.chrome\:footer_item {
+  @extend .inline-flex;
+  @extend .relative;
+  @extend .items-center;
+  @extend .justify-center;
+  @extend .order-1;
+  margin: 0 12px;
+  padding: 0 3px;
+  height: 30px;
+  min-width: 30px;
+}
+
+.chrome\:sidebar_item {
+  @extend .flex;
+  @extend .items-center;
+  @extend .box-border;
+  @extend .w-full;
+  @extend .rounded;
+  @extend .relative;
+  @extend .text-grey-800;
+  @extend .no-underline;
+  @extend .text-left;
+  cursor: pointer;
+  min-height: 30px;
+  margin: 8px 0 0;
+
+  &:hover {
+    @extend .text-grey-800;
+    @extend .no-underline;
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+}
+
+.chrome\:sidebar_item_text {
+  @extend .inline-block;
+  padding: 0 8px;
+  max-width: calc(100% - 12px);
+}
+
+.chrome\:sidebar_item.chrome\:active_sidebar_item {
+  cursor: default;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.chrome\:sidebar_item.chrome\:active_sidebar_item:hover {
+  cursor: default;
+  background-color: rgba(0, 0, 0, 0.15);
+}
+
+.chrome\:sidebar_item_expanded {
+  svg {
+    transform: rotate(180deg);
+  }
+}
+
+.chrome\:sidebar_item_accordian {
+  transition: max-height 0.25s cubic-bezier(0.15, 0.85, 0.35, 1.2) 0s,
+    visibility 0.25s linear 0s;
+}
+
+.chrome\:sidebar_item_accordian_collapsed {
+  visibility: hidden;
+  overflow: hidden;
+  max-height: 0;
+}
+
+.chrome\:sidebar_item_accordian_expanded {
+}
+
+.chrome\:sidebar_item_child {
+  padding-left: 20px;
+}
+
+.chrome\:collapsible_sub_nav_item_icon {
+  @extend .flex;
+  @extend .absolute;
+  @extend .top-0;
+  @extend .right-0;
+  @extend .items-center;
+  @extend .justify-end;
+  width: 12px;
+  height: 100%;
+}
