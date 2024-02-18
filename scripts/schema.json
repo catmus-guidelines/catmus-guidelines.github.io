@@ -8,7 +8,7 @@
     "name": {
       "type": "string"
     },
-    "other-names": {
+    "other_names": {
       "type": "array",
       "items": [
         {
@@ -82,7 +82,7 @@
   "required": [
     "label",
     "name",
-    "other-names",
+    "other_names",
     "code",
     "char",
     "description",

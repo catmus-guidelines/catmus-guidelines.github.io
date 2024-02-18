@@ -1,7 +1,7 @@
 ---
 label: Diastole
 name: "DIASTOLE"
-other-names:
+other_names:
   - "Division Slash"
 code: 002215
 char: "∕"

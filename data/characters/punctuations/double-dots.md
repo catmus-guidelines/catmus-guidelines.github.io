@@ -1,7 +1,7 @@
 ---
 label: Double-dots based signs
 name: "DOUBLE COLON"
-other-names:
+other_names:
   - "?"
 code: 00003A
 char: ":"

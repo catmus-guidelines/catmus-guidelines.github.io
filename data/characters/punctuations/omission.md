@@ -2,7 +2,7 @@
 label: Omission sign
 name: "CARET"
 group: "punctuation"
-other-names:
+other_names:
   - "Division Slash"
 code: "002038"
 char: "‸"

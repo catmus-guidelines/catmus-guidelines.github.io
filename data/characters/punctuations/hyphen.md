@@ -1,7 +1,7 @@
 ---
 label: Hyphen
 name: "Hyphen-Minus"
-other-names:
+other_names:
   - Hyphenation
   - Tiret
   - Minus
