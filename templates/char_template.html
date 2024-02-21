@@ -69,7 +69,7 @@
                      </div>
                      <div>
                         <h3>Position:</h3>
-                        <table class="position_table" >
+                        <table  class="position_table">
                            <tbody>
                               <tr>
                                  {% if "A" in position %}
@@ -178,6 +178,7 @@
                   <a href="/" class="chrome:sidebar_item chrome:active_sidebar_item">
                   <span class="chrome:sidebar_item_text">Présentation</span>
                   </a>
+                  <hr>
                   <button id="sidebar_item:lettres" class="chrome:sidebar_item chrome:sidebar_item_collapsible chrome:sidebar_item_expanded" onclick="toggleAccordian('sidebar_item:lettres')">
                      <span class="chrome:sidebar_item_text">Principes de transcription</span>
                      <div class="chrome:collapsible_sub_nav_item_icon">
@@ -194,7 +195,7 @@
                      Les ligatures
                      </a>
                      <button id="sidebar_item:chiffres" class="chrome:sidebar_item chrome:sidebar_item_collapsible chrome:sidebar_item_expanded" onclick="toggleAccordian('sidebar_item:chiffres')">
-                        <span class="chrome:level_2 chrome:sidebar_item_text">Lettres</span>
+                        <span class="chrome:level_2 chrome:sidebar_item_text text-sm">Lettres</span>
                         <div class="chrome:collapsible_sub_nav_item_icon">
                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" focusable="false" role="presentation">
                               <path fill="currentColor" d="M1.646 3.646a.5.5 0 01.638-.057l.07.057L6 7.293l3.646-3.647a.5.5 0 01.638-.057l.07.057a.5.5 0 01.057.638l-.057.07-4 4a.5.5 0 01-.638.057l-.07-.057-4-4a.5.5 0 010-.708z"></path>
@@ -202,17 +203,18 @@
                         </div>
                      </button>
                      <div id="sidebar_item:chiffres:accordian" class="chrome:sidebar_item_accordian chrome:sidebar_item_accordian_expanded">
-                        <a href="/pages/generalites.html" class="chrome:sidebar_item_2 text-sm  chrome:sidebar_item_child chrome:level_2">
-                        Principes généraux
+                        <a href="/pages/generalites.html" class="chrome:sidebar_item text-sm  chrome:sidebar_item_child chrome:level_2 text-ssm">
+                        Sous-Section A
                         </a>
-                        <a href="/pages/ligatures.html" class="chrome:sidebar_item text-sm  chrome:sidebar_item_child chrome:level_2">
-                        Les ligatures
+                        <a href="/pages/ligatures.html" class="chrome:sidebar_item text-sm  chrome:sidebar_item_child chrome:level_2 text-ssm">
+                        Sous-Section B
                         </a>
                      </div>
                      <a href="/pages/chiffres.html" class="chrome:sidebar_item text-sm  chrome:sidebar_item_child">
                      Chiffres
                      </a>
                   </div>
+                  <hr>
                   <button id="sidebar_item:char_table" class="chrome:sidebar_item chrome:sidebar_item_collapsible chrome:sidebar_item_expanded" onclick="toggleAccordian('sidebar_item:char_table')">
                      <span class="chrome:sidebar_item_text">Characters table</span>
                      <div class="chrome:collapsible_sub_nav_item_icon">
@@ -221,25 +223,25 @@
                         </svg>
                      </div>
                   </button>
-                  {% for class, liste in classes.items() %}
                   <div id="sidebar_item:char_table:accordian" class="chrome:sidebar_item_accordian chrome:sidebar_item_accordian_expanded">
+                  {% for class, liste in classes.items() %}
                      <button id="sidebar_item:{{class}}" class="chrome:sidebar_item chrome:sidebar_item_collapsible chrome:sidebar_item_expanded chrome:level_2" onclick="toggleAccordian('sidebar_item:{{class}}')">
-                        <span class="chrome:sidebar_item_text">Punctuation</span>
+                        <span class="chrome:sidebar_item_text text-sm">{{class}}</span>
                         <div class="chrome:collapsible_sub_nav_item_icon">
                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" focusable="false" role="presentation">
                               <path fill="currentColor" d="M1.646 3.646a.5.5 0 01.638-.057l.07.057L6 7.293l3.646-3.647a.5.5 0 01.638-.057l.07.057a.5.5 0 01.057.638l-.057.07-4 4a.5.5 0 01-.638.057l-.07-.057-4-4a.5.5 0 010-.708z"></path>
                            </svg>
                         </div>
                      </button>
+                     <div id="sidebar_item:{{ class }}:accordian" class="chrome:sidebar_item_accordian chrome:sidebar_item_accordian_expanded">
                      {% for item in liste %}
-                     <div id="sidebar_item:{{ item }}:accordian" class="chrome:sidebar_item_accordian chrome:sidebar_item_accordian_expanded">
-                        <a href="{{item}}.html" class="chrome:sidebar_item text-sm  chrome:sidebar_item_child chrome:level_2">
+                        <a href="{{item}}.html" class="chrome:sidebar_item text-sm  chrome:sidebar_item_child chrome:level_2 text-ssm">
                         {{ item }}
                         </a>
-                     </div>
                      {% endfor  %}
-                  </div>
+                     </div>
                   {% endfor %}
+                  </div>
                </div>
             </div>
             <footer class="chrome:footer">
