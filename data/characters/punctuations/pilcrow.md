@@ -17,18 +17,18 @@ corresp:
     name: PARAGRAPHUS SIGN
     code: "00F1E1"
     examples:
-      - images/examples/pilcrow/pilcrow_gamma_CML13027.png
-      - images/examples/pilcrow/pilcrow_Laurentianus39.34.png
+      - data/examples/pilcrow/pilcrow_gamma_CML13027.png
+      - data/examples/pilcrow/pilcrow_Laurentianus39.34.png
   - transcription:  §
     name: SECTION SIGN
     code: 0000A7
 examples:
-  - images/examples/pilcrow/pilcrow_CML13027.png
-  - images/examples/pilcrow/pilcrow_Maz915.png
-  - images/examples/pilcrow/pilcrow_faded_CML13027.png
-  - images/examples/pilcrow/pilcrow_Montpelier.H_318.png
-  - images/examples/pilcrow/pilcrow_red_CML13027.png
-  - images/examples/pilcrow/pilcrow_Latin6395.png
+  - data/examples/pilcrow/pilcrow_CML13027.png
+  - data/examples/pilcrow/pilcrow_Maz915.png
+  - data/examples/pilcrow/pilcrow_faded_CML13027.png
+  - data/examples/pilcrow/pilcrow_Montpelier.H_318.png
+  - data/examples/pilcrow/pilcrow_red_CML13027.png
+  - data/examples/pilcrow/pilcrow_Latin6395.png
 ---
 
 Pilcrows are used to indicate a change of content, of section, of paragraph.

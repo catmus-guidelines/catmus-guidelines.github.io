@@ -35,9 +35,9 @@ corresp:
     code: "0000AC"
     name: "NOT SIGN"
 examples:
-  - images/examples/hyphen/hyphen_CCCC165.png
-  - images/examples/hyphen/hyphen_Plut_53.08.png
-  - images/examples/hyphen/hyphen_Plut.53.09.png
+  - data/examples/hyphen/hyphen_CCCC165.png
+  - data/examples/hyphen/hyphen_Plut_53.08.png
+  - data/examples/hyphen/hyphen_Plut.53.09.png
 ---
 
 Hyphen-like characters are really many. We have chose to use the most classical sign available on the keyboard.

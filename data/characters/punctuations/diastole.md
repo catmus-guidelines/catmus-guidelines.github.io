@@ -10,6 +10,6 @@ description: Some description
 position:
   - D
 examples:
-  - images/examples/diastole/BAV_pallat_373.png
-  - images/examples/diastole/BIS193.png
+  - data/examples/diastole/BAV_pallat_373.png
+  - data/examples/diastole/BIS193.png
 ---

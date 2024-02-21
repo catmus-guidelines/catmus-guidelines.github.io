@@ -15,7 +15,7 @@ position:
   - H
   - I
 examples:
-  - images/examples/additions/addition_CML13027.png
-  - images/examples/additions/addition_Sorbonne193.png
-  - images/examples/additions/addition_VatLat373.png
+  - data/examples/additions/addition_CML13027.png
+  - data/examples/additions/addition_Sorbonne193.png
+  - data/examples/additions/addition_VatLat373.png
 ---
