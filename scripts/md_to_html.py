@@ -1,11 +1,13 @@
 import glob
 import os
 import lxml.etree as ET
+import lxml.html as lhtml
+from lxml.html import builder as E
 import re
 import yaml
 from marko.ext.gfm import gfm
 from jinja2 import Environment, FileSystemLoader
-
+from bs4 import BeautifulSoup
 
 tei_ns = "https://tei-c.org/ns/1-0/"
 ns_decl = {"tei": tei_ns}
@@ -98,15 +100,26 @@ def htmlify(path, surrounding_files):
     output = template.render(yaml_data)
     character_table = ET.fromstring(output, parser=parser)
     character_table_body = character_table.xpath("//body")
-    character_table_body[0].insert(2, character_description)
-    character_table_body[0].insert(-1, next_and_previous)
+    description_div = character_table.xpath("//div[@id='description']")
+    description_div[0].append(character_description)
+    next_previous_div = character_table.xpath("//div[@id='next_previous']")[0]
+    next_previous_div.append(next_and_previous)
+    
+    head_node = character_table.xpath("//head")
+    script_element = lhtml.Element("script")
+    script_element.set('src', '../assets/js/accordian.js')
+    # head_node[0].append(script_element)
+
+    soup = BeautifulSoup(ET.tostring(character_table), 'html.parser')
+    soup = soup.prettify()
     
     try:
         os.mkdir("html")
     except FileExistsError:
         pass
     with open(f"html/{filename}.html", 'w') as file:
-        file.write(ET.tostring(character_table, encoding='utf-8').decode())
+        file.write(soup)
+        # file.write(ET.tostring(soup, encoding='utf-8').decode())
 
 
 if __name__ == '__main__':

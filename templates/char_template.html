@@ -1,157 +1,257 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ name }} -- CATMuS guidelines</title>
-    <!--<link rel="stylesheet" href="bootstrap.min.css">-->
-    <link
-      rel="stylesheet"
-      href="../assets/css/style.scss"
-    />
-    <link
-      rel="stylesheet"
-      href="../assets/css/rouge.css"
-    />
-</head>
-<body>
-  <div class="chrome:nav">
-  <div class="chrome:logo_nav_item" title="GitHub Repository">
-    <a href="index.html" rel="noreferrer noopener">
-      <img src="../assets/images/catmus.png" alt="Catmus logotype">
-    </a>
-  </div> 
- <!-- <div class="chrome:logo_nav_item bottom" title="GitHub Repository">
-    <a href="https://github.com/matgille/DrJekyllMrCatmus" target="_blank" rel="noreferrer noopener">
-      <img src="assets/images/github-mark-white.svg" alt="Link to GitHub Repository">
-    </a>
-  </div>-->
-  </div>
-  
-<div class="container"><h1>{{ label }}</h1></div>
-<hr/>
-    <div class="container">
-        <div>
-            <h3>Name: {{ name }}</h3>
-        </div>
-        <div>
-            <h3>Code: {{ code }}</h3>
-        </div>
-        <div>
-            <h3>char: {{ char }}</h3>
-        </div>
-        <div>
-            <h3>Group: {{ group }}</h3>
-        </div>
-        <div>
-            <h3>Position:</h3>
-            <table class="position_table" >
-                <tbody>
-                <tr>
-                    {% if "A" in position %}
-                    <td class="active">X</td>
-                    {% else %}
-                    <td class="inactive">X</td>
-                    {% endif %}
-                    {% if "B" in position %}
-                    <td class="active">X</td>
-                    {% else %}
-                    <td class="inactive">X</td>
-                    {% endif %}
-                    {% if "C" in position %}
-                    <td class="active">X</td>
-                    {% else %}
-                    <td class="inactive">X</td>
-                    {% endif %}
-                </tr>
-                <tr>
-                    {% if "D" in position %}
-                    <td class="active">X</td>
-                    {% else %}
-                    <td class="inactive">X</td>
-                    {% endif %}
-                    {% if "E" in position %}
-                    <td class="active">X</td>
-                    {% else %}
-                    <td class="inactive">X</td>
-                    {% endif %}
-                    {% if "F" in position %}
-                    <td class="active">X</td>
-                    {% else %}
-                    <td class="inactive">X</td>
-                    {% endif %}
-                </tr>
-                <tr>
-                    {% if "G" in position %}
-                    <td class="active">X</td>
-                    {% else %}
-                    <td class="inactive">X</td>
-                    {% endif %}
-                    {% if "H" in position %}
-                    <td class="active">X</td>
-                    {% else %}
-                    <td class="inactive">X</td>
-                    {% endif %}
-                    {% if "I" in position %}
-                    <td class="active">X</td>
-                    {% else %}
-                    <td class="inactive">X</td>
-                    {% endif %}
-                </tr>
-                </tbody>
-            </table>
-        </div>
-        
-        <div>
-            <h3>Description</h3>
-        <p>{{ description }}</p>
-        </div>
-        
-        {% if other_names %}
-        <div><h3>Other names</h3>
-            <ul>
-                {% for other_name in other_names %}
-                    <li>{{ other_name }}</li>
-                {% endfor %}
-            </ul>
-        </div>
-        {% endif %}
-        
-        
-        <div>
-            <h3>Examples</h3>
-                <ul>
-                {% for example in examples %}
-                    <li><img src="{{ example }}" alt="Some char image"/></li>
-                {% endfor %}
-                </ul>
-        </div>
-         
-        <div>
-            <h3>Related characters</h3>
-            
-                <ul>
-                    {% for corresp_char in corresp %}
-                    {{ corresp_char['name'] }}
-                    <li><ul>
-                        <li>{{ corresp_char['transcription'] }}</li>
-                        <li>{{ corresp_char['code'] }}</li>
-                        {% if corresp_char['examples'] %}
-                        <li>
-                            <ul>
-                            {% for corresponding_example in corresp_char['examples'] %}
-                        <li><img search="{{ corresponding_example }}" alt="some other image"/></li>
-                            {% endfor %}
-                            </ul>
-                        </li>
-                        {% endif %}
-                    </ul></li>
-                    {% endfor %}
-                </ul>
-            
-        </div>
-       
-    </div>
-  <script src="../assets/js/accordian.js"></script>
-  
-</body>
+   <head>
+      <meta charset="UTF-8">
+      <title>{{ name }} -- CATMuS guidelines</title>
+      <!--<link rel="stylesheet" href="bootstrap.min.css">-->
+      <link
+         rel="stylesheet"
+         href="../assets/css/stylesheet.css"
+         />
+      <link
+         rel="stylesheet"
+         href="../assets/css/rouge.css"
+         />
+      <link href="../assets/bootstrap-4.1.3-dist/css/bootstrap.min.css" rel="stylesheet"/>
+   </head>
+   <body>
+      <div class="chrome">
+         <div class="chrome:nav">
+            <div class="chrome:logo_nav_item" title="GitHub Repository">
+               <a href="index.html" rel="noreferrer noopener">
+               <img src="../assets/images/catmus.png" alt="Catmus logotype">
+               </a>
+            </div>
+            <!-- <div class="chrome:logo_nav_item bottom" title="GitHub Repository">
+               <a href="https://github.com/matgille/DrJekyllMrCatmus" target="_blank" rel="noreferrer noopener">
+                 <img src="assets/images/github-mark-white.svg" alt="Link to GitHub Repository">
+               </a>
+               </div>-->
+         </div>
+         <div class="chrome:body">
+            <header class="chrome:header">
+               <div class="chrome:header_title">
+                  <a href="/" class="text-grey-800 no-underline hover:no-underline focus:no-underline">
+                  <span class="text-3xl">Consistent Approaches to Transcribing ManuScripts</span>
+                  </a>
+               </div>
+               <div class="chrome:header_item">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" focusable="false" viewBox="0 0 26 26">
+                     <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2">
+                        <circle cx="11" cy="11" r="7"></circle>
+                        <path d="M16 16l6 6"></path>
+                     </g>
+                  </svg>
+                  <form id="search">
+                     <input type="text" id="search_input" name="search_query" class="search_input" placeholder="Search CaTMuS" autocomplete="off">
+                  </form>
+               </div>
+            </header>
+            <div class="chrome:content">
+               <div class="chrome:main">
+                  <h1>{{ label }}</h1>
+                  <div id="description">
+                     <h2>Description</h2>
+                  </div>
+                  <hr/>
+                  <div>
+                     <div>
+                        <h3>Name: {{ name }}</h3>
+                     </div>
+                     <div>
+                        <h3>Code Unicode: {{ code }}</h3>
+                     </div>
+                     <div>
+                        <h3>char: {{ char }}</h3>
+                     </div>
+                     <div>
+                        <h3>Group: {{ group }}</h3>
+                     </div>
+                     <div>
+                        <h3>Position:</h3>
+                        <table class="position_table" >
+                           <tbody>
+                              <tr>
+                                 {% if "A" in position %}
+                                 <td class="active">X</td>
+                                 {% else %}
+                                 <td class="inactive">X</td>
+                                 {% endif %}
+                                 {% if "B" in position %}
+                                 <td class="active">X</td>
+                                 {% else %}
+                                 <td class="inactive">X</td>
+                                 {% endif %}
+                                 {% if "C" in position %}
+                                 <td class="active">X</td>
+                                 {% else %}
+                                 <td class="inactive">X</td>
+                                 {% endif %}
+                              </tr>
+                              <tr>
+                                 {% if "D" in position %}
+                                 <td class="active">X</td>
+                                 {% else %}
+                                 <td class="inactive">X</td>
+                                 {% endif %}
+                                 {% if "E" in position %}
+                                 <td class="active">X</td>
+                                 {% else %}
+                                 <td class="inactive">X</td>
+                                 {% endif %}
+                                 {% if "F" in position %}
+                                 <td class="active">X</td>
+                                 {% else %}
+                                 <td class="inactive">X</td>
+                                 {% endif %}
+                              </tr>
+                              <tr>
+                                 {% if "G" in position %}
+                                 <td class="active">X</td>
+                                 {% else %}
+                                 <td class="inactive">X</td>
+                                 {% endif %}
+                                 {% if "H" in position %}
+                                 <td class="active">X</td>
+                                 {% else %}
+                                 <td class="inactive">X</td>
+                                 {% endif %}
+                                 {% if "I" in position %}
+                                 <td class="active">X</td>
+                                 {% else %}
+                                 <td class="inactive">X</td>
+                                 {% endif %}
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div>
+                        <h3>Description</h3>
+                        <p>{{ description }}</p>
+                     </div>
+                     {% if other_names %}
+                     <div>
+                        <h3>Other names</h3>
+                        <ul>
+                           {% for other_name in other_names %}
+                           <li>{{ other_name }}</li>
+                           {% endfor %}
+                        </ul>
+                     </div>
+                     {% endif %}
+                     <div>
+                        <h3>Examples</h3>
+                        <ul>
+                           {% for example in examples %}
+                           <li><img src="{{ example }}" alt="Some char image"/></li>
+                           {% endfor %}
+                        </ul>
+                     </div>
+                     <div>
+                        <h3>Related characters</h3>
+                        <ul>
+                           {% for corresp_char in corresp %}
+                           <li>
+                              {{ corresp_char['name'] }}
+                              <ul>
+                                 <li><b>Char</b>: {{ corresp_char['transcription'] }}</li>
+                                 <li><b>Code</b>: {{ corresp_char['code'] }}</li>
+                                 {% if corresp_char['examples'] %}
+                                 <li>
+                                    <b>Examples</b>:
+                                    <ul>
+                                       {% for corresponding_example in corresp_char['examples'] %}
+                                       <li><img search="{{ corresponding_example }}" alt="some other image"/></li>
+                                       {% endfor %}
+                                    </ul>
+                                 </li>
+                                 {% endif %}
+                              </ul>
+                           </li>
+                           {% endfor %}
+                        </ul>
+                     </div>
+                     <div id="next_previous"></div>
+                  </div>
+               </div>
+               <div class="chrome:sidebar">
+                  <a href="/" class="chrome:sidebar_item chrome:active_sidebar_item">
+                  <span class="chrome:sidebar_item_text">Présentation</span>
+                  </a>
+                  <button id="sidebar_item:lettres" class="chrome:sidebar_item chrome:sidebar_item_collapsible chrome:sidebar_item_expanded" onclick="toggleAccordian('sidebar_item:lettres')">
+                     <span class="chrome:sidebar_item_text">Principes de transcription</span>
+                     <div class="chrome:collapsible_sub_nav_item_icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" focusable="false" role="presentation">
+                           <path fill="currentColor" d="M1.646 3.646a.5.5 0 01.638-.057l.07.057L6 7.293l3.646-3.647a.5.5 0 01.638-.057l.07.057a.5.5 0 01.057.638l-.057.07-4 4a.5.5 0 01-.638.057l-.07-.057-4-4a.5.5 0 010-.708z"></path>
+                        </svg>
+                     </div>
+                  </button>
+                  <div id="sidebar_item:lettres:accordian" class="chrome:sidebar_item_accordian chrome:sidebar_item_accordian_expanded">
+                     <a href="/pages/generalites.html" class="chrome:sidebar_item text-sm  chrome:sidebar_item_child">
+                     Principes généraux
+                     </a>
+                     <a href="/pages/ligatures.html" class="chrome:sidebar_item text-sm  chrome:sidebar_item_child">
+                     Les ligatures
+                     </a>
+                     <button id="sidebar_item:chiffres" class="chrome:sidebar_item chrome:sidebar_item_collapsible chrome:sidebar_item_expanded" onclick="toggleAccordian('sidebar_item:chiffres')">
+                        <span class="chrome:level_2 chrome:sidebar_item_text">Lettres</span>
+                        <div class="chrome:collapsible_sub_nav_item_icon">
+                           <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" focusable="false" role="presentation">
+                              <path fill="currentColor" d="M1.646 3.646a.5.5 0 01.638-.057l.07.057L6 7.293l3.646-3.647a.5.5 0 01.638-.057l.07.057a.5.5 0 01.057.638l-.057.07-4 4a.5.5 0 01-.638.057l-.07-.057-4-4a.5.5 0 010-.708z"></path>
+                           </svg>
+                        </div>
+                     </button>
+                     <div id="sidebar_item:chiffres:accordian" class="chrome:sidebar_item_accordian chrome:sidebar_item_accordian_expanded">
+                        <a href="/pages/generalites.html" class="chrome:sidebar_item_2 text-sm  chrome:sidebar_item_child chrome:level_2">
+                        Principes généraux
+                        </a>
+                        <a href="/pages/ligatures.html" class="chrome:sidebar_item text-sm  chrome:sidebar_item_child chrome:level_2">
+                        Les ligatures
+                        </a>
+                     </div>
+                     <a href="/pages/chiffres.html" class="chrome:sidebar_item text-sm  chrome:sidebar_item_child">
+                     Chiffres
+                     </a>
+                  </div>
+                  <button id="sidebar_item:char_table" class="chrome:sidebar_item chrome:sidebar_item_collapsible chrome:sidebar_item_expanded" onclick="toggleAccordian('sidebar_item:char_table')">
+                     <span class="chrome:sidebar_item_text">Characters table</span>
+                     <div class="chrome:collapsible_sub_nav_item_icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" focusable="false" role="presentation">
+                           <path fill="currentColor" d="M1.646 3.646a.5.5 0 01.638-.057l.07.057L6 7.293l3.646-3.647a.5.5 0 01.638-.057l.07.057a.5.5 0 01.057.638l-.057.07-4 4a.5.5 0 01-.638.057l-.07-.057-4-4a.5.5 0 010-.708z"></path>
+                        </svg>
+                     </div>
+                  </button>
+                  <div id="sidebar_item:char_table:accordian" class="chrome:sidebar_item_accordian chrome:sidebar_item_accordian_expanded">
+                     <button id="sidebar_item:punctuation" class="chrome:sidebar_item chrome:sidebar_item_collapsible chrome:sidebar_item_expanded chrome:level_2" onclick="toggleAccordian('sidebar_item:punctuation')">
+                        <span class="chrome:sidebar_item_text">Punctuation</span>
+                        <div class="chrome:collapsible_sub_nav_item_icon">
+                           <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" focusable="false" role="presentation">
+                              <path fill="currentColor" d="M1.646 3.646a.5.5 0 01.638-.057l.07.057L6 7.293l3.646-3.647a.5.5 0 01.638-.057l.07.057a.5.5 0 01.057.638l-.057.07-4 4a.5.5 0 01-.638.057l-.07-.057-4-4a.5.5 0 010-.708z"></path>
+                           </svg>
+                        </div>
+                     </button>
+                     <div id="sidebar_item:punctuation:accordian" class="chrome:sidebar_item_accordian chrome:sidebar_item_accordian_expanded">
+                        <a href="/pages/chiffres.html" class="chrome:sidebar_item text-sm  chrome:sidebar_item_child chrome:level_2">
+                        Diastole
+                        </a>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <footer class="chrome:footer">
+               <div class="chrome:footer_item">
+                  <span class="text-lg">Dernier commit: ab24b382da653657cd00542b8effbb8e5528d7fa</span>
+               </div>
+               <div class="chrome:footer_item">
+                  <span class="text-lg">Mise à jour: 2024-02-07</span>
+               </div>
+               <div class="chrome:footer_item">
+                  <span class="text-lg">Thème Jekyll: <a href="https://github.com/matgille/jekyll-theme-zendesk-garden-based" target="_blank">jekyll-theme-zendesk-garden-based</a>
+                  </span>
+               </div>
+            </footer>
+         </div>
+      </div>
+      <script src="../assets/js/accordian.js"></script>
+   </body>
 </html>
