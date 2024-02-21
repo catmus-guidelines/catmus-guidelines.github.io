@@ -9,13 +9,8 @@ from marko.ext.gfm import gfm
 from jinja2 import Environment, FileSystemLoader
 from bs4 import BeautifulSoup
 
-tei_ns = "https://tei-c.org/ns/1-0/"
-ns_decl = {"tei": tei_ns}
 
 
-
-def position_to_schema(pos):
-    pass
 
 def write_to_log(message):
     with open("logs/log.txt", "a") as log_file:
@@ -33,14 +28,14 @@ def write_file(string, path):
         
 
 
-def htmlify(path, surrounding_files):
+def htmlify(file_and_class, surrounding_files, full_dict):
     """
     This function takes a md file and returns a TEI-like document (not fully compliant though)
     :param path: path to the md file
     :return: None; creates a TEI file
     """
     # TODO: get back to endnotes
-
+    path, classe = file_and_class
     # Getting the path to output file
     with open(path, "r") as input_file:
         as_text = input_file.read()
@@ -97,6 +92,10 @@ def htmlify(path, surrounding_files):
     template = env.get_template('templates/char_template.html')
 
     # Render template with YAML data and save to HTML file
+    yaml_data['class'] = classe
+    yaml_data['path'] = path
+    yaml_data = {**yaml_data, **full_dict}
+    print(yaml_data)
     output = template.render(yaml_data)
     character_table = ET.fromstring(output, parser=parser)
     character_table_body = character_table.xpath("//body")
@@ -126,26 +125,13 @@ if __name__ == '__main__':
     pages = []
     files = glob.glob("data/characters/punctuations/*.md")
     files.sort(key=lambda x:x.split("/")[-1])
+    files_dict = {}
     for index, file in enumerate(files):
         filename = file.split("/")[-1].replace(".md", "")
         classe = file.split("/")[-2]
         print(file)
-        try:
-            next_file = files[index + 1]
-        except IndexError:
-            next_file = None
-        
-
-        try:
-            previous_file = files[index - 1]
-        except IndexError:
-            previous_file = None
-        
-        htmlify(file, (next_file, previous_file))
         pages.append((filename, classe))
-    
-    references = ""
-    references_global = ""
+
     pages_as_dict = dict()
     for page in pages:
         nom_fichier, classe = page
@@ -153,7 +139,20 @@ if __name__ == '__main__':
             pages_as_dict[classe].append(nom_fichier)
         except KeyError:
             pages_as_dict[classe] = [nom_fichier]
-    print(pages_as_dict)
+    pages_as_dict = {"classes": pages_as_dict}
+
+    for index, file in enumerate(files):
+        try:
+            next_file = files[index + 1]
+        except IndexError:
+            next_file = None
+        try:
+            previous_file = files[index - 1]
+        except IndexError:
+            previous_file = None
+        htmlify((file, classe), (next_file, previous_file), pages_as_dict)
+    references = ""
+    references_global = ""
     for classe, examples in pages_as_dict.items():
         for page in pages:
             nom_fichier, classe = page

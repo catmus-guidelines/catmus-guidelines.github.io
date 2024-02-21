@@ -221,8 +221,9 @@
                         </svg>
                      </div>
                   </button>
+                  {% for class, liste in classes.items() %}
                   <div id="sidebar_item:char_table:accordian" class="chrome:sidebar_item_accordian chrome:sidebar_item_accordian_expanded">
-                     <button id="sidebar_item:punctuation" class="chrome:sidebar_item chrome:sidebar_item_collapsible chrome:sidebar_item_expanded chrome:level_2" onclick="toggleAccordian('sidebar_item:punctuation')">
+                     <button id="sidebar_item:{{class}}" class="chrome:sidebar_item chrome:sidebar_item_collapsible chrome:sidebar_item_expanded chrome:level_2" onclick="toggleAccordian('sidebar_item:{{class}}')">
                         <span class="chrome:sidebar_item_text">Punctuation</span>
                         <div class="chrome:collapsible_sub_nav_item_icon">
                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" focusable="false" role="presentation">
@@ -230,12 +231,15 @@
                            </svg>
                         </div>
                      </button>
-                     <div id="sidebar_item:punctuation:accordian" class="chrome:sidebar_item_accordian chrome:sidebar_item_accordian_expanded">
-                        <a href="/pages/chiffres.html" class="chrome:sidebar_item text-sm  chrome:sidebar_item_child chrome:level_2">
-                        Diastole
+                     {% for item in liste %}
+                     <div id="sidebar_item:{{ item }}:accordian" class="chrome:sidebar_item_accordian chrome:sidebar_item_accordian_expanded">
+                        <a href="{{item}}.html" class="chrome:sidebar_item text-sm  chrome:sidebar_item_child chrome:level_2">
+                        {{ item }}
                         </a>
                      </div>
+                     {% endfor  %}
                   </div>
+                  {% endfor %}
                </div>
             </div>
             <footer class="chrome:footer">
