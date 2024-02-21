@@ -40,4 +40,4 @@ examples:
   - data/examples/hyphen/hyphen_Plut.53.09.png
 ---
 
-Hyphen-like characters are really many. We have chose to use the most classical sign available on the keyboard.
+Hyphen-like characters are many. We have chose to use the most classical sign available on the keyboard.
