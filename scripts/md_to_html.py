@@ -8,8 +8,8 @@ import yaml
 from marko.ext.gfm import gfm
 from jinja2 import Environment, FileSystemLoader
 from bs4 import BeautifulSoup
-
-
+import git
+import datetime
 
 
 def write_to_log(message):
@@ -26,12 +26,20 @@ def write_file(string, path):
     with open(path, "w") as out_file:
         out_file.write(string)
 
+def last_update():
+    return datetime.datetime.today().strftime('%Y-%m-%d')
+
+def get_last_commit():
+    repo = git.Repo(search_parent_directories=True)
+    return repo.head.object.hexsha[:10]
      
 def first_letter_uppercase(string):
     return string[0].upper() + string[1:]
 
 func_dict = {
     "first_letter_uppercase": first_letter_uppercase,
+    "get_last_commit": get_last_commit,
+    "last_update": last_update,
 }
 
 
