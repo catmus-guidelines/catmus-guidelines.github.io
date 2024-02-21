@@ -25,7 +25,14 @@ def write_tree(tree, path):
 def write_file(string, path):
     with open(path, "w") as out_file:
         out_file.write(string)
-        
+
+     
+def first_letter_uppercase(string):
+    return string[0].upper() + string[1:]
+
+func_dict = {
+    "first_letter_uppercase": first_letter_uppercase,
+}
 
 
 def htmlify(file_and_class, surrounding_files, full_dict):
@@ -90,7 +97,10 @@ def htmlify(file_and_class, surrounding_files, full_dict):
     # Load Jinja2 template from file
     env = Environment(loader=FileSystemLoader('.'))
     template = env.get_template('templates/char_template.html')
-
+    # https://saidvandeklundert.net/2020-12-24-python-functions-in-jinja/
+    template.globals.update(func_dict)
+    
+    
     # Render template with YAML data and save to HTML file
     yaml_data['class'] = classe
     yaml_data['path'] = path
