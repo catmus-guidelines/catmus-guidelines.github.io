@@ -44,6 +44,8 @@ jobs:
        python3 scripts/md_to_html.py
     - name: Pushing
       run: |
+        git config --global user.email "matthias.gille-levenson@ens-lyon.fr"
+        git config --global user.name "Matthias Gille Levenson"
         git add html/*.html
         git commit -m "[Automatic] Update HTML Pages" || echo "Nothing to commit"
         git push || echo "Nothing to push"
