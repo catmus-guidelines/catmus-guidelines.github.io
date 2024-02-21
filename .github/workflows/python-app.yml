@@ -42,6 +42,11 @@ jobs:
     - name: Build site
       run: |
        python3 scripts/md_to_html.py
+    - name: Pushing
+      run: |
+        git add html/*.html
+        git commit -m "[Automatic] Update HTML Pages" || echo "Nothing to commit"
+        git push || echo "Nothing to push"
 # Single deploy job since we're just deploying
   
   deploy:
