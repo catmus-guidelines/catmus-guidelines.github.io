@@ -47,7 +47,7 @@ jobs:
       run: |
         git config --global user.email "matthias.gille-levenson@ens-lyon.fr"
         git config --global user.name "Matthias Gille Levenson"
-        git remote set-url git@github.com:catmus-guidelines/future-website.git
+        git remote set-url origin git@github.com:catmus-guidelines/future-website.git
         git add html/*.html
         git commit -m "[Automatic] Update HTML Pages" || echo "Nothing to commit"
     - name: Push changes # push the output folder to your repo
