@@ -67,6 +67,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: html_files
+          path: html/
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
