@@ -43,12 +43,18 @@ jobs:
     - name: Build site
       run: |
        python3 scripts/md_to_html.py
-    - name: Archive production artifacts
-      uses: actions/upload-artifact@v4
+    - name: Pushing
+      run: |
+        git config --global user.email "matthias.gille-levenson@ens-lyon.fr"
+        git config --global user.name "Matthias Gille Levenson"
+        git remote set-url git@github.com:catmus-guidelines/future-website.git
+        git add html/*.html
+        git commit -m "[Automatic] Update HTML Pages" || echo "Nothing to commit"
+    - name: Push changes # push the output folder to your repo
+      uses: ad-m/github-push-action@master
       with:
-        name: dist-without-markdown
-        path: |
-          html
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        force: true
 # Single deploy job since we're just deploying
   
   deploy:
