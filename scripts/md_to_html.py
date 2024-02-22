@@ -254,12 +254,6 @@ if __name__ == '__main__':
         all_chars.append(htmlify((file, classe), (next_file, previous_file), pages_as_dict))
         
         
-    # Create index of characters
-    create_index(yaml_list=all_chars,
-                 title='Index of Characters',
-                 template='templates/index.html',
-                 md_source="data/guidelines/index.md",
-                 out_dir=".")
         
     # Create guidelines pages
     create_pages(yaml_dict=pages_as_dict,
@@ -279,6 +273,11 @@ if __name__ == '__main__':
                      out_dir="html/guidelines/")
         
     
-
+    # Finally, create index of characters
+    create_index(yaml_list=all_chars,
+                 title='Index of Characters',
+                 template='templates/index.html',
+                 md_source="data/guidelines/index.md",
+                 out_dir=".")
         
     
