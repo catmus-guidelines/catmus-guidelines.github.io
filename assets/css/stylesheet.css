@@ -89589,10 +89589,7 @@ display:inline;
         animation:bounce 1s infinite
     }
 }
-table{
-    word-break:break-word;
-    white-space:break-spaces
-}
+
 body{
     margin:0;
     padding:0

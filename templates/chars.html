@@ -20,8 +20,8 @@
                      </div>
                      <div>
                         <h3>Position:</h3>
+                        <div class="centered-element">
                         <table  class="position_table">
-                           <tbody>
                               <tr>
                                  {% if "A" in position %}
                                  <td class="active">X</td>
@@ -73,8 +73,8 @@
                                  <td class="inactive">X</td>
                                  {% endif %}
                               </tr>
-                           </tbody>
                         </table>
+                        </div>
                      </div>
                      <div>
                         <h3>Description</h3>
@@ -93,7 +93,7 @@
                      <div>
                         <h3>Examples</h3>
                            {% for example in examples %}
-                           <span class="image"><img src="/future-website/{{ example }}" alt="Some char image"/></span>
+                           <span class="image"><img src="{{ abspath }}/{{ example }}" alt="Some char image"/></span>
                            {% endfor %}
                      </div>
                      <div>
@@ -109,7 +109,7 @@
                                  <li>
                                     <b>Examples</b>:
                                        {% for corresponding_example in corresp_char['examples'] %}
-                                       <img search="/future-website/{{ corresponding_example }}" alt="some other image"/>
+                                       <img search="{{ abspath }}/{{ corresponding_example }}" alt="some other image"/>
                                        {% endfor %}
                                  </li>
                                  {% endif %}

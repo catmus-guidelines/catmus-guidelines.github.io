@@ -157,6 +157,8 @@ if __name__ == '__main__':
             pages_as_dict[classe].append(nom_fichier)
         except KeyError:
             pages_as_dict[classe] = [nom_fichier]
+            
+    # We create a dynamic absolute path to use it on local build or online
     if sys.argv[1] == "local":
         abspath = "/home/mgl/Bureau/Travail/projets/HTR/CatMus/website"
     else:
@@ -175,6 +177,7 @@ if __name__ == '__main__':
             previous_file = None
         htmlify((file, classe), (next_file, previous_file), pages_as_dict)
 
+    # Let's build the homepage
     env = Environment(loader=FileSystemLoader('.'))
     template = env.get_template('templates/index.html')
     # https://saidvandeklundert.net/2020-12-24-python-functions-in-jinja/
