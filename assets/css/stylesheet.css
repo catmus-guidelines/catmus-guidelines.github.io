@@ -8817,6 +8817,9 @@ img,video{
     font-size:0.875rem
 }
 
+.image {
+display:inline;
+}
 
 .text-ssm{
     font-size:0.775rem
