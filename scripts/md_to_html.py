@@ -86,7 +86,7 @@ def create_index(yaml_list, title, template):
     main_div.append(to_insert)
     soup = BeautifulSoup(ET.tostring(html_index), 'html.parser')
     soup = soup.prettify()
-    with open(f"{yaml_dict['abspath']}/html/characters/index_of_characters.html", "w") as index:
+    with open(f"html/characters/index_of_characters.html", "w") as index:
         index.write(soup)
 
 def create_pages(yaml_dict, title, template, md_source, out_dir):
