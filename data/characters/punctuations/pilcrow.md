@@ -31,4 +31,4 @@ examples:
   - data/examples/pilcrow/pilcrow_Latin6395.png
 ---
 
-Pilcrows are used to indicate a change of content, of section, of paragraph.
+Pilcrows are used to indicate a change of content, of section, or paragraph.
