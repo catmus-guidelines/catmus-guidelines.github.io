@@ -1,5 +1,7 @@
 import glob
 import os
+import sys
+
 import lxml.etree as ET
 import lxml.html as lhtml
 from lxml.html import builder as E
@@ -116,13 +118,11 @@ def htmlify(file_and_class, surrounding_files, full_dict):
     print(yaml_data)
     output = template.render(yaml_data)
     character_table = ET.fromstring(output, parser=parser)
-    character_table_body = character_table.xpath("//body")
     description_div = character_table.xpath("//div[@id='description']")
     description_div[0].append(character_description)
     next_previous_div = character_table.xpath("//div[@id='next_previous']")[0]
     next_previous_div.append(next_and_previous)
     
-    head_node = character_table.xpath("//head")
     script_element = lhtml.Element("script")
     script_element.set('src', '../assets/js/accordian.js')
     # head_node[0].append(script_element)
@@ -157,7 +157,12 @@ if __name__ == '__main__':
             pages_as_dict[classe].append(nom_fichier)
         except KeyError:
             pages_as_dict[classe] = [nom_fichier]
-    pages_as_dict = {"classes": pages_as_dict}
+    if sys.argv[1] == "local":
+        abspath = "/home/mgl/Bureau/Travail/projets/HTR/CatMus/website"
+    else:
+        abspath = sys.argv[1]
+    pages_as_dict = {"classes": pages_as_dict,
+                     "abspath": abspath}
 
     for index, file in enumerate(files):
         try:
@@ -169,14 +174,12 @@ if __name__ == '__main__':
         except IndexError:
             previous_file = None
         htmlify((file, classe), (next_file, previous_file), pages_as_dict)
-    references = ""
-    references_global = ""
-    for classe, examples in pages_as_dict.items():
-        for page in pages:
-            nom_fichier, classe = page
-            references += f"<li><a href=\"html/{nom_fichier}.html\">{nom_fichier}</a></li>"
-        references_global += f"<li>{classe}<ul>{references}<ul></li>"
-    html_string = f"<!DOCTYPE html><html><body><ul>{references_global}<ul></body></html>"
+
+    env = Environment(loader=FileSystemLoader('.'))
+    template = env.get_template('templates/index.html')
+    # https://saidvandeklundert.net/2020-12-24-python-functions-in-jinja/
+    template.globals.update(func_dict)
+    html_string = template.render(pages_as_dict)
     with open("index.html", "w") as index:
         index.write(html_string)
         
