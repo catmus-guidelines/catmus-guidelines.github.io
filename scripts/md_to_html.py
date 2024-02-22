@@ -45,7 +45,11 @@ func_dict = {
 }
 
 
-def create_index(yaml_list, title, template, md_source, out_dir):
+def create_index(yaml_list, title, template):
+    try:
+        os.mkdir("html/characters")
+    except FileExistsError:
+        pass
     table = ET.Element("table")
     thead = ET.SubElement(table, 'thead')
     trhead = ET.SubElement(thead, 'tr')
