@@ -280,8 +280,6 @@ if __name__ == '__main__':
     # Finally, create index of characters
     create_index(yaml_list=all_chars,
                  title='Index of Characters',
-                 template='templates/index.html',
-                 md_source="data/guidelines/index.md",
-                 out_dir=".")
+                 template='templates/index.html')
         
     
