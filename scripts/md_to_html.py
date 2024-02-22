@@ -45,6 +45,35 @@ func_dict = {
 }
 
 
+
+def create_pages(yaml_dict, template, md_source, out_dir):
+    try:
+        os.mkdir("html/guidelines")
+    except FileExistsError:
+        pass
+    # Let's build the homepage
+    env = Environment(loader=FileSystemLoader('.'))
+    template = env.get_template(template)
+    # https://saidvandeklundert.net/2020-12-24-python-functions-in-jinja/
+    template.globals.update(func_dict)
+    html_string = template.render(yaml_dict)
+    
+    with open(md_source, "r") as index_page:
+        md_doc = index_page.read()
+    converted_doc = gfm.convert(md_doc)
+    converted_doc = converted_doc.replace("<hr />", "")
+    converted_doc = "<div>" + converted_doc + "</div>"
+    to_insert = ET.fromstring(converted_doc)
+
+    parser = ET.HTMLParser(recover=True)
+    html_index = ET.fromstring(html_string, parser=parser)
+    main_div = html_index.xpath("//div[@class='chrome:main']")[0]
+    main_div.append(to_insert)
+    with open(f"{out_dir}/{md_source.split('/')[-1].replace('.md', '')}.html", "w") as index:
+        index.write(ET.tostring(html_index).decode())
+
+
+
 def htmlify(file_and_class, surrounding_files, full_dict):
     """
     This function takes a md file and returns a TEI-like document (not fully compliant though)
@@ -134,7 +163,12 @@ def htmlify(file_and_class, surrounding_files, full_dict):
         os.mkdir("html")
     except FileExistsError:
         pass
-    with open(f"html/{filename}.html", 'w') as file:
+
+    try:
+        os.mkdir("html/characters")
+    except FileExistsError:
+        pass
+    with open(f"html/characters/{filename}.html", 'w') as file:
         file.write(soup)
         # file.write(ET.tostring(soup, encoding='utf-8').decode())
 
@@ -176,14 +210,15 @@ if __name__ == '__main__':
         except IndexError:
             previous_file = None
         htmlify((file, classe), (next_file, previous_file), pages_as_dict)
+    create_pages(yaml_dict=pages_as_dict,
+                 template='templates/index.html',
+                 md_source="data/guidelines/index.md",
+                 out_dir=".")
+    for page in ['abreviations', 'ligatures', 'chiffres', 'generalites']:
+        create_pages(yaml_dict=pages_as_dict,
+                     template='templates/index.html',
+                     md_source=f"data/guidelines/{page}.md",
+                     out_dir="html/guidelines/")
 
-    # Let's build the homepage
-    env = Environment(loader=FileSystemLoader('.'))
-    template = env.get_template('templates/index.html')
-    # https://saidvandeklundert.net/2020-12-24-python-functions-in-jinja/
-    template.globals.update(func_dict)
-    html_string = template.render(pages_as_dict)
-    with open("index.html", "w") as index:
-        index.write(html_string)
         
     

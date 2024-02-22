@@ -1,5 +1,5 @@
     <div class="chrome:sidebar">
-                  <a href="{{abspath}}/" class="chrome:sidebar_item chrome:active_sidebar_item">
+                  <a href="{{abspath}}/index.html" class="chrome:sidebar_item chrome:active_sidebar_item">
                   <span class="chrome:sidebar_item_text">Présentation</span>
                   </a>
                   <hr>
@@ -12,11 +12,8 @@
                      </div>
                   </button>
                   <div id="sidebar_item:lettres:accordian" class="chrome:sidebar_item_accordian chrome:sidebar_item_accordian_expanded">
-                     <a href="/pages/generalites.html" class="chrome:sidebar_item text-sm  chrome:sidebar_item_child">
+                     <a href="{{abspath}}/html/guidelines/generalites.html" class="chrome:sidebar_item text-sm  chrome:sidebar_item_child">
                      Principes généraux
-                     </a>
-                     <a href="/pages/ligatures.html" class="chrome:sidebar_item text-sm  chrome:sidebar_item_child">
-                     Les ligatures
                      </a>
                      <button id="sidebar_item:chiffres" class="chrome:sidebar_item chrome:sidebar_item_collapsible chrome:sidebar_item_expanded" onclick="toggleAccordian('sidebar_item:chiffres')">
                         <span class="chrome:level_2 chrome:sidebar_item_text text-sm">Lettres</span>
@@ -27,14 +24,20 @@
                         </div>
                      </button>
                      <div id="sidebar_item:chiffres:accordian" class="chrome:sidebar_item_accordian chrome:sidebar_item_accordian_expanded">
-                        <a href="/pages/generalites.html" class="chrome:sidebar_item text-sm  chrome:sidebar_item_child chrome:level_2 text-ssm">
+                        <a href="{{abspath}}/html/guidelines/sous_section_a.html" class="chrome:sidebar_item text-sm  chrome:sidebar_item_child chrome:level_2 text-ssm">
                         Sous-Section A
                         </a>
-                        <a href="/pages/ligatures.html" class="chrome:sidebar_item text-sm  chrome:sidebar_item_child chrome:level_2 text-ssm">
+                        <a href="{{abspath}}/html/guidelines/sous_section_b.html" class="chrome:sidebar_item text-sm  chrome:sidebar_item_child chrome:level_2 text-ssm">
                         Sous-Section B
                         </a>
                      </div>
-                     <a href="/pages/chiffres.html" class="chrome:sidebar_item text-sm  chrome:sidebar_item_child">
+                     <a href="{{abspath}}/html/guidelines/abreviations.html" class="chrome:sidebar_item text-sm  chrome:sidebar_item_child">
+                     Abréviations
+                     </a>
+                     <a href="{{abspath}}/html/guidelines/ligatures.html" class="chrome:sidebar_item text-sm  chrome:sidebar_item_child">
+                     Ligatures
+                     </a>
+                     <a href="{{abspath}}/html/guidelines/chiffres.html" class="chrome:sidebar_item text-sm  chrome:sidebar_item_child">
                      Chiffres
                      </a>
                   </div>
@@ -59,7 +62,7 @@
                      </button>
                      <div id="sidebar_item:{{ class }}:accordian" class="chrome:sidebar_item_accordian chrome:sidebar_item_accordian_expanded">
                      {% for item in liste %}
-                        <a href="{{abspath}}/html/{{item}}.html" class="chrome:sidebar_item text-sm  chrome:sidebar_item_child chrome:level_2 text-ssm">
+                        <a href="{{abspath}}/html/characters/{{item}}.html" class="chrome:sidebar_item text-sm  chrome:sidebar_item_child chrome:level_2 text-ssm">
                         {{ first_letter_uppercase(item) }}
                         </a>
                      {% endfor  %}
