@@ -69,8 +69,10 @@ def create_pages(yaml_dict, template, md_source, out_dir):
     html_index = ET.fromstring(html_string, parser=parser)
     main_div = html_index.xpath("//div[@class='chrome:main']")[0]
     main_div.append(to_insert)
+    soup = BeautifulSoup(ET.tostring(html_index), 'html.parser')
+    soup = soup.prettify()
     with open(f"{out_dir}/{md_source.split('/')[-1].replace('.md', '')}.html", "w") as index:
-        index.write(ET.tostring(html_index).decode())
+        index.write(soup)
 
 
 
