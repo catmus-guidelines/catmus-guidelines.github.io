@@ -64,7 +64,6 @@ def create_index(yaml_list, title, template, md_source, out_dir):
             except KeyError:
                 value = 'ø'
             td = ET.SubElement(tr, "td")
-            print(value)
             td.text = value
     
     # Let's build the homepage
@@ -137,7 +136,6 @@ def htmlify(file_and_class, surrounding_files, full_dict):
     python_dict = yaml.load(metadata_as_yaml, Loader=yaml.SafeLoader)
     # We remove the metadata from the text file
     transformed = as_text.replace(metadata_as_yaml, "")
-    print(transformed)
     ## Metadata management
 
     # GFM extension of marko parses tables too.
@@ -152,7 +150,6 @@ def htmlify(file_and_class, surrounding_files, full_dict):
     # Next and previous files
     previous_file, next_file = surrounding_files
     next_and_previous = ET.Element("div")
-    print(surrounding_files)
     if previous_file != None:
         previous_file_path = previous_file.split("/")[-1].replace(".md", "")
         out_previous_file_path = f"{previous_file_path}.html"
@@ -188,7 +185,6 @@ def htmlify(file_and_class, surrounding_files, full_dict):
     yaml_data['class'] = classe
     yaml_data['path'] = path
     yaml_data = {**yaml_data, **full_dict}
-    print(yaml_data)
     output = template.render(yaml_data)
     character_table = ET.fromstring(output, parser=parser)
     description_div = character_table.xpath("//div[@id='description']")
@@ -225,7 +221,6 @@ if __name__ == '__main__':
     for index, file in enumerate(files):
         filename = file.split("/")[-1].replace(".md", "")
         classe = file.split("/")[-2]
-        print(file)
         pages.append((filename, classe))
 
     pages_as_dict = dict()
