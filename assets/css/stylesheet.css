@@ -8819,6 +8819,7 @@ img,video{
 
 .image img {
 display:inline;
+max-height:2em;
 }
 
 .text-ssm{

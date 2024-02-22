@@ -45,6 +45,48 @@ func_dict = {
 }
 
 
+def create_index(yaml_list, title, template, md_source, out_dir):
+    table = ET.Element("table")
+    thead = ET.SubElement(table, 'thead')
+    trhead = ET.SubElement(thead, 'tr')
+    for item in ['Group', 'Char', 'Name', 'Label', 'Corresponding characters (if applicable)']:
+        td = ET.SubElement(trhead, 'th')
+        td.text = item
+    tbody = ET.SubElement(table, 'tbody')
+    for yaml_dict in yaml_list:
+        tr = ET.SubElement(tbody, "tr")
+        for item in ['group', 'char', 'name', 'label', 'corresp']:
+            try:
+                if isinstance(yaml_dict[item], str):
+                    value = yaml_dict[item]
+                else:
+                    value = ", ".join(it['name'] for it in yaml_dict[item])
+            except KeyError:
+                value = 'ø'
+            td = ET.SubElement(tr, "td")
+            print(value)
+            td.text = value
+    
+    # Let's build the homepage
+    env = Environment(loader=FileSystemLoader('.'))
+    template = env.get_template(template)
+    # https://saidvandeklundert.net/2020-12-24-python-functions-in-jinja/
+    template.globals.update(func_dict)
+    yaml_dict['title'] = title
+    html_string = template.render(yaml_dict)
+    converted_doc = "<div>" + ET.tostring(table).decode() + "</div>"
+    to_insert = ET.fromstring(converted_doc)
+
+    parser = ET.HTMLParser(recover=True)
+    html_index = ET.fromstring(html_string, parser=parser)
+    main_div = html_index.xpath("//div[@class='chrome:main']")[0]
+    main_div.append(to_insert)
+    soup = BeautifulSoup(ET.tostring(html_index), 'html.parser')
+    soup = soup.prettify()
+    print(soup)
+    print(f"{yaml_dict['abspath']}/html/characters/index_of_characters.html")
+    with open(f"{yaml_dict['abspath']}/html/characters/index_of_characters.html", "w") as index:
+        index.write(soup)
 
 def create_pages(yaml_dict, title, template, md_source, out_dir):
     try:
@@ -175,7 +217,7 @@ def htmlify(file_and_class, surrounding_files, full_dict):
     with open(f"html/characters/{filename}.html", 'w') as file:
         file.write(soup)
         # file.write(ET.tostring(soup, encoding='utf-8').decode())
-
+    return yaml_data
 
 if __name__ == '__main__':
     pages = []
@@ -197,6 +239,9 @@ if __name__ == '__main__':
             pages_as_dict[classe] = [nom_fichier]
             
     # We create a dynamic absolute path to use it on local build or online
+    
+    all_chars = []
+    
     if sys.argv[1] == "local":
         abspath = "/home/mgl/Bureau/Travail/projets/HTR/CatMus/website"
     else:
@@ -213,7 +258,17 @@ if __name__ == '__main__':
             previous_file = files[index - 1]
         except IndexError:
             previous_file = None
-        htmlify((file, classe), (next_file, previous_file), pages_as_dict)
+        all_chars.append(htmlify((file, classe), (next_file, previous_file), pages_as_dict))
+        
+        
+    # Create index of characters
+    create_index(yaml_list=all_chars,
+                 title='Index of Characters',
+                 template='templates/index.html',
+                 md_source="data/guidelines/index.md",
+                 out_dir=".")
+        
+    # Create guidelines pages
     create_pages(yaml_dict=pages_as_dict,
                  title='Homepage',
                  template='templates/index.html',
@@ -229,6 +284,8 @@ if __name__ == '__main__':
                      template='templates/index.html',
                      md_source=f"data/guidelines/{name}.md",
                      out_dir="html/guidelines/")
+        
+    
 
         
     

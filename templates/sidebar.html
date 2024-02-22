@@ -53,7 +53,11 @@
                         </svg>
                      </div>
                   </button>
+                    
                   <div id="sidebar_item:char_table:accordian" class="chrome:sidebar_item_accordian chrome:sidebar_item_accordian_expanded">
+                      <a href="{{abspath}}/html/characters/index_of_characters.html" class="chrome:sidebar_item text-sm  chrome:sidebar_item_child">
+                        Index of characters
+                        </a>
                   {% for class, liste in classes.items() %}
                      <button id="sidebar_item:{{class}}" class="chrome:sidebar_item chrome:sidebar_item_collapsible chrome:sidebar_item_expanded chrome:level_2" onclick="toggleAccordian('sidebar_item:{{class}}')">
                         <span class="chrome:sidebar_item_text text-sm">{{first_letter_uppercase(class)}}</span>
