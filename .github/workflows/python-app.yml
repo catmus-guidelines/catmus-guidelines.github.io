@@ -42,7 +42,8 @@ jobs:
         python3 scripts/yaml_validator.py -s scripts/schema.json
     - name: Build site
       run: |
-       python3 scripts/md_to_html.py
+        echo $github_workspace &&
+       python3 scripts/md_to_html.py $github_workspace
     - name: Archive production artifacts
       uses: actions/upload-artifact@v4
       with:
