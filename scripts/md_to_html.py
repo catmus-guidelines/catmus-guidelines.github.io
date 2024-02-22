@@ -46,7 +46,7 @@ func_dict = {
 
 
 
-def create_pages(yaml_dict, template, md_source, out_dir):
+def create_pages(yaml_dict, title, template, md_source, out_dir):
     try:
         os.mkdir("html/guidelines")
     except FileExistsError:
@@ -56,7 +56,9 @@ def create_pages(yaml_dict, template, md_source, out_dir):
     template = env.get_template(template)
     # https://saidvandeklundert.net/2020-12-24-python-functions-in-jinja/
     template.globals.update(func_dict)
+    yaml_dict['title'] = title
     html_string = template.render(yaml_dict)
+    
     
     with open(md_source, "r") as index_page:
         md_doc = index_page.read()
@@ -213,13 +215,19 @@ if __name__ == '__main__':
             previous_file = None
         htmlify((file, classe), (next_file, previous_file), pages_as_dict)
     create_pages(yaml_dict=pages_as_dict,
+                 title='Homepage',
                  template='templates/index.html',
                  md_source="data/guidelines/index.md",
                  out_dir=".")
-    for page in ['abreviations', 'ligatures', 'chiffres', 'generalites']:
+    for name, title in {'abreviations':"Abréviations", 
+                        'ligatures':"Ligatures", 
+                        'chiffres':"Chiffres", 
+                        'generalites':"Principes généraux",
+                        'ponctuation': "Ponctuation"}.items():
         create_pages(yaml_dict=pages_as_dict,
+                     title=title,
                      template='templates/index.html',
-                     md_source=f"data/guidelines/{page}.md",
+                     md_source=f"data/guidelines/{name}.md",
                      out_dir="html/guidelines/")
 
         
