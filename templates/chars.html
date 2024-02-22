@@ -108,11 +108,9 @@
                                  {% if corresp_char['examples'] %}
                                  <li>
                                     <b>Examples</b>:
-                                    <ul>
                                        {% for corresponding_example in corresp_char['examples'] %}
-                                       <li><img search="{{ corresponding_example }}" alt="some other image"/></li>
+                                       <img search="/future-website/{{ corresponding_example }}" alt="some other image"/>
                                        {% endfor %}
-                                    </ul>
                                  </li>
                                  {% endif %}
                               </ul>
