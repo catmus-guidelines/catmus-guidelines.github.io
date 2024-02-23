@@ -12,7 +12,7 @@
                         <dd>{{ code }}</dd>
                      <dt>Char:
                      </dt>
-                        <dd>{{ char }}</dd>
+                        <dd class="indexchars">{{ char }}</dd>
                      <dt>Group:
                      </dt>
                         <dd>{{ group }}</dd>
@@ -103,7 +103,7 @@
                            <li>
                               {{ corresp_char['name'] }}
                               <ul>
-                                 <li><b>Char</b>: {{ corresp_char['transcription'] }}</li>
+                                 <li class="indexchars"><b>Char</b>: {{ corresp_char['transcription'] }}</li>
                                  <li><b>Code</b>: {{ corresp_char['code'] }}</li>
                                  {% if corresp_char['examples'] %}
                                  <li>
