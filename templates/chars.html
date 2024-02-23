@@ -1,127 +1,129 @@
-   <div class="chrome:content">
-               <div class="chrome:main">
-                  <h1>{{ label }}</h1>
-                  <div id="description">
-                     <h2>Description</h2>
-                  </div>
-                  <hr/>
-                  <dl>
-                     <dt>Name:</dt>
-                     <dd>{{ name }}</dd>
-                     <dt>Code Unicode:</dt>
-                        <dd>{{ code }}</dd>
-                     <dt>Char:
-                     </dt>
-                        <dd class="indexchars">{{ char }}</dd>
-                     <dt>Group:
-                     </dt>
-                        <dd>{{ group }}</dd>
-                  </dl>
-                     <div>
-                        <h6>Position:</h6>
-                        <div class="centered-element">
-                        <table  class="position_table">
-                              <tr>
-                                 {% if "A" in position %}
-                                 <td class="active">X</td>
-                                 {% else %}
-                                 <td class="inactive">X</td>
-                                 {% endif %}
-                                 {% if "B" in position %}
-                                 <td class="active">X</td>
-                                 {% else %}
-                                 <td class="inactive">X</td>
-                                 {% endif %}
-                                 {% if "C" in position %}
-                                 <td class="active">X</td>
-                                 {% else %}
-                                 <td class="inactive">X</td>
-                                 {% endif %}
-                              </tr>
-                              <tr>
-                                 {% if "D" in position %}
-                                 <td class="active">X</td>
-                                 {% else %}
-                                 <td class="inactive">X</td>
-                                 {% endif %}
-                                 {% if "E" in position %}
-                                 <td class="active">X</td>
-                                 {% else %}
-                                 <td class="inactive">X</td>
-                                 {% endif %}
-                                 {% if "F" in position %}
-                                 <td class="active">X</td>
-                                 {% else %}
-                                 <td class="inactive">X</td>
-                                 {% endif %}
-                              </tr>
-                              <tr>
-                                 {% if "G" in position %}
-                                 <td class="active">X</td>
-                                 {% else %}
-                                 <td class="inactive">X</td>
-                                 {% endif %}
-                                 {% if "H" in position %}
-                                 <td class="active">X</td>
-                                 {% else %}
-                                 <td class="inactive">X</td>
-                                 {% endif %}
-                                 {% if "I" in position %}
-                                 <td class="active">X</td>
-                                 {% else %}
-                                 <td class="inactive">X</td>
-                                 {% endif %}
-                              </tr>
-                        </table>
-                        </div>
-                     </div>
-                  <dl>
-                     <dt>
-                        <h3>Description</h3>
-                        <p>{{ description }}</p>
-                     </dt>
-                     {% if other_names %}
-                     <dt>
-                        <h3>Other names</h3>
-                        <ul>
-                           {% for other_name in other_names %}
-                           <li>{{ other_name }}</li>
-                           {% endfor %}
-                        </ul>
-                     </dt>
+<div class="chrome:content">
+   <div class="chrome:main">
+      <h1>{{ label }}</h1>
+      <div id="description">
+         <h2>Description</h2>
+      </div>
+      <hr/>
+      <dl>
+         <dt>Name:</dt>
+         <dd>{{ name }}</dd>
+         <dt>Code Unicode:</dt>
+         <dd>{{ code }}</dd>
+         <dt>Char:
+         </dt>
+         <dd class="indexchars">{{ char }}</dd>
+         <dt>Group:
+         </dt>
+         <dd>{{ group }}</dd>
+      </dl>
+      <div>
+         <h6>Position:</h6>
+         <div class="centered-element">
+            <table  class="position_table">
+               <tr>
+                  {% if "A" in position %}
+                  <td class="active">X</td>
+                  {% else %}
+                  <td class="inactive">X</td>
+                  {% endif %}
+                  {% if "B" in position %}
+                  <td class="active">X</td>
+                  {% else %}
+                  <td class="inactive">X</td>
+                  {% endif %}
+                  {% if "C" in position %}
+                  <td class="active">X</td>
+                  {% else %}
+                  <td class="inactive">X</td>
+                  {% endif %}
+               </tr>
+               <tr>
+                  {% if "D" in position %}
+                  <td class="active">X</td>
+                  {% else %}
+                  <td class="inactive">X</td>
+                  {% endif %}
+                  {% if "E" in position %}
+                  <td class="active">X</td>
+                  {% else %}
+                  <td class="inactive">X</td>
+                  {% endif %}
+                  {% if "F" in position %}
+                  <td class="active">X</td>
+                  {% else %}
+                  <td class="inactive">X</td>
+                  {% endif %}
+               </tr>
+               <tr>
+                  {% if "G" in position %}
+                  <td class="active">X</td>
+                  {% else %}
+                  <td class="inactive">X</td>
+                  {% endif %}
+                  {% if "H" in position %}
+                  <td class="active">X</td>
+                  {% else %}
+                  <td class="inactive">X</td>
+                  {% endif %}
+                  {% if "I" in position %}
+                  <td class="active">X</td>
+                  {% else %}
+                  <td class="inactive">X</td>
+                  {% endif %}
+               </tr>
+            </table>
+         </div>
+      </div>
+      <dl>
+         <dt>
+            Description
+         </dt>
+         <dd>{{ description }}</dd>
+         {% if other_names %}
+         <dt>
+            Other names
+         </dt>
+         <ul>
+            {% for other_name in other_names %}
+            <li>{{ other_name }}</li>
+            {% endfor %}
+         </ul>
+         {% endif %}
+         <dt>
+            Examples
+         </dt>
+         <dd>{% for example in examples %}
+            <span class="image"><img src="{{ abspath }}/{{ example }}" alt="Some char image"/></span>
+            {% endfor %}
+         </dd>
+         {% if corresp %}
+         <div>
+            <h6>Related characters</h6>
+            <ul>
+               {% for corresp_char in corresp %}
+               <li class="retrait">
+                  {{ corresp_char['name'] }}
+                  <dl class="retrait">
+                     <dt>Char:</dt>
+                     <dd class="indexchars">{{ corresp_char['transcription'] }}</dd>
+                     <dt>Code:</dt>
+                     <dd>{{ corresp_char['code'] }}</dd>
+                     {% if corresp_char['examples'] %}
+                     <dt> Examples:</dt>
+                     <dd>  {% for corresponding_example in corresp_char['examples'] %}
+                        <span class="image"><img src="{{ abspath }}/{{ corresponding_example }}" alt="some other image"/></span>
+                        {% endfor %}
+                     </dd>
                      {% endif %}
-                     <dt>
-                        <h3>Examples</h3>
-                           {% for example in examples %}
-                           <span class="image"><img src="{{ abspath }}/{{ example }}" alt="Some char image"/></span>
-                           {% endfor %}
-                     </dt>
-                     <dt>
-                        <h3>Related characters</h3>
-                        <ul>
-                           {% for corresp_char in corresp %}
-                           <li>
-                              {{ corresp_char['name'] }}
-                              <ul>
-                                 <li class="indexchars"><b>Char</b>: {{ corresp_char['transcription'] }}</li>
-                                 <li><b>Code</b>: {{ corresp_char['code'] }}</li>
-                                 {% if corresp_char['examples'] %}
-                                 <li>
-                                    <b>Examples</b>:
-                                       {% for corresponding_example in corresp_char['examples'] %}
-                                    <span class="image"><img src="{{ abspath }}/{{ corresponding_example }}" alt="some other image"/></span>
-                                       {% endfor %}
-                                 </li>
-                                 {% endif %}
-                              </ul>
-                           </li>
-                           {% endfor %}
-                        </ul>
-                     </dt>
                   </dl>
-                     <div id="next_previous"></div>
-               </div>
-      
-            {% include 'templates/sidebar.html' %}
-            </div>
-         
+               </li>
+               {% endfor %}
+            </ul>
+         </div>
+         {% endif %}
+      </dl>
+      <div id="next_previous"></div>
+   </div>
+   {% include 'templates/sidebar.html' %}
+</div>

@@ -126,7 +126,7 @@ def create_pages(yaml_dict, title, template, md_source, out_dir):
 
 def htmlify(file_and_class, surrounding_files, full_dict):
     """
-    This function takes a md file and returns a TEI-like document (not fully compliant though)
+    This function takes a md file and produces html files
     :param path: path to the md file
     :return: None; creates a TEI file
     """
