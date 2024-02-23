@@ -8,7 +8,7 @@ char: ":"
 description: This sign covers any sign that is using two dots vertically
 group: punctuation
 examples: 
-    - some/example.png
+    - assets/images/white_square.png
 position:
   - D
 corresp:

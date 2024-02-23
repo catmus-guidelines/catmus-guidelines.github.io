@@ -58,7 +58,6 @@ def create_index(yaml_list, title, template):
         td.text = item
     tbody = ET.SubElement(table, 'tbody')
     for yaml_dict in yaml_list:
-        print(yaml_dict)
         tr = ET.SubElement(tbody, "tr")
         for item in ['group', 'char', 'name', 'examples', 'label', 'corresp']:
             try:
@@ -81,14 +80,19 @@ def create_index(yaml_list, title, template):
                 ref.text = value
             elif item == 'examples':
                 if len(yaml_dict[item]) > 2:
-                    for example in yaml_dict[item][:2]:
-                        span = ET.SubElement(td, "span")
-                        span.set("class", "image")
-                        img = ET.SubElement(span, 'img')
-                        img.set('src', f"{yaml_dict['abspath']}/{example}")
+                    example_list = yaml_dict[item][:2]
+                elif len(yaml_dict[item]) == 1:
+                    example_list = yaml_dict[item]
+                else:
+                    example_list = []
+                for example in example_list:
+                    span = ET.SubElement(td, "span")
+                    span.set("class", "image")
+                    img = ET.SubElement(span, 'img')
+                    img.set('src', f"{yaml_dict['abspath']}/{example}")
+                
             else:
                 td.text = value
-            print(value)
     
     # Let's build the homepage
     env = Environment(loader=FileSystemLoader('.'))
