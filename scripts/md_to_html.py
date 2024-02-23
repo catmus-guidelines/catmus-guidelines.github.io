@@ -58,16 +58,19 @@ def create_index(yaml_list, title, template):
         td.text = item
     tbody = ET.SubElement(table, 'tbody')
     for yaml_dict in yaml_list:
+        print(yaml_dict)
         tr = ET.SubElement(tbody, "tr")
         for item in ['group', 'char', 'name', 'label', 'corresp']:
             try:
                 if isinstance(yaml_dict[item], str):
                     value = yaml_dict[item]
                 else:
-                    value = ", ".join(it['name'] for it in yaml_dict[item])
+                    value = "\u00A0".join(it['transcription'] for it in yaml_dict[item])
             except KeyError:
-                value = 'ø'
+                value = ''
             td = ET.SubElement(tr, "td")
+            if item == 'corresp':
+                td.set('class', 'indexchars')
             td.text = value
     
     # Let's build the homepage
