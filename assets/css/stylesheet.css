@@ -7,6 +7,13 @@
     font-style: normal;
 }
 
+.retrait {
+margin-left:1cm;
+}
+
+dl {
+padding-bottom:.5cm;
+}
 
 .indexchars{
 font-family: 'Junicode';
@@ -10147,8 +10154,8 @@ max-height:2em;
     padding-bottom:0.75rem
 }
 .px-3,th,td,blockquote{
-    padding-left:0.75rem;
-    padding-right:0.75rem
+    padding-left:0.65rem;
+    padding-right:0.65rem
 }
 .py-4{
     padding-top:1rem;

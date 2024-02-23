@@ -53,25 +53,36 @@ def create_index(yaml_list, title, template):
     table = ET.Element("table")
     thead = ET.SubElement(table, 'thead')
     trhead = ET.SubElement(thead, 'tr')
-    for item in ['Group', 'Char', 'Name', 'Label', 'Corresponding characters (if applicable)']:
+    for item in ['Group', 'Char', 'Name',  'Examples' , 'Label', 'Corresponding characters']:
         td = ET.SubElement(trhead, 'th')
         td.text = item
     tbody = ET.SubElement(table, 'tbody')
     for yaml_dict in yaml_list:
         print(yaml_dict)
         tr = ET.SubElement(tbody, "tr")
-        for item in ['group', 'char', 'name', 'label', 'corresp']:
+        for item in ['group', 'char', 'name', 'examples', 'label', 'corresp']:
             try:
                 if isinstance(yaml_dict[item], str):
                     value = yaml_dict[item]
-                else:
-                    value = "\u00A0".join(it['transcription'] for it in yaml_dict[item])
+                elif isinstance(yaml_dict[item], list):
+                    if isinstance(yaml_dict[item][0], dict):
+                        value = "\u00A0".join(it['transcription'] for it in yaml_dict[item])
+                    else:
+                        value = ""
             except KeyError:
                 value = ''
             td = ET.SubElement(tr, "td")
             if item == 'corresp':
                 td.set('class', 'indexchars')
+            if item == 'examples':
+                if len(yaml_dict[item]) > 2:
+                    for example in yaml_dict[item][:2]:
+                        span = ET.SubElement(td, "span")
+                        span.set("class", "image")
+                        img = ET.SubElement(span, 'img')
+                        img.set('src', f"{yaml_dict['abspath']}/{example}")
             td.text = value
+            print(value)
     
     # Let's build the homepage
     env = Environment(loader=FileSystemLoader('.'))
