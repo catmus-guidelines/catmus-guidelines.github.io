@@ -74,14 +74,20 @@ def create_index(yaml_list, title, template):
             td = ET.SubElement(tr, "td")
             if item == 'corresp':
                 td.set('class', 'indexchars')
-            if item == 'examples':
+                td.text = value
+            elif item == 'name':
+                ref = ET.SubElement(td, 'a')
+                ref.set('href', f"{yaml_dict['abspath']}/{yaml_dict['html_path']}")
+                ref.text = value
+            elif item == 'examples':
                 if len(yaml_dict[item]) > 2:
                     for example in yaml_dict[item][:2]:
                         span = ET.SubElement(td, "span")
                         span.set("class", "image")
                         img = ET.SubElement(span, 'img')
                         img.set('src', f"{yaml_dict['abspath']}/{example}")
-            td.text = value
+            else:
+                td.text = value
             print(value)
     
     # Let's build the homepage
@@ -226,9 +232,11 @@ def htmlify(file_and_class, surrounding_files, full_dict):
         os.mkdir("html/characters")
     except FileExistsError:
         pass
-    with open(f"html/characters/{filename}.html", 'w') as file:
+    html_path = f"html/characters/{filename}.html"
+    with open(html_path, 'w') as file:
         file.write(soup)
         # file.write(ET.tostring(soup, encoding='utf-8').decode())
+    yaml_data['html_path'] = html_path
     return yaml_data
 
 if __name__ == '__main__':
