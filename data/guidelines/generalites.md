@@ -18,4 +18,4 @@ Xe au XVe siècle. En outre, si on s’appuie uniquement sur la forme de la lett
 certaines lettres se ressemblent tellement comme le « u » et le « n », le « ſ » (s long) et le « f »
 qu’on pourrait les représenter par les mêmes signes, si on ne s’appuie plus sur le sens du mot, mais
 uniquement sur la forme du signe. Pousser l’imitation trop loin risquerait de rendre la transcription
-impossible à achever et inexploitable11. 
+impossible à achever et inexploitable. 
