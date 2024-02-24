@@ -295,7 +295,9 @@ if __name__ == '__main__':
                         'ligatures':"Ligatures", 
                         'chiffres':"Chiffres", 
                         'generalites':"Principes généraux",
-                        'ponctuation': "Ponctuation"}.items():
+                        'ponctuation': "Ponctuation", 
+                        'ramistes': "Distinction des « u » et des « v », des « i » et des « j »", 
+                        'lettres_generalites': "Généralités"}.items():
         create_pages(yaml_dict=pages_as_dict,
                      title=title,
                      template='templates/index.html',
