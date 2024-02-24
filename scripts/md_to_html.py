@@ -281,7 +281,7 @@ if __name__ == '__main__':
             previous_file = files[index - 1]
         except IndexError:
             previous_file = None
-        all_chars.append(htmlify((file, classe), (next_file, previous_file), pages_as_dict))
+        all_chars.append(htmlify((file, classe), (previous_file, next_file), pages_as_dict))
         
         
         
