@@ -296,6 +296,7 @@ if __name__ == '__main__':
                         'chiffres':"Chiffres", 
                         'generalites':"Principes généraux",
                         'ponctuation': "Ponctuation", 
+                        'majuscules': "Majuscules", 
                         'ramistes': "Distinction des « u » et des « v », des « i » et des « j »", 
                         'lettres_generalites': "Généralités"}.items():
         create_pages(yaml_dict=pages_as_dict,
