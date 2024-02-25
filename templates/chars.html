@@ -5,20 +5,16 @@
       </div>
       <hr/>
       <dl>
-         <dt>Name:</dt>
+         <dt>Name</dt>
          <dd>{{ name }}</dd>
-         <dt>Code Unicode:</dt>
+         <dt>Code Unicode</dt>
          <dd>{{ code }}</dd>
-         <dt>Char:
-         </dt>
+         <dt>Char</dt>
          <dd class="indexchars">{{ char }}</dd>
-         <dt>Group:
-         </dt>
+         <dt>Group</dt>
          <dd>{{ group }}</dd>
-      </dl>
-      <div>
-         <h6>Position:</h6>
-         <div class="centered-element">
+         <dt>Position</dt>
+         <dd><div class="centered-element">
             <table  class="position_table">
                <tr>
                   {% if "A" in position %}
@@ -73,25 +69,18 @@
                </tr>
             </table>
          </div>
-      </div>
-      <dl>
-         <dt>
-            Description
-         </dt>
+         </dd>
+         <dt>Description</dt>
          <dd>{{ description }}</dd>
          {% if other_names %}
-         <dt>
-            Other names
-         </dt>
+         <dt>Other names</dt>
          <ul>
             {% for other_name in other_names %}
             <li>{{ other_name }}</li>
             {% endfor %}
          </ul>
          {% endif %}
-         <dt>
-            Examples
-         </dt>
+         <dt>Examples</dt>
          <dd>{% for example in examples %}
             <span class="image"><img src="{{ abspath }}/{{ example }}" alt="Some char image"/></span>
             {% endfor %}
@@ -104,12 +93,12 @@
                <li class="retrait">
                   {{ corresp_char['name'] }}
                   <dl class="retrait">
-                     <dt>Char:</dt>
+                     <dt>Char</dt>
                      <dd class="indexchars">{{ corresp_char['transcription'] }}</dd>
-                     <dt>Code:</dt>
+                     <dt>Code</dt>
                      <dd>{{ corresp_char['code'] }}</dd>
                      {% if corresp_char['examples'] %}
-                     <dt> Examples:</dt>
+                     <dt> Examples</dt>
                      <dd>  {% for corresponding_example in corresp_char['examples'] %}
                         <span class="image"><img src="{{ abspath }}/{{ corresponding_example }}" alt="some other image"/></span>
                         {% endfor %}
