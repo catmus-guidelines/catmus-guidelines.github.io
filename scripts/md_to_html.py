@@ -8,6 +8,10 @@ from lxml.html import builder as E
 import re
 import yaml
 from marko.ext.gfm import gfm
+
+from marko import Markdown
+from marko.helpers import MarkoExtension
+from marko.ext.gfm import elements, renderer
 from jinja2 import Environment, FileSystemLoader
 from bs4 import BeautifulSoup
 import git
@@ -129,7 +133,9 @@ def create_pages(yaml_dict, title, template, md_source, out_dir):
     
     with open(md_source, "r") as index_page:
         md_doc = index_page.read()
-    converted_doc = gfm.convert(md_doc)
+
+    markdown = Markdown(extensions=['footnote'])
+    converted_doc = markdown.convert(md_doc)
     converted_doc = converted_doc.replace("<hr />", "")
     converted_doc = "<div>" + converted_doc + "</div>"
     to_insert = ET.fromstring(converted_doc)
@@ -167,7 +173,9 @@ def htmlify(file_and_class, surrounding_files, full_dict):
     ## Metadata management
 
     # GFM extension of marko parses tables too.
-    converted_doc = gfm.convert(transformed)
+
+    markdown = Markdown(extensions=['footnote'])
+    converted_doc = markdown.convert(transformed)
     converted_doc = converted_doc.replace("<hr />", "")
     converted_doc = "<div>" + converted_doc + "</div>"
     parser = ET.HTMLParser(recover=True)
