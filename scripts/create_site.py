@@ -4,14 +4,9 @@ import sys
 
 import lxml.etree as ET
 import lxml.html as lhtml
-from lxml.html import builder as E
-import re
 import yaml
-from marko.ext.gfm import gfm
 
 from marko import Markdown
-from marko.helpers import MarkoExtension
-from marko.ext.gfm import elements, renderer
 from jinja2 import Environment, FileSystemLoader
 from bs4 import BeautifulSoup
 import git
@@ -50,10 +45,22 @@ func_dict = {
 
 
 def create_index(yaml_list, title, template):
+    """
+    This function creates the index of characters using the set of md files that has been validated 
+    before. This index takes the form of a table of characters with the group, name, label, transcription,
+    images, and corresponding chars.
+    
+    :param yaml_list: the dict to be used to create the table
+    :param title: page title
+    :param template: the root template to be used
+    :return: None
+    """
     try:
         os.mkdir("html/characters")
     except FileExistsError:
         pass
+    
+    # Let's create the table
     table = ET.Element("table")
     thead = ET.SubElement(table, 'thead')
     trhead = ET.SubElement(thead, 'tr')
@@ -105,28 +112,58 @@ def create_index(yaml_list, title, template):
     template.globals.update(func_dict)
     yaml_dict['title'] = title
     html_string = template.render(yaml_dict)
+
+
+    # We insert the created table
     converted_doc = "<div>" + ET.tostring(table).decode() + "</div>"
     to_insert = ET.fromstring(converted_doc)
-
     parser = ET.HTMLParser(recover=True)
     html_index = ET.fromstring(html_string, parser=parser)
     main_div = html_index.xpath("//div[@class='chrome:main']")[0]
     main_div.append(to_insert)
+    
+    # We use BeautifulSoup to manage the script element
     soup = BeautifulSoup(ET.tostring(html_index), 'html.parser')
     soup = soup.prettify()
     with open(f"html/characters/index_of_characters.html", "w") as index:
         index.write(soup)
 
-def create_pages(yaml_dict, title, template, md_source, out_dir):
+def create_pages(yaml_dict, title, template, md_source, out_dir, lang, index_page=False):
+    """
+    This function creates an HTML page out of an markdown document, using marko transformation and jinja HTML templating.
+    
+    :param yaml_dict: The dictionnary that will be used by the templating dict
+    :param title: the page title
+    :param template: the path to the root template
+    :param md_source: the path to the md source
+    :param out_dir: path to out dir
+    :param lang: lang for localisation
+    :param index_page: Whether the page created is the index or not.
+    :return: None
+    """
     try:
         os.mkdir("html/guidelines")
     except FileExistsError:
         pass
+    try:
+        os.mkdir(f"html/guidelines/{lang}")
+    except FileExistsError:
+        pass
+    if index_page is True:
+        lang_dir = ""
+        if lang != "fr":
+            suffix = f"-{lang}"
+        else:
+            suffix = ""
+    else:
+        suffix = ""
+        lang_dir = f"{lang}/"
     # Let's build the homepage
     env = Environment(loader=FileSystemLoader('.'))
     template = env.get_template(template)
     # https://saidvandeklundert.net/2020-12-24-python-functions-in-jinja/
     template.globals.update(func_dict)
+    yaml_dict['lang'] = lang
     yaml_dict['title'] = title
     html_string = template.render(yaml_dict)
     
@@ -146,18 +183,21 @@ def create_pages(yaml_dict, title, template, md_source, out_dir):
     main_div.append(to_insert)
     soup = BeautifulSoup(ET.tostring(html_index), 'html.parser')
     soup = soup.prettify()
-    with open(f"{out_dir}/{md_source.split('/')[-1].replace('.md', '')}.html", "w") as index:
+    with open(f"{out_dir}/{lang_dir}{md_source.split('/')[-1].replace('.md', '')}{suffix}.html", "w") as index:
         index.write(soup)
 
 
 
-def htmlify(file_and_class, surrounding_files, full_dict):
+def create_character_page(file_and_class:tuple, surrounding_files:tuple, pages_dictionnary:dict) -> dict:
     """
-    This function takes a md file and produces html files
-    :param path: path to the md file
-    :return: None; creates a TEI file
+    This function takes a md file and produces html files. For now there is no localisation of the characters 
+    table. It is english-only.
+    :param file_and_class: the filename and class
+    :param surrounding_files: the file describing the next and previous char (by alph. order)
+    :param pages_dictionnary: the dictionnary that contains some metadata (path to github repo and pages for instance)
+    :return: a dictionnary containing the information about the character
     """
-    # TODO: get back to endnotes
+    
     path, classe = file_and_class
     # Getting the path to output file
     with open(path, "r") as input_file:
@@ -168,12 +208,12 @@ def htmlify(file_and_class, surrounding_files, full_dict):
     ## Metadata management; yaml-xml conversion
     metadata_as_yaml = as_text.split("---")[1]
     python_dict = yaml.load(metadata_as_yaml, Loader=yaml.SafeLoader)
+    
     # We remove the metadata from the text file
     transformed = as_text.replace(metadata_as_yaml, "")
     ## Metadata management
 
     # GFM extension of marko parses tables too.
-
     markdown = Markdown(extensions=['footnote'])
     converted_doc = markdown.convert(transformed)
     converted_doc = converted_doc.replace("<hr />", "")
@@ -183,7 +223,7 @@ def htmlify(file_and_class, surrounding_files, full_dict):
     character_description.set("class", "natural_language_desc")
     yaml_data = python_dict
     
-    # Next and previous files
+    # Next and previous chars management
     previous_file, next_file = surrounding_files
     next_and_previous = ET.Element("div")
     if previous_file != None:
@@ -208,10 +248,9 @@ def htmlify(file_and_class, surrounding_files, full_dict):
         span.append(next)
     
         
-    
-
     # Load Jinja2 template from file
     env = Environment(loader=FileSystemLoader('.'))
+    # The template is hardcoded.
     template = env.get_template('templates/char_template.html')
     # https://saidvandeklundert.net/2020-12-24-python-functions-in-jinja/
     template.globals.update(func_dict)
@@ -220,21 +259,26 @@ def htmlify(file_and_class, surrounding_files, full_dict):
     # Render template with YAML data and save to HTML file
     yaml_data['class'] = classe
     yaml_data['path'] = path
-    yaml_data = {**yaml_data, **full_dict}
+    yaml_data = {**yaml_data, **pages_dictionnary}
     output = template.render(yaml_data)
+    
+    # We add next and previous char link
     character_table = ET.fromstring(output, parser=parser)
     description_div = character_table.xpath("//div[@id='description']")
     description_div[0].append(character_description)
     next_previous_div = character_table.xpath("//div[@id='next_previous']")[0]
     next_previous_div.append(next_and_previous)
     
+    # And script element
     script_element = lhtml.Element("script")
     script_element.set('src', '../assets/js/accordian.js')
     # head_node[0].append(script_element)
 
+    # BeautifulSoup is used to manage the script element and create a working HTML file
     soup = BeautifulSoup(ET.tostring(character_table), 'html.parser')
     soup = soup.prettify()
     
+    # Let's create the dirs
     try:
         os.mkdir("html")
     except FileExistsError:
@@ -245,17 +289,21 @@ def htmlify(file_and_class, surrounding_files, full_dict):
     except FileExistsError:
         pass
     html_path = f"html/characters/{filename}.html"
+    
+    # And write the file.
     with open(html_path, 'w') as file:
         file.write(soup)
         # file.write(ET.tostring(soup, encoding='utf-8').decode())
     yaml_data['html_path'] = html_path
     return yaml_data
 
-if __name__ == '__main__':
+
+def create_site():
     pages = []
     files = glob.glob("data/characters/punctuations/*.md")
-    files.sort(key=lambda x:x.split("/")[-1])
-    files_dict = {}
+    
+    # Let's sort the files so that we can add a next/previous link
+    files.sort(key=lambda x: x.split("/")[-1])
     for index, file in enumerate(files):
         filename = file.split("/")[-1].replace(".md", "")
         classe = file.split("/")[-2]
@@ -268,11 +316,9 @@ if __name__ == '__main__':
             pages_as_dict[classe].append(nom_fichier)
         except KeyError:
             pages_as_dict[classe] = [nom_fichier]
-            
+
+    
     # We create a dynamic absolute path to use it on local build or online
-    
-    all_chars = []
-    
     if sys.argv[1] == "local":
         abspath = "/home/mgl/Bureau/Travail/projets/HTR/CatMus/website"
     else:
@@ -280,6 +326,7 @@ if __name__ == '__main__':
     pages_as_dict = {"classes": pages_as_dict,
                      "abspath": abspath}
 
+    all_chars = []
     for index, file in enumerate(files):
         try:
             next_file = files[index + 1]
@@ -289,34 +336,52 @@ if __name__ == '__main__':
             previous_file = files[index - 1]
         except IndexError:
             previous_file = None
-        all_chars.append(htmlify((file, classe), (previous_file, next_file), pages_as_dict))
-        
-        
-        
+            
+        new_char = create_character_page((file, classe), (previous_file, next_file), pages_as_dict)
+        all_chars.append(new_char)
+
     # Create guidelines pages
+
+    # Create french index age that is the default page (to be modified if needed)
     create_pages(yaml_dict=pages_as_dict,
-                 title='Homepage',
+                 title='Présentation',
                  template='templates/index.html',
-                 md_source="data/guidelines/index.md",
-                 out_dir=".")
-    for name, title in {'abreviations':"Abréviations", 
-                        'ligatures':"Ligatures", 
-                        'chiffres':"Chiffres", 
-                        'generalites':"Principes généraux",
-                        'ponctuation': "Ponctuation", 
-                        'majuscules': "Majuscules", 
-                        'ramistes': "Distinction des « u » et des « v », des « i » et des « j »", 
-                        'lettres_generalites': "Généralités"}.items():
-        create_pages(yaml_dict=pages_as_dict,
-                     title=title,
-                     template='templates/index.html',
-                     md_source=f"data/guidelines/{name}.md",
-                     out_dir="html/guidelines/")
-        
-    
-    # Finally, create index of characters
+                 md_source=f"data/guidelines/fr/index.md",
+                 out_dir=".",
+                 lang="fr",
+                 index_page=True)
+    # Create english index page
+    create_pages(yaml_dict=pages_as_dict,
+                 title='Présentation',
+                 template='templates/index.html',
+                 md_source=f"data/guidelines/en/index.md",
+                 out_dir=".",
+                 lang="en",
+                 index_page=True)
+
+    # Now create each page in the two languages
+    for lang in ['en', 'fr']:
+        for name, title in {'abreviations': "Abréviations",
+                            'ligatures': "Ligatures",
+                            'chiffres': "Chiffres",
+                            'generalites': "Principes généraux",
+                            'ponctuation': "Ponctuation",
+                            'majuscules': "Majuscules",
+                            'ramistes': "Distinction des « u » et des « v », des « i » et des « j »",
+                            'lettres_generalites': "Généralités"}.items():
+            create_pages(yaml_dict=pages_as_dict,
+                         title=title,
+                         template='templates/index.html',
+                         md_source=f"data/guidelines/{lang}/{name}.md",
+                         out_dir=f"html/guidelines",
+                         lang=lang)
+
+    # Finally, create the index of characters using the info gathered before
     create_index(yaml_list=all_chars,
                  title='Index of Characters',
                  template='templates/index.html')
-        
+
+
+if __name__ == '__main__':
+    create_site()
     
