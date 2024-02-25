@@ -39,10 +39,10 @@ jobs:
         pip3 install -r scripts/requirements.txt
     - name: Test with YAML validator
       run: |
-        python3 scripts/yaml_validator.py -s scripts/schema.json
+        python3 scripts/files_validation.py -s scripts/schema.json
     - name: Build site
       run: |
-        python3 scripts/md_to_html.py https://catmus-guidelines.github.io/${{ github.event.repository.name }}
+        python3 scripts/create_site.py https://catmus-guidelines.github.io/${{ github.event.repository.name }}
     - name: Archive production artifacts
       uses: actions/upload-artifact@v4
       with:

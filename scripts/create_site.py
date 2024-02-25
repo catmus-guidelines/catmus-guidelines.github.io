@@ -364,6 +364,7 @@ def create_site():
         for name, title in {'abreviations': "Abréviations",
                             'ligatures': "Ligatures",
                             'chiffres': "Chiffres",
+                            'segmentation': "Segmentation linguistique",
                             'generalites': "Principes généraux",
                             'ponctuation': "Ponctuation",
                             'majuscules': "Majuscules",
