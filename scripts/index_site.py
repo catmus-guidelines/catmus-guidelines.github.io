@@ -2,6 +2,7 @@ import glob
 import uuid
 import re
 import lxml.etree as ET
+import json
 
 def index():
     index = list()
@@ -18,9 +19,11 @@ def index():
                 paragraph_text = re.sub(spaces_replacement, ' ', paragraph.text)
                 par_dict['par'] = paragraph_text
                 par_dict['title'] = title
-            index.append(par_dict)
+                index.append(par_dict)
     print(index)
-        
+    
+    with open("json/index.json", "w") as index_file:
+        json.dump(index, index_file)
 
 
 
