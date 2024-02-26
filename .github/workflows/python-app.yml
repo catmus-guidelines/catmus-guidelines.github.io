@@ -89,10 +89,10 @@ jobs:
           name: html_files
           path: html/
       - name: Download a single artifact (index files)
-      uses: actions/download-artifact@v4
-      with:
-        name: json_index
-        path: index/
+        uses: actions/download-artifact@v4
+        with:
+          name: json_index
+          path: index/
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
