@@ -46,6 +46,7 @@ $(function() {
         myDict['title'] = result['title']
         myDict['url'] = result['url']
         myDict['node'] = result['node']
+        myDict['id'] = result['id']
         myList.push(myDict)
 }
     sessionStorage.setItem('myArray', JSON.stringify(myList));

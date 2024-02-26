@@ -84,12 +84,12 @@ jobs:
         uses: actions/checkout@v4
       - name: Setup Pages
         uses: actions/configure-pages@v4
-      - name: Download a single artifact
+      - name: Download index.html artifact
         uses: actions/download-artifact@v4
         with:
           name: index
           path: .
-      - name: Download a single artifact
+      - name: Download search.html artifact
         uses: actions/download-artifact@v4
         with:
           name: search

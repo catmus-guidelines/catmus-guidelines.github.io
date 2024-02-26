@@ -10,7 +10,7 @@ $('document').ready(function () {
         head = document.createElement("span");
         head.setAttribute("class", "spanResult")
         link = document.createElement("a");
-        link.setAttribute("href", result['url'])
+        link.setAttribute("href", result['url'] + "#" + result['id'])
         link.innerHTML = result['title'];
         head.append(link)
         $("#div_result").append(innerDiv);
