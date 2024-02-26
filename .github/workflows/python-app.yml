@@ -53,11 +53,11 @@ jobs:
         path: |
           html
     - name: Archive json artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: json_files
-          path: |
-            json
+      uses: actions/upload-artifact@v4
+      with:
+        name: json_files
+        path: |
+          json
     - name: Archive index
       uses: actions/upload-artifact@v4
       with:
