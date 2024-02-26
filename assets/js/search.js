@@ -1,183 +1,186 @@
----
-layout: bare
----
-(function(z) {
+// Setup MiniSearch
+const miniSearch = new MiniSearch({
+  fields: ['artist', 'title'],
+  storeFields: ['year']
+})
 
-z.onSearchReady = (ready) => {
-  if (document.readyState != 'loading') {
-    ready()
-  } else {
-    document.addEventListener('DOMContentLoaded', ready)
-  }
-}
+// Select DOM elements
+const $app = document.querySelector('.App')
+const $search = document.querySelector('.Search')
+const $searchInput = document.querySelector('.Search input')
+const $clearButton = document.querySelector('.Search button.clear')
+const $songList = document.querySelector('.SongList')
+const $explanation = document.querySelector('.Explanation')
+const $suggestionList = document.querySelector('.SuggestionList')
+const $options = document.querySelector('.AdvancedOptions form')
 
-const initSearch = (query) => {
-  const request = new XMLHttpRequest()
-  request.open('GET', '{{ "/assets/js/search_data.json" | absolute_url }}', true)
+// Fetch and index data
+$app.classList.add('loading')
+let songsById = {}
 
-  request.onload = () => {
-    if (request.status >= 200 && request.status < 400) {
-      const docs = JSON.parse(request.responseText)
-
-      lunr.tokenizer.separator = {{ site.search.tokenizer_separator | default: site.search_tokenizer_separator | default: "/[\s\-/]+/" }}
-
-      const index = lunr(function() {
-        this.ref('id')
-        this.field('title', { boost: 200 })
-        this.field('content', { boost: 2 })
-        {%- if site.search.rel_url != false %}
-        this.field('relUrl')
-        {%- endif %}
-        this.metadataWhitelist = ['position']
-
-        for (const i in docs) {
-          this.add({
-            id: i,
-            title: docs[i].title,
-            content: docs[i].content,
-            {%- if site.search.rel_url != false %}
-            relUrl: docs[i].relUrl
-            {%- endif %}
-          })
-        }
-      })
-
-      performSearch(index, docs, query)
-    } else {
-      console.log('Error loading ajax request. Request status:' + request.status)
-    }
-  }
-
-  request.onerror = () => {
-    console.log('There was a connection error')
-  }
-
-  request.send()
-}
-
-const parseParams = () => {
-  const paramParts = window.location.search.replace('?', '').split('=')
-  const params = {}
-
-  for (let i = 0; i < paramParts.length; i += 2) {
-    params[paramParts[i]] = paramParts[i+ 1]
-  }
-
-  return params
-}
-
-const performSearch = (index, docs, query) => {
-  const results = index.search(query)
-
-  if (results?.length > 0) {
-    buildResults(results, docs)
-  } else {
-    showNoResults(query)
-  }
-}
-
-const submitSearch = (event) => {
-  event.preventDefault()
-  const input = document.getElementById('search_input')
-  const query = input?.value
-  const search_results_url = "{{ '/assets/html/search_results' | absolute_url }}"
-
-  if (query) {
-    window.location = `${search_results_url}?q=${query}`
-  }
-}
-
-const showNoResults = (query) => {
-  const el = document.getElementById('no_results')
-  const termEl = document.getElementById('no_results_search_term')
-
-  termEl.textContent = query
-  el.classList.remove('no_search_results:hidden')
-}
-
-const resultNode = () => {
-  const el = document.createElement('div')
-
-  el.classList.add('search_result')
-
-  return el
-}
-
-const highlightContent = (metadata, prop, input) => {
-  let result = input
-  let offset = 0
-
-  for (const phrase in metadata) {
-    metadata[phrase][prop]?.position?.forEach(([pos, len]) => {
-      const start = pos + offset
-      const end = start + len
-      const left = result.slice(0, start)
-      const right = result.slice(end)
-      const highlight = `<span class="search_result:highlight">${result.slice(start, end)}</span>`
-
-      result = left + highlight + right
-      offset += highlight.length - len
-    })
-  }
-
-  return result
-}
-
-const resultTitle = (metadata, doc) => {
-  const el = document.createElement('div')
-  const link = document.createElement('a')
-  link.setAttribute('href', '{{ site.baseurl }}' + doc.relUrl)
-  /*link.setAttribute('href', doc.relUrl)*/
-  link.innerHTML = highlightContent(metadata, 'title', doc.title)
-
-  el.appendChild(link)
-  el.classList.add('search_result:title')
-
-  return el
-}
-
-const resultPreview = (metadata, doc) => {
-  const el = document.createElement('div')
-  const p = document.createElement('p')
-
-  p.innerHTML = highlightContent(metadata, 'content', doc.content)
-  p.classList.add('search_result:preview_text')
-
-  el.appendChild(p)
-  el.classList.add('search_result:preview')
-
-  return el
-}
-
-const buildResult = (metadata, doc) => {
-  const result = resultNode()
-  const title = resultTitle(metadata, doc)
-  const preview = resultPreview(metadata, doc)
-
-  result.appendChild(title)
-  result.appendChild(preview)
-
-  return result
-}
-
-const buildResults = (results, docs) => {
-  const resultsEl = document.getElementById('search_results')
-
-  results.forEach(({ matchData, ref }) => {
-    const result = buildResult(matchData.metadata, docs[ref])
-
-    resultsEl.appendChild(result)
+fetch('albums.json')
+  .then(response => response.json())
+  .then((allSongs) => {
+    songsById = allSongs.reduce((byId, song) => {
+      byId[song.id] = song
+      return byId
+    }, {})
+    return miniSearch.addAll(allSongs)
+  }).then(() => {
+    $app.classList.remove('loading')
   })
-}
 
-z.onSearchReady(() => {
-  document.getElementById('search').addEventListener('submit', submitSearch)
+// Bind event listeners:
 
-  if (window.location.pathname.includes('assets/html/search_results')) {
-    const params = parseParams()
-    document.getElementById('search_input').value = params.q
-    initSearch(params.q)
+// Typing into search bar updates search results and suggestions
+$searchInput.addEventListener('input', (event) => {
+  const query = $searchInput.value
+
+  const results = (query.length > 1) ? getSearchResults(query) : []
+  renderSearchResults(results)
+
+  const suggestions = (query.length > 1) ? getSuggestions(query) : []
+  renderSuggestions(suggestions)
+})
+
+// Clicking on clear button clears search and suggestions
+$clearButton.addEventListener('click', () => {
+  $searchInput.value = ''
+  $searchInput.focus()
+
+  renderSearchResults([])
+  renderSuggestions([])
+})
+
+// Clicking on a suggestion selects it
+$suggestionList.addEventListener('click', (event) => {
+  const $suggestion = event.target
+
+  if ($suggestion.classList.contains('Suggestion')) {
+    const query = $suggestion.innerText.trim()
+    $searchInput.value = query
+    $searchInput.focus()
+
+    const results = getSearchResults(query)
+    renderSearchResults(results)
+    renderSuggestions([])
   }
 })
 
-})(window.z = window.z || {})
+// Pressing up/down/enter key while on search bar navigates through suggestions
+$search.addEventListener('keydown', (event) => {
+  const key = event.key
+
+  if (key === 'ArrowDown') {
+    selectSuggestion(+1)
+  } else if (key === 'ArrowUp') {
+    selectSuggestion(-1)
+  } else if (key === 'Enter' || key === 'Escape') {
+    $searchInput.blur()
+    renderSuggestions([])
+  } else {
+    return
+  }
+  const query = $searchInput.value
+  const results = getSearchResults(query)
+  renderSearchResults(results)
+})
+
+// Clicking outside of search bar clears suggestions
+$app.addEventListener('click', (event) => {
+  renderSuggestions([])
+})
+
+// Changing any advanced option triggers a new search with the updated options
+$options.addEventListener('change', (event) => {
+  const query = $searchInput.value
+  const results = getSearchResults(query)
+  renderSearchResults(results)
+})
+
+// Define functions and support variables
+const searchOptions = {
+  fuzzy: 0.2,
+  prefix: true,
+  fields: ['title', 'artist'],
+  combineWith: 'OR',
+  filter: null
+}
+
+const getSearchResults = (query) => {
+  const searchOptions = getSearchOptions()
+  return miniSearch.search(query, searchOptions).map(({ id }) => songsById[id])
+}
+
+const getSuggestions = (query) => {
+  return miniSearch.autoSuggest(query, { boost: { artist: 5 } })
+    .filter(({ suggestion, score }, _, [first]) => score > first.score / 4)
+    .slice(0, 5)
+}
+
+const renderSearchResults = (results) => {
+  $songList.innerHTML = results.map(({ artist, title, year, rank }) => {
+    return `<li class="Song">
+      <h3>${capitalize(title)}</h3>
+      <dl>
+        <dt>Artist:</dt> <dd>${capitalize(artist)}</dd>
+        <dt>Year:</dt> <dd>${year}</dd>
+        <dt>Billbord Position:</dt> <dd>${rank}</dd>
+      </dl>
+    </li>`
+  }).join('\n')
+
+  if (results.length > 0) {
+    $app.classList.add('hasResults')
+  } else {
+    $app.classList.remove('hasResults')
+  }
+}
+
+const renderSuggestions = (suggestions) => {
+  $suggestionList.innerHTML = suggestions.map(({ suggestion }) => {
+    return `<li class="Suggestion">${suggestion}</li>`
+  }).join('\n')
+
+  if (suggestions.length > 0) {
+    $app.classList.add('hasSuggestions')
+  } else {
+    $app.classList.remove('hasSuggestions')
+  }
+}
+
+const selectSuggestion = (direction) => {
+  const $suggestions = document.querySelectorAll('.Suggestion')
+  const $selected = document.querySelector('.Suggestion.selected')
+  const index = Array.from($suggestions).indexOf($selected)
+
+  if (index > -1) {
+    $suggestions[index].classList.remove('selected')
+  }
+
+  const nextIndex = Math.max(Math.min(index + direction, $suggestions.length - 1), 0)
+  $suggestions[nextIndex].classList.add('selected')
+  $searchInput.value = $suggestions[nextIndex].innerText
+}
+
+const getSearchOptions = () => {
+  const formData = new FormData($options)
+  const searchOptions = {}
+
+  searchOptions.fuzzy = formData.has('fuzzy') ? 0.2 : false
+  searchOptions.prefix = formData.has('prefix')
+  searchOptions.fields = formData.getAll('fields')
+  searchOptions.combineWith = formData.get('combineWith')
+
+  const fromYear = parseInt(formData.get('fromYear'), 10)
+  const toYear = parseInt(formData.get('toYear'), 10)
+
+  searchOptions.filter = ({ year }) => {
+    year = parseInt(year, 10)
+    return year >= fromYear && year <= toYear
+  }
+
+  return searchOptions
+}
+
+const capitalize = (string) => string.replace(/(\b\w)/gi, (char) => char.toUpperCase())
