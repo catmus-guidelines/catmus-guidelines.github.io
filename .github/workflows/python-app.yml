@@ -43,12 +43,21 @@ jobs:
     - name: Build site
       run: |
         python3 scripts/create_site.py https://catmus-guidelines.github.io/${{ github.event.repository.name }}
-    - name: Archive production artifacts
+    - name: Index site
+      run: |
+        python3 scripts/index.py
+    - name: Archive html artifacts
       uses: actions/upload-artifact@v4
       with:
         name: html_files
         path: |
           html
+    - name: Archive json artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: json_files
+          path: |
+            json
     - name: Archive index
       uses: actions/upload-artifact@v4
       with:
