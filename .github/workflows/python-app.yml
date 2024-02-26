@@ -55,7 +55,7 @@ jobs:
     - name: Archive json artifacts
       uses: actions/upload-artifact@v4
       with:
-        name: json_files
+        name: json_index
         path: |
           json
     - name: Archive index
@@ -83,11 +83,16 @@ jobs:
         with:
           name: index
           path: .
-      - name: Download a single artifact
+      - name: Download a single artifact (html files)
         uses: actions/download-artifact@v4
         with:
           name: html_files
           path: html/
+      - name: Download a single artifact (index files)
+      uses: actions/download-artifact@v4
+      with:
+        name: json_index
+        path: index/
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

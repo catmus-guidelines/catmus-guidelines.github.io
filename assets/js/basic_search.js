@@ -1,20 +1,29 @@
 let miniSearch = new MiniSearch({
-  fields: ['title', 'text'], // fields to index for full-text search
-  storeFields: ['title', 'category', 'id'] // fields to return with search results
+  fields: ['title', 'par'], // fields to index for full-text search
+  storeFields: ['title', 'par'], // fields to return with search results,
+  idField: 'id',
+  searchOptions: {
+    boost: { 'par': 2 },
+    fuzzy: false
+  }
 })
 
 
    
-var url = "https://raw.githubusercontent.com/catmus-guidelines/future-website/main/assets/js/albums.json"
-
-var dataJson = {};
-fetch(url)
-  .then(response => response.text())
-  .then((data) => {
-    console.log(data)
-    dataJson = data
-    miniSearch.addAll(data)
+var all_chars_url = "https://raw.githubusercontent.com/catmus-guidelines/future-website/main/json/index.json"
+let itemsById = {}
+fetch(all_chars_url)
+  .then(response => response.json())
+  .then((allItems) => {
+    itemsById = allItems.reduce((byId, item) => {
+      byId[item.id] = item
+      return byId
+    }, {})
+    console.log(allItems)
+    return miniSearch.addAll(allItems)
+  }).then(() => {
   })
+
   
 
 // Index all documents
@@ -29,8 +38,12 @@ fetch(url)
 
 $(function() {
     $("#search_symbol").click(function() {
-    input_value = document.getElementById("search_input_characters").value;
+    console.log("Initiating search")
+    input_value = document.getElementById("search_input_guidelines").value;
     let results = miniSearch.search(input_value)
-    console.log(results)
+    for (result  of results) {
+        console.log(result['title']);
+        console.log(result);
+}
     });
 });
