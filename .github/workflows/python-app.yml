@@ -64,6 +64,12 @@ jobs:
         name: index
         path: |
           index.html
+    - name: Archive search page
+      uses: actions/upload-artifact@v4
+      with:
+        name: search
+        path: |
+          search.html
 # Single deploy job since we're just deploying
   
   deploy:
@@ -83,6 +89,11 @@ jobs:
         with:
           name: index
           path: .
+      - name: Download a single artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: search
+          path: .
       - name: Download a single artifact (html files)
         uses: actions/download-artifact@v4
         with:
@@ -92,7 +103,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: json_index
-          path: index/
+          path: json/
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
