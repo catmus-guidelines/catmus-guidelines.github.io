@@ -16,7 +16,6 @@ fetch(url)
     miniSearch.addAll(data)
   })
   
-console.log(dataJson)
 
 // Index all documents
 
