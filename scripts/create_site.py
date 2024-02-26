@@ -358,6 +358,17 @@ def create_site():
                  out_dir=".",
                  lang="en",
                  index_page=True)
+    # Create searchpage
+    env = Environment(loader=FileSystemLoader('.'))
+    template = env.get_template("templates/in"
+                                "dex.html")
+    pages_as_dict['title'] = "Search results"
+    template.globals.update(func_dict)
+    output = template.render(pages_as_dict)
+    soup = BeautifulSoup(output, 'html.parser')
+    soup = soup.prettify()
+    with open("search.html", 'w') as file:
+        file.write(soup)
 
     # Now create each page in the two languages
     for lang in ['en', 'fr']:

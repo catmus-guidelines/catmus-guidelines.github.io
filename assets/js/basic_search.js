@@ -1,9 +1,9 @@
 let miniSearch = new MiniSearch({
-  fields: ['title', 'par'], // fields to index for full-text search
-  storeFields: ['title', 'par'], // fields to return with search results,
+  fields: ['title', 'node', 'url'], // fields to index for full-text search
+  storeFields: ['title', 'node', 'url'], // fields to return with search results,
   idField: 'id',
   searchOptions: {
-    boost: { 'par': 2 },
+    boost: { 'node': 2 },
     fuzzy: false
   }
 })
@@ -19,7 +19,6 @@ fetch(all_chars_url)
       byId[item.id] = item
       return byId
     }, {})
-    console.log(allItems)
     return miniSearch.addAll(allItems)
   }).then(() => {
   })
@@ -41,9 +40,15 @@ $(function() {
     console.log("Initiating search")
     input_value = document.getElementById("search_input_guidelines").value;
     let results = miniSearch.search(input_value)
+    var myList = []
     for (result  of results) {
-        console.log(result['title']);
-        console.log(result);
+        var myDict = {}
+        myDict['title'] = result['title']
+        myDict['url'] = result['url']
+        myDict['node'] = result['node']
+        myList.push(myDict)
 }
+    sessionStorage.setItem('myArray', JSON.stringify(myList));
+    window.location.replace("search.html");
     });
 });

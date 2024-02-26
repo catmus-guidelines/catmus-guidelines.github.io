@@ -27,7 +27,7 @@ def index(xpath):
                 par_dict['id'] = id
                 par_dict['url'] = html_page
                 paragraph_text = re.sub(spaces_replacement, ' ',  ''.join(node.itertext()))
-                par_dict['par'] = paragraph_text
+                par_dict['node'] = paragraph_text
                 par_dict['title'] = title
                 index.append(par_dict)
         with open(html_page, "w") as output_html_with_id:
