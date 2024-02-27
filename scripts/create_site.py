@@ -375,8 +375,7 @@ def create_site():
     # Create searchpage
     current_dict = pages_as_dict
     env = Environment(loader=FileSystemLoader('.'))
-    template = env.get_template("templates/in"
-                                "dex.html")
+    template = env.get_template("templates/index-template.html")
     current_dict['title'] = "Search results"
     template.globals.update(func_dict)
     output = template.render(current_dict)
