@@ -37,8 +37,6 @@ fetch(all_chars_url)
 // ]
 
 
-sessionStorage.removeItem('myArray')
-sessionStorage.removeItem('search_string')
 var head = document.head
 console.log(head)
 var url = head.getAttribute("about");
