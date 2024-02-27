@@ -1,4 +1,5 @@
 import glob
+import os
 import uuid
 import re
 import lxml.etree as ET
@@ -34,6 +35,10 @@ def index(xpath):
                 index.append(par_dict)
         with open(html_page, "w") as output_html_with_id:
             output_html_with_id.write(ET.tostring(parsed).decode('utf-8'))
+    try:
+        os.mkdir("json")
+    except FileExistsError:
+        pass
     
     with open("json/index.json", "w") as index_file:
         index_file.write(json.dumps(index, indent=4))
