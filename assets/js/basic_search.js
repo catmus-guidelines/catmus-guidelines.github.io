@@ -53,7 +53,10 @@ for (result  of results) {
 }
 sessionStorage.setItem('myArray', JSON.stringify(myList));
 sessionStorage.setItem('search_string', input_value);
-    window.location.replace("search.html");
+var head = document.head
+console.log(head)
+var url = head.getAttribute("about");
+window.location.replace(url + "/search.html");
 });
 
 
