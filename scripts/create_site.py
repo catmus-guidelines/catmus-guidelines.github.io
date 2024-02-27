@@ -363,7 +363,7 @@ def create_site():
     # Create 404
     current_dict = pages_as_dict
     env = Environment(loader=FileSystemLoader('.'))
-    template = env.get_template("templates/404.html")
+    template = env.get_template("templates/404-template.html")
     template.globals.update(func_dict)
     output = template.render(current_dict)
     soup = BeautifulSoup(output, 'html.parser')
