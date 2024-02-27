@@ -361,15 +361,27 @@ def create_site():
     
     
     # Create searchpage
+    current_dict = pages_as_dict
     env = Environment(loader=FileSystemLoader('.'))
     template = env.get_template("templates/in"
                                 "dex.html")
-    pages_as_dict['title'] = "Search results"
+    current_dict['title'] = "Search results"
     template.globals.update(func_dict)
-    output = template.render(pages_as_dict)
+    output = template.render(current_dict)
     soup = BeautifulSoup(output, 'html.parser')
     soup = soup.prettify()
     with open("search.html", 'w') as file:
+        file.write(soup)
+        
+    # Create 404
+    current_dict = pages_as_dict
+    env = Environment(loader=FileSystemLoader('.'))
+    template = env.get_template("templates/404.html")
+    template.globals.update(func_dict)
+    output = template.render(current_dict)
+    soup = BeautifulSoup(output, 'html.parser')
+    soup = soup.prettify()
+    with open("404.html", 'w') as file:
         file.write(soup)
 
     # Now create each page in the target languages
@@ -391,9 +403,13 @@ def create_site():
                          lang=lang)
 
     # Finally, create the index of characters using the info gathered before
-    create_index(yaml_list=all_chars,
-                 title='Index of Characters',
-                 template='templates/index.html')
+    create_pages(yaml_dict=pages_as_dict,
+                 title=title,
+                 template='templates/404.html',
+                 md_source=f"data/guidelines/{lang}/{name}.md",
+                 out_dir=f"html/guidelines",
+                 lang=lang)
+    
 
 
 if __name__ == '__main__':
