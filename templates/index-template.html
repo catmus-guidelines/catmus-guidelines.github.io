@@ -6,7 +6,11 @@
          {% include 'templates/navbar.html' %}
          <div class="chrome:body">
          {% include 'templates/header.html' %}
+            {% if target == 'pages' %}
          {% include 'templates/mainDiv.html' %}
+            {% else %}
+         {% include 'templates/chars.html' %}
+            {% endif %}
          {% include 'templates/footer.html' %}
          </div>
       </div>

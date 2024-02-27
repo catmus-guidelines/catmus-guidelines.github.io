@@ -251,7 +251,7 @@ def create_character_page(file_and_class:tuple, surrounding_files:tuple, pages_d
     # Load Jinja2 template from file
     env = Environment(loader=FileSystemLoader('.'))
     # The template is hardcoded.
-    template = env.get_template('templates/char_template.html')
+    template = env.get_template('templates/index-template.html')
     # https://saidvandeklundert.net/2020-12-24-python-functions-in-jinja/
     template.globals.update(func_dict)
     
@@ -260,6 +260,7 @@ def create_character_page(file_and_class:tuple, surrounding_files:tuple, pages_d
     yaml_data['class'] = classe
     yaml_data['path'] = path
     yaml_data = {**yaml_data, **pages_dictionnary}
+    yaml_data['target'] = 'chars'
     output = template.render(yaml_data)
     
     # We add next and previous char link
@@ -351,6 +352,8 @@ def create_site():
     #              lang="fr",
     #              index_page=True)
     # Create english index page
+
+    pages_as_dict['target'] = 'pages'
     create_pages(yaml_dict=pages_as_dict,
                  title='Présentation',
                  template='templates/index-template.html',
@@ -361,6 +364,7 @@ def create_site():
     
 
     # Create 404
+    pages_as_dict['target'] = 'pages'
     current_dict = pages_as_dict
     env = Environment(loader=FileSystemLoader('.'))
     template = env.get_template("templates/404-template.html")
@@ -374,6 +378,7 @@ def create_site():
         
     # Create searchpage
     current_dict = pages_as_dict
+    current_dict['target'] = 'pages'
     env = Environment(loader=FileSystemLoader('.'))
     template = env.get_template("templates/index-template.html")
     current_dict['title'] = "Search results"
@@ -396,6 +401,7 @@ def create_site():
                             'majuscules': "Majuscules",
                             'ramistes': "Distinction des « u » et des « v », des « i » et des « j »",
                             'lettres_generalites': "Généralités"}.items():
+            pages_as_dict['target'] = 'pages'
             create_pages(yaml_dict=pages_as_dict,
                          title=title,
                          template='templates/index-template.html',
@@ -404,9 +410,10 @@ def create_site():
                          lang=lang)
 
     # Finally, create the index of characters using the info gathered before
+    pages_as_dict['target'] = 'pages'
     create_pages(yaml_dict=pages_as_dict,
                  title=title,
-                 template='templates/404.html',
+                 template='templates/index-template.html',
                  md_source=f"data/guidelines/{lang}/{name}.md",
                  out_dir=f"html/guidelines",
                  lang=lang)
