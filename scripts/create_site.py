@@ -151,7 +151,7 @@ def create_pages(yaml_dict, title, template, md_source, out_dir, lang, index_pag
         pass
     if index_page is True:
         lang_dir = ""
-        if lang != "fr":
+        if lang == "fr":
             suffix = f"-{lang}"
         else:
             suffix = ""
@@ -343,13 +343,13 @@ def create_site():
     # Create guidelines pages
 
     # Create french index age that is the default page (to be modified if needed)
-    create_pages(yaml_dict=pages_as_dict,
-                 title='Présentation',
-                 template='templates/index.html',
-                 md_source=f"data/guidelines/fr/index.md",
-                 out_dir=".",
-                 lang="fr",
-                 index_page=True)
+    # create_pages(yaml_dict=pages_as_dict,
+    #              title='Présentation',
+    #              template='templates/index.html',
+    #              md_source=f"data/guidelines/fr/index.md",
+    #              out_dir=".",
+    #              lang="fr",
+    #              index_page=True)
     # Create english index page
     create_pages(yaml_dict=pages_as_dict,
                  title='Présentation',
@@ -358,6 +358,8 @@ def create_site():
                  out_dir=".",
                  lang="en",
                  index_page=True)
+    
+    
     # Create searchpage
     env = Environment(loader=FileSystemLoader('.'))
     template = env.get_template("templates/in"
@@ -370,8 +372,8 @@ def create_site():
     with open("search.html", 'w') as file:
         file.write(soup)
 
-    # Now create each page in the two languages
-    for lang in ['en', 'fr']:
+    # Now create each page in the target languages
+    for lang in ['en']:
         for name, title in {'abreviations': "Abréviations",
                             'ligatures': "Ligatures",
                             'chiffres': "Chiffres",
