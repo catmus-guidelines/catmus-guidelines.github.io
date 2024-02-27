@@ -37,9 +37,9 @@ fetch(all_chars_url)
 // ]
 
 
-var head = document.head
+const head = document.head
 console.log(head)
-var url = head.getAttribute("about");
+const url = head.getAttribute("about");
 
 fetch_json();
 document.getElementById("search").addEventListener("submit", function (event) {
