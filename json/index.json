@@ -1,176 +1,68 @@
 [
     {
-        "id": "id_be0debea",
+        "id": "id_4af40a3e",
         "url": "html/guidelines/en/generalites.html",
         "node": " Notre t\u00e2che 1 est de trouver un moyen de traduire la mani\u00e8re dont le texte est livr\u00e9 sur son support originel dans un syst\u00e8me interpr\u00e9table par une machine et qui favorise son apprentissage. Nos solutions seront forc\u00e9ment r\u00e9ductrices et rel\u00e8veront fondamentalement d\u2019une activit\u00e9 d\u2019interpr\u00e9tation, car il est impossible de rendre toute la vari\u00e9t\u00e9 d\u2019une \u00e9criture manuscrite au moyen d\u2019un ordinateur qui poss\u00e8de un nombre limit\u00e9 de caract\u00e8res. Pour d\u00e9finir nos pratiques, nous reprendrons les deux termes d\u00e9finis par Dominique Stutzmann de : ",
         "title": "generalites"
     },
     {
-        "id": "id_11df7e4c",
+        "id": "id_5b21c305",
         "url": "html/guidelines/en/generalites.html",
         "node": " Transcription allograph\u00e9tique , transcription qui vise \u00e0 donner acc\u00e8s \u00e0 toutes les formes de chaque lettre ou signe. Transcription graph\u00e9matique , transcription qui pr\u00e9serve la suite des lettres et r\u00e9duit chaque forme \u00e0 son sens dans un syst\u00e8me alphab\u00e9tique. ",
         "title": "generalites"
     },
     {
-        "id": "id_0efb9b63",
+        "id": "id_04426e5d",
         "url": "html/guidelines/en/generalites.html",
         "node": " Afin de proposer un syst\u00e8me de transcription accessible, nous avons \u00e9cart\u00e9 l\u2019id\u00e9e de produire des transcriptions allograph\u00e9tiques, car il nous semblait impossible de parvenir \u00e0 proposer des pr\u00e9conisations g\u00e9n\u00e9rales pour des transcriptions de ce type pour tous les documents m\u00e9di\u00e9vaux du Xe au XVe si\u00e8cle. En outre, si on s\u2019appuie uniquement sur la forme de la lettre, certains allographes, certaines lettres se ressemblent tellement comme le \u00ab u \u00bb et le \u00ab n \u00bb, le \u00ab \u017f \u00bb (s long) et le \u00ab f \u00bb qu\u2019on pourrait les repr\u00e9senter par les m\u00eames signes, si on ne s\u2019appuie plus sur le sens du mot, mais uniquement sur la forme du signe. Pousser l\u2019imitation trop loin risquerait de rendre la transcription impossible \u00e0 achever et inexploitable. ",
         "title": "generalites"
     },
     {
-        "id": "id_7d28cd74",
+        "id": "id_62f506f1",
         "url": "html/guidelines/en/generalites.html",
         "node": " Le domaine public d'Unicode est \u00e0 privil\u00e9gier sur les diff\u00e9rents domaines priv\u00e9s (appel\u00e9s Private Use areas ), m\u00eame s'ils ont \u00e9t\u00e9 cr\u00e9\u00e9s par des initiatives comme MUFI . ",
         "title": "generalites"
     },
     {
-        "id": "id_914d960f",
+        "id": "id_8a5571d0",
         "url": "html/guidelines/en/generalites.html",
         "node": " Ce travail est le fruit d'une synth\u00e8se des manuels d'Ariane Pinche: Ariane Pinche. \"Guide de transcription pour les manuscrits du Xe au XVe si\u00e8cle.\" 2022, hal-03697382 et de celui de Thibault Cl\u00e9rice, Malamatenia Vlachou-Efstathiou, Alix Chagu\u00e9: \"CREMMA Medii Aevi: Literary manuscript text recognition in Latin\", Journal of Open Humanities Data, 2023, 9, pp.4, 10.5334/johd.97 \u21a9 ",
         "title": "generalites"
     },
     {
-        "id": "id_803e2b34",
-        "url": "html/guidelines/en/generalites.html",
-        "node": " Ce travail est le fruit d'une synth\u00e8se des manuels d'Ariane Pinche: Ariane Pinche. \"Guide de transcription pour les manuscrits du Xe au XVe si\u00e8cle.\" 2022, hal-03697382 et de celui de Thibault Cl\u00e9rice, Malamatenia Vlachou-Efstathiou, Alix Chagu\u00e9: \"CREMMA Medii Aevi: Literary manuscript text recognition in Latin\", Journal of Open Humanities Data, 2023, 9, pp.4, 10.5334/johd.97 \u21a9 ",
-        "title": "generalites"
-    },
-    {
-        "id": "id_d9de7b6b",
+        "id": "id_b077f118",
         "url": "html/guidelines/en/ramistes.html",
         "node": " Les ramistes rel\u00e8vent d'une distinction de forme. ",
         "title": "ramistes"
     },
     {
-        "id": "id_f2003741",
+        "id": "id_8257b292",
         "url": "html/guidelines/en/chiffres.html",
         "node": " On aime les chiffres ",
         "title": "chiffres"
     },
     {
-        "id": "id_4061050d",
+        "id": "id_218261dd",
         "url": "html/guidelines/en/majuscules.html",
         "node": " Trois cas d'usage recommand\u00e9s: ",
         "title": "majuscules"
     },
     {
-        "id": "id_21034c3e",
+        "id": "id_311a8676",
         "url": "html/guidelines/en/majuscules.html",
         "node": " lettrines ou initiales orn\u00e9es; titres courants; lettres en d\u00e9but de mot s\u00e9mantiques; ",
         "title": "majuscules"
     },
     {
-        "id": "id_b52ead74",
+        "id": "id_47265b84",
         "url": "html/guidelines/en/majuscules.html",
         "node": " La pratique de transcription doit \u00eatre homog\u00e8ne. La normalisation par ajout de majuscules est \u00e0 proscrire. ",
         "title": "majuscules"
     },
     {
-        "id": "id_3cb87e5d",
+        "id": "id_74a70f69",
         "url": "html/guidelines/en/ligatures.html",
         "node": " Les ligatures sont ignor\u00e9es et r\u00e9duites \u00e0 leurs composants alphab\u00e9tiques individuels. ",
         "title": "ligatures"
-    },
-    {
-        "id": "id_1f964864",
-        "url": "html/guidelines/fr/generalites.html",
-        "node": " Notre t\u00e2che 1 est de trouver un moyen de traduire la mani\u00e8re dont le texte est livr\u00e9 sur son support originel dans un syst\u00e8me interpr\u00e9table par une machine et qui favorise son apprentissage. Nos solutions seront forc\u00e9ment r\u00e9ductrices et rel\u00e8veront fondamentalement d\u2019une activit\u00e9 d\u2019interpr\u00e9tation, car il est impossible de rendre toute la vari\u00e9t\u00e9 d\u2019une \u00e9criture manuscrite au moyen d\u2019un ordinateur qui poss\u00e8de un nombre limit\u00e9 de caract\u00e8res. Pour d\u00e9finir nos pratiques, nous reprendrons les deux termes d\u00e9finis par Dominique Stutzmann de : ",
-        "title": "generalites"
-    },
-    {
-        "id": "id_b4ddcca5",
-        "url": "html/guidelines/fr/generalites.html",
-        "node": " Transcription allograph\u00e9tique , transcription qui vise \u00e0 donner acc\u00e8s \u00e0 toutes les formes de chaque lettre ou signe. Transcription graph\u00e9matique , transcription qui pr\u00e9serve la suite des lettres et r\u00e9duit chaque forme \u00e0 son sens dans un syst\u00e8me alphab\u00e9tique. ",
-        "title": "generalites"
-    },
-    {
-        "id": "id_d72b02c9",
-        "url": "html/guidelines/fr/generalites.html",
-        "node": " Afin de proposer un syst\u00e8me de transcription accessible, nous avons \u00e9cart\u00e9 l\u2019id\u00e9e de produire des transcriptions allograph\u00e9tiques, car il nous semblait impossible de parvenir \u00e0 proposer des pr\u00e9conisations g\u00e9n\u00e9rales pour des transcriptions de ce type pour tous les documents m\u00e9di\u00e9vaux du Xe au XVe si\u00e8cle. En outre, si on s\u2019appuie uniquement sur la forme de la lettre, certains allographes, certaines lettres se ressemblent tellement comme le \u00ab u \u00bb et le \u00ab n \u00bb, le \u00ab \u017f \u00bb (s long) et le \u00ab f \u00bb qu\u2019on pourrait les repr\u00e9senter par les m\u00eames signes, si on ne s\u2019appuie plus sur le sens du mot, mais uniquement sur la forme du signe. Pousser l\u2019imitation trop loin risquerait de rendre la transcription impossible \u00e0 achever et inexploitable. ",
-        "title": "generalites"
-    },
-    {
-        "id": "id_aad43213",
-        "url": "html/guidelines/fr/generalites.html",
-        "node": " Le domaine public d'Unicode est \u00e0 privil\u00e9gier sur les diff\u00e9rents domaines priv\u00e9s (appel\u00e9s Private Use areas ), m\u00eame s'ils ont \u00e9t\u00e9 cr\u00e9\u00e9s par des initiatives comme MUFI . ",
-        "title": "generalites"
-    },
-    {
-        "id": "id_04b8e933",
-        "url": "html/guidelines/fr/generalites.html",
-        "node": " Ce travail est le fruit d'une synth\u00e8se des manuels d'Ariane Pinche: Ariane Pinche. \"Guide de transcription pour les manuscrits du Xe au XVe si\u00e8cle.\" 2022, hal-03697382 et de celui de Thibault Cl\u00e9rice, Malamatenia Vlachou-Efstathiou, Alix Chagu\u00e9: \"CREMMA Medii Aevi: Literary manuscript text recognition in Latin\", Journal of Open Humanities Data, 2023, 9, pp.4, 10.5334/johd.97 \u21a9 ",
-        "title": "generalites"
-    },
-    {
-        "id": "id_55599ddb",
-        "url": "html/guidelines/fr/generalites.html",
-        "node": " Ce travail est le fruit d'une synth\u00e8se des manuels d'Ariane Pinche: Ariane Pinche. \"Guide de transcription pour les manuscrits du Xe au XVe si\u00e8cle.\" 2022, hal-03697382 et de celui de Thibault Cl\u00e9rice, Malamatenia Vlachou-Efstathiou, Alix Chagu\u00e9: \"CREMMA Medii Aevi: Literary manuscript text recognition in Latin\", Journal of Open Humanities Data, 2023, 9, pp.4, 10.5334/johd.97 \u21a9 ",
-        "title": "generalites"
-    },
-    {
-        "id": "id_ca199cbe",
-        "url": "html/guidelines/fr/ramistes.html",
-        "node": " Les ramistes rel\u00e8vent d'une distinction de forme. ",
-        "title": "ramistes"
-    },
-    {
-        "id": "id_e4c31101",
-        "url": "html/guidelines/fr/chiffres.html",
-        "node": " On aime les chiffres ",
-        "title": "chiffres"
-    },
-    {
-        "id": "id_c9925062",
-        "url": "html/guidelines/fr/majuscules.html",
-        "node": " Trois cas d'usage recommand\u00e9s: ",
-        "title": "majuscules"
-    },
-    {
-        "id": "id_277e80aa",
-        "url": "html/guidelines/fr/majuscules.html",
-        "node": " lettrines ou initiales orn\u00e9es; titres courants; lettres en d\u00e9but de mot s\u00e9mantiques; ",
-        "title": "majuscules"
-    },
-    {
-        "id": "id_33fe7822",
-        "url": "html/guidelines/fr/majuscules.html",
-        "node": " La pratique de transcription doit \u00eatre homog\u00e8ne. La normalisation par ajout de majuscules est \u00e0 proscrire. ",
-        "title": "majuscules"
-    },
-    {
-        "id": "id_adc0e9c5",
-        "url": "html/guidelines/fr/ligatures.html",
-        "node": " Les ligatures sont ignor\u00e9es et r\u00e9duites \u00e0 leurs composants alphab\u00e9tiques individuels. ",
-        "title": "ligatures"
-    },
-    {
-        "id": "id_78f98609",
-        "url": "html/guidelines/fr/abreviations.html",
-        "node": " La gestion des abr\u00e9viations est une t\u00e2che complexe qui n'appelle pas de r\u00e9ponse univoque. Dans le cadre de CATMuS, il a \u00e9t\u00e9 d\u00e9cid\u00e9 de ne pas d\u00e9velopper les abr\u00e9viations, pour des raisons scientifiques autant que techniques: ",
-        "title": "abreviations"
-    },
-    {
-        "id": "id_fe8540f1",
-        "url": "html/guidelines/fr/abreviations.html",
-        "node": " le d\u00e9veloppement d'abr\u00e9viations est une t\u00e2che ecdotique et linguistique qui demande une analyse pr\u00e9alable des usages scribaux du document transcrit (cas des solutions multiples pour lesquelles il faut suivre l'usage majoritaire du t\u00e9moin) le d\u00e9veloppement des abr\u00e9viations est particuli\u00e8rement d\u00e9pendant de la langue et peut rendre difficile la t\u00e2che de transcription automatis\u00e9e et l'entra\u00eenement de mod\u00e8les multilingues, par une sp\u00e9cialisation trop importante des mod\u00e8les. ",
-        "title": "abreviations"
-    },
-    {
-        "id": "id_018c6dcb",
-        "url": "html/guidelines/fr/abreviations.html",
-        "node": " Nous recommandons l'usage des signes rattach\u00e9s \u00e0 l'initiative MUFI, et indiquons les graph\u00e8mes choisis pour la transcription des signes abr\u00e9viatifs les plus communs, certains d'entre eux pouvant \u00eatre visuellement tr\u00e8s proches. Nous distinguons trois grandes classes d'abr\u00e9viations: les abr\u00e9viations par tilde et macron, les abr\u00e9viations par lettre suscrite, les abr\u00e9viations par signes sp\u00e9ciaux. ",
-        "title": "abreviations"
-    },
-    {
-        "id": "id_1f74e183",
-        "url": "html/guidelines/fr/abreviations.html",
-        "node": " En ce qui concerne le \"et\" tironien, il est syst\u00e9matiquement transcrit par un signe tironien, mais est distingu\u00e9 de l'esperluette \"&\". ",
-        "title": "abreviations"
-    },
-    {
-        "id": "id_0d9fd441",
-        "url": "html/guidelines/fr/abreviations.html",
-        "node": " Les signes verticaux sont not\u00e9s avec le tilde vertical. Les signes horizontaux sont tous transcrits \u00e0 l'aide du macron. Le crochet suscrit (qui code pour \"er\" dans les usages p\u00e9ninsulaires) et le ur sont de m\u00eame utilis\u00e9s. ",
-        "title": "abreviations"
     }
 ]
