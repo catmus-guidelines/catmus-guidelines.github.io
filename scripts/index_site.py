@@ -15,7 +15,8 @@ def index(xpath):
     """
     index = list()
     spaces_replacement = re.compile(r"\s+")
-    for html_page in glob.glob("html/guidelines/*/*.html"):
+    for html_page in glob.glob("html/guidelines/en/*.html"):
+        print(html_page)
         title = html_page.split("/")[-1].replace(".html", "")
         parsed = ET.parse(html_page)
         searched_nodes = parsed.xpath(xpath)
@@ -28,6 +29,7 @@ def index(xpath):
                 par_dict['url'] = html_page
                 paragraph_text = re.sub(spaces_replacement, ' ',  ''.join(node.itertext()))
                 par_dict['node'] = paragraph_text
+                print(paragraph_text)
                 par_dict['title'] = title
                 index.append(par_dict)
         with open(html_page, "w") as output_html_with_id:
@@ -39,4 +41,4 @@ def index(xpath):
 
 
 if __name__ == '__main__':
-    index("//node()[self::p or self::ul or self::ol]")
+    index("//p | //ul[not(descendant::p)] | //ol[not(descendant::p)]")
