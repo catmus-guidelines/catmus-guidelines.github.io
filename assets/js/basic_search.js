@@ -10,6 +10,7 @@ let miniSearch = new MiniSearch({
 
 
    
+function fetch_json() {
 var all_chars_url = "https://raw.githubusercontent.com/catmus-guidelines/future-website/main/json/index.json"
 let itemsById = {}
 fetch(all_chars_url)
@@ -22,7 +23,7 @@ fetch(all_chars_url)
     return miniSearch.addAll(allItems)
   }).then(() => {
   })
-
+}
   
 
 // Index all documents
@@ -34,22 +35,24 @@ fetch(all_chars_url)
 //   { id: 4, title: 'Zen and the Art of Archery', category: 'non-fiction', score: 1.38629, match: { ... } }
 // ]
 
-
-$(function() {
-    $("#search_symbol").click(function() {
-    console.log("Initiating search")
-    input_value = document.getElementById("search_input_guidelines").value;
-    let results = miniSearch.search(input_value)
-    var myList = []
-    for (result  of results) {
-        var myDict = {}
-        myDict['title'] = result['title']
-        myDict['url'] = result['url']
-        myDict['node'] = result['node']
-        myDict['id'] = result['id']
-        myList.push(myDict)
+fetch_json();
+document.getElementById("search").addEventListener("submit", function (event) {
+event.preventDefault();
+console.log("Initiating search")
+input_value = document.getElementById("search_input_guidelines").value;
+let results = miniSearch.search(input_value)
+var myList = []
+for (result  of results) {
+    var myDict = {}
+    myDict['title'] = result['title']
+    myDict['url'] = result['url']
+    myDict['node'] = result['node']
+    myDict['id'] = result['id']
+    myList.push(myDict)
 }
     sessionStorage.setItem('myArray', JSON.stringify(myList));
     window.location.replace("search.html");
-    });
 });
+
+
+
