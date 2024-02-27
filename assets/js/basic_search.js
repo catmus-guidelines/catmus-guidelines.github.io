@@ -20,6 +20,7 @@ fetch(all_chars_url)
       byId[item.id] = item
       return byId
     }, {})
+    console.log(allItems);
     return miniSearch.addAll(allItems)
   }).then(() => {
   })
@@ -50,7 +51,8 @@ for (result  of results) {
     myDict['id'] = result['id']
     myList.push(myDict)
 }
-    sessionStorage.setItem('myArray', JSON.stringify(myList));
+sessionStorage.setItem('myArray', JSON.stringify(myList));
+sessionStorage.setItem('search_string', input_value);
     window.location.replace("search.html");
 });
 
