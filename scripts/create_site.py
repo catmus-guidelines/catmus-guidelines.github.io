@@ -353,7 +353,7 @@ def create_site():
     # Create english index page
     create_pages(yaml_dict=pages_as_dict,
                  title='Présentation',
-                 template='templates/index.html',
+                 template='templates/index-template.html',
                  md_source=f"data/guidelines/en/index.md",
                  out_dir=".",
                  lang="en",
@@ -399,7 +399,7 @@ def create_site():
                             'lettres_generalites': "Généralités"}.items():
             create_pages(yaml_dict=pages_as_dict,
                          title=title,
-                         template='templates/index.html',
+                         template='templates/index-template.html',
                          md_source=f"data/guidelines/{lang}/{name}.md",
                          out_dir=f"html/guidelines",
                          lang=lang)
