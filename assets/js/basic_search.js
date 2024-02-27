@@ -11,7 +11,7 @@ let miniSearch = new MiniSearch({
 
    
 function fetch_json() {
-var all_chars_url = "https://raw.githubusercontent.com/catmus-guidelines/future-website/main/json/index.json"
+var all_chars_url = url + "/json/index.json"
 let itemsById = {}
 fetch(all_chars_url)
   .then(response => response.json())
@@ -36,6 +36,13 @@ fetch(all_chars_url)
 //   { id: 4, title: 'Zen and the Art of Archery', category: 'non-fiction', score: 1.38629, match: { ... } }
 // ]
 
+
+sessionStorage.removeItem('myArray')
+sessionStorage.removeItem('search_string')
+var head = document.head
+console.log(head)
+var url = head.getAttribute("about");
+
 fetch_json();
 document.getElementById("search").addEventListener("submit", function (event) {
 event.preventDefault();
@@ -53,9 +60,6 @@ for (result  of results) {
 }
 sessionStorage.setItem('myArray', JSON.stringify(myList));
 sessionStorage.setItem('search_string', input_value);
-var head = document.head
-console.log(head)
-var url = head.getAttribute("about");
 window.location.replace(url + "/search.html");
 });
 

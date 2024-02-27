@@ -359,7 +359,19 @@ def create_site():
                  lang="en",
                  index_page=True)
     
-    
+
+    # Create 404
+    current_dict = pages_as_dict
+    env = Environment(loader=FileSystemLoader('.'))
+    template = env.get_template("templates/404.html")
+    template.globals.update(func_dict)
+    output = template.render(current_dict)
+    soup = BeautifulSoup(output, 'html.parser')
+    soup = soup.prettify()
+    with open("404.html", 'w') as file:
+        file.write(soup)
+        
+        
     # Create searchpage
     current_dict = pages_as_dict
     env = Environment(loader=FileSystemLoader('.'))
@@ -373,16 +385,6 @@ def create_site():
     with open("search.html", 'w') as file:
         file.write(soup)
         
-    # Create 404
-    current_dict = pages_as_dict
-    env = Environment(loader=FileSystemLoader('.'))
-    template = env.get_template("templates/404.html")
-    template.globals.update(func_dict)
-    output = template.render(current_dict)
-    soup = BeautifulSoup(output, 'html.parser')
-    soup = soup.prettify()
-    with open("404.html", 'w') as file:
-        file.write(soup)
 
     # Now create each page in the target languages
     for lang in ['en']:
