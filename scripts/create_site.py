@@ -44,7 +44,7 @@ func_dict = {
 }
 
 
-def create_index(yaml_list, title, template):
+def create_characters_table_page(yaml_list, title, template):
     """
     This function creates the index of characters using the set of md files that has been validated 
     before. This index takes the form of a table of characters with the group, name, label, transcription,
@@ -110,8 +110,12 @@ def create_index(yaml_list, title, template):
     template = env.get_template(template)
     # https://saidvandeklundert.net/2020-12-24-python-functions-in-jinja/
     template.globals.update(func_dict)
-    yaml_dict['title'] = title
-    html_string = template.render(yaml_dict)
+    index_dict = {'title': title}
+    index_dict['abspath'] = yaml_list[0]['abspath']
+    index_dict['classes'] = yaml_list[0]['classes']
+    index_dict['lang'] = 'en'
+    index_dict['target'] = 'index_of_chars'
+    html_string = template.render(index_dict)
 
 
     # We insert the created table
@@ -165,6 +169,7 @@ def create_pages(yaml_dict, title, template, md_source, out_dir, lang, index_pag
     template.globals.update(func_dict)
     yaml_dict['lang'] = lang
     yaml_dict['title'] = title
+    yaml_dict['target'] = 'pages'
     html_string = template.render(yaml_dict)
     
     
@@ -261,6 +266,7 @@ def create_character_page(file_and_class:tuple, surrounding_files:tuple, pages_d
     yaml_data['path'] = path
     yaml_data = {**yaml_data, **pages_dictionnary}
     yaml_data['target'] = 'chars'
+    yaml_data['lang'] = 'en'
     output = template.render(yaml_data)
     
     # We add next and previous char link
@@ -270,10 +276,9 @@ def create_character_page(file_and_class:tuple, surrounding_files:tuple, pages_d
     next_previous_div = character_table.xpath("//div[@id='next_previous']")[0]
     next_previous_div.append(next_and_previous)
     
-    # And script element
+    # And link to wrapping sidebar script
     script_element = lhtml.Element("script")
     script_element.set('src', '../assets/js/accordian.js')
-    # head_node[0].append(script_element)
 
     # BeautifulSoup is used to manage the script element and create a working HTML file
     soup = BeautifulSoup(ET.tostring(character_table), 'html.parser')
@@ -300,7 +305,13 @@ def create_character_page(file_and_class:tuple, surrounding_files:tuple, pages_d
 
 
 def create_site():
-    pages = []
+    """
+    This global function builds the whole website.
+    :return: None
+    """
+    
+    # The page list will gather all information about each character
+    characters = []
     files = glob.glob("data/characters/punctuations/*.md")
     
     # Let's sort the files so that we can add a next/previous link
@@ -308,15 +319,16 @@ def create_site():
     for index, file in enumerate(files):
         filename = file.split("/")[-1].replace(".md", "")
         classe = file.split("/")[-2]
-        pages.append((filename, classe))
+        characters.append((filename, classe))
 
-    pages_as_dict = dict()
-    for page in pages:
+    # We then group each character per class into a dictionnary
+    chars_as_dict = dict()
+    for page in characters:
         nom_fichier, classe = page
         try:
-            pages_as_dict[classe].append(nom_fichier)
+            chars_as_dict[classe].append(nom_fichier)
         except KeyError:
-            pages_as_dict[classe] = [nom_fichier]
+            chars_as_dict[classe] = [nom_fichier]
 
     
     # We create a dynamic absolute path to use it on local build or online
@@ -324,9 +336,10 @@ def create_site():
         abspath = "/home/mgl/Bureau/Travail/projets/HTR/CatMus/website"
     else:
         abspath = sys.argv[1]
-    pages_as_dict = {"classes": pages_as_dict,
+        
+    # Whole pages dictionnary is used to create the sidebar items.
+    whole_pages_dictionnary = {"classes": chars_as_dict,
                      "abspath": abspath}
-
     all_chars = []
     for index, file in enumerate(files):
         try:
@@ -338,23 +351,25 @@ def create_site():
         except IndexError:
             previous_file = None
             
-        new_char = create_character_page((file, classe), (previous_file, next_file), pages_as_dict)
+        new_char = create_character_page((file, classe), (previous_file, next_file), whole_pages_dictionnary)
+        
+        # All chars will be reused to create the characters table
         all_chars.append(new_char)
 
     # Create guidelines pages
 
     # Create french index age that is the default page (to be modified if needed)
-    # create_pages(yaml_dict=pages_as_dict,
+    # create_pages(yaml_dict=whole_pages_dictionnary,
     #              title='Présentation',
     #              template='templates/index.html',
     #              md_source=f"data/guidelines/fr/index.md",
     #              out_dir=".",
     #              lang="fr",
     #              index_page=True)
-    # Create english index page
-
-    pages_as_dict['target'] = 'pages'
-    create_pages(yaml_dict=pages_as_dict,
+    
+    
+    # Create english first page (index page)
+    create_pages(yaml_dict=whole_pages_dictionnary,
                  title='Présentation',
                  template='templates/index-template.html',
                  md_source=f"data/guidelines/en/index.md",
@@ -364,8 +379,8 @@ def create_site():
     
 
     # Create 404
-    pages_as_dict['target'] = 'pages'
-    current_dict = pages_as_dict
+    current_dict = whole_pages_dictionnary
+    current_dict['target'] = 'pages'
     env = Environment(loader=FileSystemLoader('.'))
     template = env.get_template("templates/404-template.html")
     template.globals.update(func_dict)
@@ -377,8 +392,7 @@ def create_site():
         
         
     # Create searchpage
-    current_dict = pages_as_dict
-    current_dict['target'] = 'pages'
+    current_dict = whole_pages_dictionnary
     env = Environment(loader=FileSystemLoader('.'))
     template = env.get_template("templates/index-template.html")
     current_dict['title'] = "Search results"
@@ -401,8 +415,7 @@ def create_site():
                             'majuscules': "Majuscules",
                             'ramistes': "Distinction des « u » et des « v », des « i » et des « j »",
                             'lettres_generalites': "Généralités"}.items():
-            pages_as_dict['target'] = 'pages'
-            create_pages(yaml_dict=pages_as_dict,
+            create_pages(yaml_dict=whole_pages_dictionnary,
                          title=title,
                          template='templates/index-template.html',
                          md_source=f"data/guidelines/{lang}/{name}.md",
@@ -410,13 +423,9 @@ def create_site():
                          lang=lang)
 
     # Finally, create the index of characters using the info gathered before
-    pages_as_dict['target'] = 'pages'
-    create_pages(yaml_dict=pages_as_dict,
-                 title=title,
-                 template='templates/index-template.html',
-                 md_source=f"data/guidelines/{lang}/{name}.md",
-                 out_dir=f"html/guidelines",
-                 lang=lang)
+    create_characters_table_page(yaml_list=all_chars,
+                 title='Index of Characters',
+                 template='templates/index-template.html')
     
 
 

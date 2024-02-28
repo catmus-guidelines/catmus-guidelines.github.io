@@ -8,6 +8,8 @@
          {% include 'templates/header.html' %}
             {% if target == 'pages' %}
          {% include 'templates/mainDiv.html' %}
+            {% elif target == 'index_of_chars' %}
+         {% include 'templates/mainDiv.html' %}
             {% else %}
          {% include 'templates/chars.html' %}
             {% endif %}
