@@ -37,7 +37,7 @@ fetch(all_chars_url)
 // ]
 
 
-const head = document.head
+var head = document.head
 console.log(head)
 const url = head.getAttribute("about");
 
