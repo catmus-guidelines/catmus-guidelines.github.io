@@ -42,7 +42,7 @@ jobs:
         python3 scripts/files_validation.py -s scripts/schema.json
     - name: Build site
       run: |
-        python3 scripts/create_site.py https://catmus-guidelines.github.io/
+        python3 scripts/create_site.py https://catmus-guidelines.github.io
     - name: Index site
       run: |
         python3 scripts/index_site.py
