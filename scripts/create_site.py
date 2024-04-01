@@ -188,7 +188,7 @@ def create_pages(yaml_dict, title, template, md_source, out_dir, lang, index_pag
     main_div.append(to_insert)
     
     # Let's modify the footnote heading to make it child of footnote div
-    footnote_heading = html_tree.xpath("//h2[text()='Notes']")
+    footnote_heading = html_tree.xpath("//node()[self::h2 or self::h3][text()='Notes']")
     if len(footnote_heading) != 0:
         print(md_source)
         footnote_heading[0].getparent().remove(footnote_heading[0])
