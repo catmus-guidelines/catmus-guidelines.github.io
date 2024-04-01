@@ -1,1 +1,1 @@
-Les ligatures sont ignorées et réduites à leurs composants alphabétiques individuels.
+Ligatures are to be ignored and reduced to their individual letter components.

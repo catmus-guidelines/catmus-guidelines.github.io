@@ -26,4 +26,10 @@ follow either the dictionary entry or modern usage.
 Hyphenation is the act of indicating that a word has been cut off at the end of the line; it is a practice that appears in a number of medieval manuscripts, although it is not a general rule. 
 
 
-Hyphenation should be retained **when it appears in the source document**, and should not be added if no sign is present on the page. The character - [U+002D] is the character used by the CATMuS project. 
+Hyphenation should be retained **when it appears in the source document**, and should not be added if no sign is present on the page. The character - [U+002D] is the character used by the CATMuS project.
+
+
+## Diastoles
+
+
+Sometimes, diastoles (vertical or oblique pen strokes) are drawn between two contiguous letters to indicate that they belong to different words. We recommend transcribing them with the following sign: "/" [U+002F].
