@@ -190,14 +190,11 @@ def create_pages(yaml_dict, title, template, md_source, out_dir, lang, index_pag
     # Let's modify the footnote heading to make it child of footnote div
     footnote_heading = html_tree.xpath("//node()[self::h2 or self::h3][text()='Notes']")
     if len(footnote_heading) != 0:
-        print(md_source)
         footnote_heading[0].getparent().remove(footnote_heading[0])
         footnotes = html_tree.xpath("//div[@class='footnotes']")[0]
-        print(footnotes)
         title = ET.Element("h2")
         title.text = "Notes"
         footnotes.insert(0, title)
-        print(ET.tostring(footnotes))
     
 
     soup = BeautifulSoup(ET.tostring(html_tree), 'html.parser')
@@ -431,7 +428,8 @@ def create_site():
                             'accents_cedillas': "Accents and cedillas",
                             'capitals': "Capital letters",
                             'ramists': "Ramist letters («u» and «v», «i» and «j»)",
-                            'lettres_generalites': "Generalities"}.items():
+                            'lettres_generalites': "Generalities",
+                            "corrections_and_others": "Corrections, additions and functional signs"}.items():
             create_pages(yaml_dict=whole_pages_dictionnary,
                          title=title,
                          template='templates/index-template.html',
