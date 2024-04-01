@@ -428,6 +428,7 @@ def create_site():
                             'segmentation': "Linguistic segmentation",
                             'generalites': "General principles",
                             'punctuation': "Punctuation",
+                            'accents_cedillas': "Accents and cedillas",
                             'capitals': "Capital letters",
                             'ramists': "Ramist letters («u» and «v», «i» and «j»)",
                             'lettres_generalites': "Generalities"}.items():
