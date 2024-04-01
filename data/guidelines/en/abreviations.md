@@ -1,2 +1,2 @@
-## Pas de développement des abréviations
+## No development of abbreviations
 
