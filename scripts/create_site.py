@@ -122,12 +122,12 @@ def create_characters_table_page(yaml_list, title, template):
     converted_doc = "<div>" + ET.tostring(table).decode() + "</div>"
     to_insert = ET.fromstring(converted_doc)
     parser = ET.HTMLParser(recover=True)
-    html_index = ET.fromstring(html_string, parser=parser)
-    main_div = html_index.xpath("//div[@class='chrome:main']")[0]
+    html_tree = ET.fromstring(html_string, parser=parser)
+    main_div = html_tree.xpath("//div[@class='chrome:main']")[0]
     main_div.append(to_insert)
     
     # We use BeautifulSoup to manage the script element
-    soup = BeautifulSoup(ET.tostring(html_index), 'html.parser')
+    soup = BeautifulSoup(ET.tostring(html_tree), 'html.parser')
     soup = soup.prettify()
     with open(f"html/characters/index_of_characters.html", "w") as index:
         index.write(soup)
@@ -183,11 +183,27 @@ def create_pages(yaml_dict, title, template, md_source, out_dir, lang, index_pag
     to_insert = ET.fromstring(converted_doc)
 
     parser = ET.HTMLParser(recover=True)
-    html_index = ET.fromstring(html_string, parser=parser)
-    main_div = html_index.xpath("//div[@class='chrome:main']")[0]
+    html_tree = ET.fromstring(html_string, parser=parser)
+    main_div = html_tree.xpath("//div[@class='chrome:main']")[0]
     main_div.append(to_insert)
-    soup = BeautifulSoup(ET.tostring(html_index), 'html.parser')
+    
+    # Let's modify the footnote heading to make it child of footnote div
+    footnote_heading = html_tree.xpath("//h2[text()='Notes']")
+    if len(footnote_heading) != 0:
+        print(md_source)
+        footnote_heading[0].getparent().remove(footnote_heading[0])
+        footnotes = html_tree.xpath("//div[@class='footnotes']")[0]
+        print(footnotes)
+        title = ET.Element("h2")
+        title.text = "Notes"
+        footnotes.insert(0, title)
+        print(ET.tostring(footnotes))
+    
+
+    soup = BeautifulSoup(ET.tostring(html_tree), 'html.parser')
     soup = soup.prettify()
+    
+    
     with open(f"{out_dir}/{lang_dir}{md_source.split('/')[-1].replace('.md', '')}{suffix}.html", "w") as index:
         index.write(soup)
 
