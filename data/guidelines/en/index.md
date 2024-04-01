@@ -24,7 +24,6 @@ Avery Manton, Simon Gabay, Wouter Haverals, Mike Kestemont, Caroline Vandyck and
 
 ### Cite CATMuS
 
-Cite the dataset: 
 > Ariane Pinche, Thibault Clérice, Alix Chagué, Jean-Baptiste Camps, Malamatenia Vlachou-
 Efstathiou, et al., CATMuS-Medieval: Consistent Approaches to Transcribing ManuScripts: A generalized set of guidelines 
 > and models for Latin scripts from Middle Ages (8th–16th century). 2023.
