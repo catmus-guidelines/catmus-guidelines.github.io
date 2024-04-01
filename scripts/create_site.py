@@ -312,7 +312,7 @@ def create_site():
     
     # The page list will gather all information about each character
     characters = []
-    files = glob.glob("data/characters/punctuations/*.md")
+    files = glob.glob("data/characters/*/*.md")
     
     # Let's sort the files so that we can add a next/previous link
     files.sort(key=lambda x: x.split("/")[-1])
@@ -406,14 +406,14 @@ def create_site():
 
     # Now create each page in the target languages
     for lang in ['en']:
-        for name, title in {'abreviations': "Abréviations",
+        for name, title in {'abbreviations': "Abbreviations",
                             'ligatures': "Ligatures",
-                            'chiffres': "Chiffres",
+                            'numbers': "Numbers",
                             'segmentation': "Segmentation linguistique",
                             'generalites': "Principes généraux",
-                            'ponctuation': "Ponctuation",
-                            'majuscules': "Majuscules",
-                            'ramistes': "Distinction des « u » et des « v », des « i » et des « j »",
+                            'punctuation': "Ponctuation",
+                            'capitals': "Majuscules",
+                            'ramists': "Distinction des « u » et des « v », des « i » et des « j »",
                             'lettres_generalites': "Généralités"}.items():
             create_pages(yaml_dict=whole_pages_dictionnary,
                          title=title,
