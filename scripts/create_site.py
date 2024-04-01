@@ -386,7 +386,7 @@ def create_site():
     
     # Create english first page (index page)
     create_pages(yaml_dict=whole_pages_dictionnary,
-                 title='Présentation',
+                 title='Presentation',
                  template='templates/index-template.html',
                  md_source=f"data/guidelines/en/index.md",
                  out_dir=".",
