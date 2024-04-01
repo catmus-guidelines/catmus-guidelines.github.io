@@ -9,7 +9,7 @@
 }
 
 
-p {font-size: 20px;}
+p, li {font-size: 20px;}
 
 .bottom {
 	position: absolute;
