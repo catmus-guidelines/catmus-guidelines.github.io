@@ -14,7 +14,7 @@ This site is organized into two main sections:
 2) A section containing the character table and describing the main characters used by the CATMuS group. A search 
    functions allow you to perform queries on the guidelines.
 
-### Credits, members of CATMuS
+### CATMuS members
 
 The members of the CATMuS project are: Ariane Pinche, Thibault Clérice, Alix Chagué, Jean-Baptiste Camps, 
 Malamatenia Vlachou-Efstathiou, 
