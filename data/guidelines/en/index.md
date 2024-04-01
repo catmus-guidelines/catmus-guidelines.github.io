@@ -2,7 +2,7 @@
 
 This site presents the standards commonly built by the CATMuS community (for *Consistent Approaches to Transcribing 
 ManuScripts*). It lists a number of recommendations concerning the transcription of medieval documents and does not not 
-concerned with earlier phases (segmentation into zones or lines[^1]) or later phases (standardization of text, 
+concerned with earlier phases (segmentation into zones or lines[^1]) or later phases (text normalization, 
 development of abbreviations[^2]).
 
 ### Site structure
