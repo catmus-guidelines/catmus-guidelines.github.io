@@ -1,3 +1,18 @@
+.chrome\:sidebar_item_text{
+    font-size:1.5rem
+}
+
+
+.text-sm{
+    font-size:1.2rem
+}
+
+
+.text-ssm{
+    font-size:1rem
+}
+
+
 .highlight table td {
     padding: 5px;
 }
@@ -8,6 +23,9 @@
     padding-top: 5px;
 }
 
+.chrome\:sidebar {
+width:400px;
+}
 
 p, li {font-size: 20px;}
 
