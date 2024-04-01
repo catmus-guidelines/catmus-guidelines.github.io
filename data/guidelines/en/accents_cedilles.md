@@ -1,0 +1,2 @@
+Cedilla e's mark the latin diphthong ae, and are very common in Latin manuscripts from the X-XIIth centuries. 
+We recommend transcribing them for medieval French manuscripts, to guarantee encoding consistency.

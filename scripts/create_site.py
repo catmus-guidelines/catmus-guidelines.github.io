@@ -409,12 +409,12 @@ def create_site():
         for name, title in {'abbreviations': "Abbreviations",
                             'ligatures': "Ligatures",
                             'numbers': "Numbers",
-                            'segmentation': "Segmentation linguistique",
-                            'generalites': "Principes généraux",
-                            'punctuation': "Ponctuation",
-                            'capitals': "Majuscules",
-                            'ramists': "Distinction des « u » et des « v », des « i » et des « j »",
-                            'lettres_generalites': "Généralités"}.items():
+                            'segmentation': "Linguistic segmentation",
+                            'generalites': "General principles",
+                            'punctuation': "Punctuation",
+                            'capitals': "Capital letters",
+                            'ramists': "Ramist letters («u» and «v», «i» and «j»)",
+                            'lettres_generalites': "Generalities"}.items():
             create_pages(yaml_dict=whole_pages_dictionnary,
                          title=title,
                          template='templates/index-template.html',
