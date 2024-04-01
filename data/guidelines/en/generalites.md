@@ -1,10 +1,10 @@
-## Une transcription graphématique
+## Graphematic transcription principles
 
 Our task[^1] is to find a way of translating the way in which text is delivered on its original medium into a 
 machine-interpretable system that can be interpreted by a machine and that promotes learning. Our solutions will 
 inevitably be reductive and fundamentally interpretative, since it is impossible 
 to render all the variety of handwriting by means of a computer. To define our practices, we will use Dominique 
-Stutzmann's definition of:
+Stutzmann's definition[^2] of:
 - *allographic* transcription, a transcription that aims to give access to all the forms of each letter or sign.
 - *graphematic* transcription, which preserves the sequence of letters and reduces each form to its meaning in an 
   alphabetic system.
@@ -26,4 +26,7 @@ created by initiatives such as [MUFI](https://mufi.info/q.php?p=mufi).
 
 [^1]: This work is the result of a synthesis of textbooks written by Ariane Pinche: Ariane Pinche. "Guide de transcription pour les manuscrits du Xe au XVe siècle." 2022, [hal-03697382](https://hal.science/hal-03697382) and the work of Thibault Clérice, Malamatenia Vlachou-Efstathiou and Alix Chagué: "CREMMA Medii Aevi: Literary manuscript text
 recognition in Latin", Journal of Open Humanities Data, 2023, 9, pp.4,
-[10.5334/johd.97](https://dx.doi.org/10.5334/johd.97)
+[10.5334/johd.97](https://dx.doi.org/10.5334/johd.97).
+
+[^2]: See Stutzmann, Dominique. « Paléographie statistique pour décrire, identifier, dater... Normaliser pour coopérer et aller plus loin ? » In Codicology and Palaeography in the Digital Age, 2:34, 2010; see also Camps, Jean-Baptiste. « La Chanson d’Otinel  : édition complète du corpus manuscrit et prolégomènes à l’édition critique », 2016.
+

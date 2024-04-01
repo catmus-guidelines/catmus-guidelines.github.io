@@ -1,35 +1,33 @@
-## CATMuS, des règles communes pour la transcription de documents romans médiévaux 
-Ce site présente les normes construites communément par la communauté CATMuS (pour *Consistent Approaches to Transcribing 
-ManuScripts*). Il recense un certain nombre de recommandations concernant la transcription de documents médiévaux et ne 
-s'intéresse pas aux phases antérieures (segmentation en zones ou en lignes[^1]) ou postérieures (normalisation du texte, 
-développement des abréviations [^2]).
+## CATMuS, common rules for the transcription of medieval roman sources
 
-### Organisation du site
+This site presents the standards commonly built by the CATMuS community (for *Consistent Approaches to Transcribing 
+ManuScripts*). It lists a number of recommendations concerning the transcription of medieval documents and does not not 
+concerned with earlier phases (segmentation into zones or lines[^1]) or later phases (standardization of text, 
+development of abbreviations[^2]).
 
-Ce site est organisé en deux sections principales: 
-1) Une section qui consiste en un manuel qui documente les pratiques de transcription de CATMuS, 
-   [ici](html/guidelines/fr/generalites.html).
-    
-2) Une section qui contient la table de caractères et décrit les caractères principaux 
-   utilisés par le groupe CATMuS.
-   
-Deux fonctions de recherche permettent d'effectuer des requêtes sur la partie manuel
-et sur la partie table de caractères.
+### Site structure
 
-### Crédit, membres de CATMuS
+This site is organized into two main sections: 
 
-### Citer CATMuS
+1) A section that consists of a manual that documents CATMuS transcription practices, [here](html/guidelines/en/generalites.html).
 
-Pour citer le jeu de données: 
+2) A section containing the character table and describing the main characters used by the CATMuS group. A search 
+   functions allow you to perform queries on the guidelines.
+
+### Credits, members of CATMuS
+
+### Cite CATMuS
+
+Cite the dataset: 
 > Ariane Pinche, Thibault Clérice, Alix Chagué, Jean-Baptiste Camps, Malamatenia Vlachou-
 Efstathiou, et al., CATMuS-Medieval: Consistent Approaches to Transcribing ManuScripts: A generalized set of guidelines and models for Latin scripts from Middle Ages (8th–16th century). 2023.
 hal-04346939
 
 ### Notes
 
-[^1]: Voir ici les recommandations de SegmOnto: Gabay, S., Camps, J.-B., Pinche, A., & Jahan, C. (2021). Segmonto: common vocabulary and practices
+[^1]: See SegmOnto's recommendations: Gabay, S., Camps, J.-B., Pinche, A., & Jahan, C. (2021). Segmonto: common vocabulary and practices
 for analysing the layout of manuscripts (and more). In 16th international conference on document
 analysis and recognition (ICDAR 2021), et  [https://segmonto.github.io/
 ](https://segmonto.github.io/).
 
-[^2]: Voir ici [la section sur la gestion des abréviations](html/guidelines/fr/abreviations.html).
+[^2]: See the [abbreviation management section](html/guidelines/fr/abreviations.html).
