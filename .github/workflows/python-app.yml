@@ -102,10 +102,10 @@ jobs:
           name: index
           path: .
       - name: Download tools.html artifact
-          uses: actions/download-artifact@v4
-          with:
-            name: tools
-            path: .
+        uses: actions/download-artifact@v4
+        with:
+          name: tools
+          path: .
       - name: Download search.html artifact
         uses: actions/download-artifact@v4
         with:
