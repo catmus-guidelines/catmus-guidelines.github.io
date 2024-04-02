@@ -64,6 +64,12 @@ jobs:
         name: index
         path: |
           index.html
+    - name: Archive tools page
+      uses: actions/upload-artifact@v4
+      with:
+        name: tools
+        path: |
+          tools.html
     - name: Archive 404 page
       uses: actions/upload-artifact@v4
       with:
@@ -95,6 +101,11 @@ jobs:
         with:
           name: index
           path: .
+      - name: Download tools.html artifact
+          uses: actions/download-artifact@v4
+          with:
+            name: tools
+            path: .
       - name: Download search.html artifact
         uses: actions/download-artifact@v4
         with:

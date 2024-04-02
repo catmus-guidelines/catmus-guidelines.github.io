@@ -145,7 +145,6 @@ def create_pages(yaml_dict, title, template, md_source, out_dir, lang, index_pag
     :param index_page: Whether the page created is the index or not.
     :return: None
     """
-    print(yaml_dict['abspath'])
     try:
         os.mkdir("html/guidelines")
     except FileExistsError:
