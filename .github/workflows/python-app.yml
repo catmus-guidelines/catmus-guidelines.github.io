@@ -62,7 +62,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: main_html_files
-        path: |
+        paths:
           "*.html"
 # Single deploy job since we're just deploying
   
