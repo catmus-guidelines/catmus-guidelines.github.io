@@ -6,6 +6,7 @@ The keyboards contain all the Unicode characters used by the CATMuS project, to 
 eScriptorium interface (see [here](https://escriptorium.readthedocs.io/en/latest/virtual_keyboard/) to know how to 
 add a keyboard to the interface):
 
-- Combining characters [here](/keyboards/catmus-combining.json).
-- Superscript characters [here](/keyboards/catmus-superscript.json).
-- Medieval specific characters [here](/keyboards/catmus-medieval.json).
+- Combining characters <a target="_blank" href="/keyboards/catmus-combining.json" download="catmus-combining.json">here</a>.
+- Superscript characters <a href="/keyboards/catmus-superscript.json" download="catmus-superscript.json">here</a>.
+- Medieval specific characters <a href="/keyboards/catmus-medieval.json" download="catmus-medieval.json">here</a>.
+
