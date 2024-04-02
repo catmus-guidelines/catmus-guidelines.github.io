@@ -58,30 +58,12 @@ jobs:
         name: json_index
         path: |
           json
-    - name: Archive index
+    - name: Archive main html files
       uses: actions/upload-artifact@v4
       with:
-        name: index
+        name: main_html_files
         path: |
-          index.html
-    - name: Archive tools page
-      uses: actions/upload-artifact@v4
-      with:
-        name: tools
-        path: |
-          tools.html
-    - name: Archive 404 page
-      uses: actions/upload-artifact@v4
-      with:
-        name: 404
-        path: |
-          404.html
-    - name: Archive search page
-      uses: actions/upload-artifact@v4
-      with:
-        name: search
-        path: |
-          search.html
+          "*.html"
 # Single deploy job since we're just deploying
   
   deploy:
@@ -96,25 +78,10 @@ jobs:
         uses: actions/checkout@v4
       - name: Setup Pages
         uses: actions/configure-pages@v4
-      - name: Download index.html artifact
+      - name: Download main html files artifact
         uses: actions/download-artifact@v4
         with:
-          name: index
-          path: .
-      - name: Download tools.html artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: tools
-          path: .
-      - name: Download search.html artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: search
-          path: .
-      - name: Download 404.html artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: 404
+          name: main_html_files
           path: .
       - name: Download a single artifact (html files)
         uses: actions/download-artifact@v4
