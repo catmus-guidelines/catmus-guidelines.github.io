@@ -198,7 +198,7 @@ def create_pages(yaml_dict, title, template, md_source, out_dir, lang, index_pag
     
 
     soup = BeautifulSoup(ET.tostring(html_tree), 'html.parser')
-    soup = soup.prettify()
+    soup = str(soup)
     
     
     with open(f"{out_dir}/{lang_dir}{md_source.split('/')[-1].replace('.md', '')}{suffix}.html", "w") as index:
