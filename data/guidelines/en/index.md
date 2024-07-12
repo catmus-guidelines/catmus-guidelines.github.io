@@ -1,4 +1,4 @@
-## CATMuS, common rules for the transcription of medieval and modern roman sources
+## CATMuS, common rules for the transcription of documents from the middle ages to today
 
 This website presents the standards collectively established by the CATMuS community (standing for *Consistent Approaches to Transcribing ManuScripts*). It lists a series of recommendations concerning the transcription of medieval and modern documents. It does not cover practices for earlier phases (such as the segmentation into zones or lines[^1]) or later phases (like text normalization, development of abbreviations[^2], etc).
 
