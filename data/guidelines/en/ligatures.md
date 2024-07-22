@@ -1,3 +1,3 @@
-Ligatures are to be ignored and reduced to their individual letter components. 
+<span class="rule">Ligatures MUST be ignored and reduced to their individual letter components.</span>
 
-In modern and contemporary documents, "&" and "ß" are not subjected to this rule.
+However, in modern and contemporary documents, "&" [U+0026] and "ß" [U+00DF] are not subjected to this rule.
