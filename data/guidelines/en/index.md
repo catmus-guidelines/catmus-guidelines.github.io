@@ -1,25 +1,19 @@
-## CATMuS, common rules for the transcription of medieval roman sources
+## CATMuS, common rules for the transcription of documents from the middle ages to today
 
-This site presents the standards commonly built by the CATMuS community (for *Consistent Approaches to Transcribing 
-ManuScripts*). It lists a number of recommendations concerning the transcription of medieval documents and does not not 
-concerned with earlier phases (segmentation into zones or lines[^1]) or later phases (text normalization, 
-development of abbreviations[^2]).
+This website presents the standards collectively established by the CATMuS community (standing for *Consistent Approaches to Transcribing ManuScripts*). It lists a series of recommendations concerning the transcription of medieval and modern documents. It does not cover practices for earlier phases (such as the segmentation into zones or lines[^1]) or later phases (like text normalization, development of abbreviations[^2], etc).
 
 ### Site structure
 
 This site is organized into two main sections: 
 
-1) A section that consists of a manual that documents CATMuS transcription practices, [here](html/guidelines/en/generalites.html).
+1) A section which consists in guidelines documenting the CATMuS transcription practices, [here](html/guidelines/en/generalites.html).
    
-2) A section containing the character table and describing the main characters used by the CATMuS group. A search 
-   functions allow you to perform queries on the guidelines.
+2) A section organized around a character table and describing the main characters used in CATMuS-compliant transcriptions. A search function allows you to perform queries on the guidelines.
 
 ### CATMuS members
 
-The members of the CATMuS project are: Ariane Pinche, Thibault Clérice, Alix Chagué, Jean-Baptiste Camps, 
-Malamatenia Vlachou-Efstathiou, 
-Matthias Gille Levenson, Olivier Brisville-Fertin, Federico Boschetti, Franz Fischer, Michael Gervers, Agnès Boutreux, 
-Avery Manton, Simon Gabay, Wouter Haverals, Mike Kestemont, Caroline Vandyck and Patricia O'Connor.
+Members of the CATMuS community are: Ariane Pinche, Thibault Clérice, Alix Chagué, Jean-Baptiste Camps, 
+Malamatenia Vlachou-Efstathiou, Matthias Gille Levenson, Olivier Brisville-Fertin, Federico Boschetti, Franz Fischer, Michael Gervers, Agnès Boutreux, Avery Manton, Simon Gabay, Wouter Haverals, Mike Kestemont, Caroline Vandyck and Patricia O'Connor.
 
 
 ### Cite CATMuS
@@ -31,9 +25,6 @@ hal-04346939
 
 ### Notes
 
-[^1]: See SegmOnto's recommendations: Gabay, S., Camps, J.-B., Pinche, A., & Jahan, C. (2021). Segmonto: common vocabulary and practices
-for analysing the layout of manuscripts (and more). In 16th international conference on document
-analysis and recognition (ICDAR 2021), et  [https://segmonto.github.io/
-](https://segmonto.github.io/).
+[^1]: See SegmOnto's recommendations in Gabay, S., Camps, J.-B., Pinche, A., & Jahan, C. (2021). Segmonto: common vocabulary and practices for analysing the layout of manuscripts (and more). In 16th international conference on document analysis and recognition (ICDAR 2021), et  [https://segmonto.github.io/](https://segmonto.github.io/).
 
 [^2]: See the [abbreviation management section](html/guidelines/en/abbreviations.html).
