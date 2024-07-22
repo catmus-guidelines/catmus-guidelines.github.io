@@ -302,3 +302,8 @@ padding: 1em;
   @extend .overflow-hidden;
   text-overflow: ellipsis;
 }
+
+.rule {
+	font-style: italic;
+	color: #cf62a8;
+}
