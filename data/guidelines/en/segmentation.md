@@ -2,7 +2,9 @@
 
 The term segmentation is ambiguous and can refer to several phases of automated text processing. Here, by segmentation we mean the **separation of text into "words"**. 
 
-Distinguishing between the presence or absence of a typographic space is sometimes purely subjective, as this notion only really makes sense for printed matter. <!-- AC:I think this is too convoluted here, since they are guidelines, it needs to be more straight forward--> <!--However, while we are aware that practice will always be heterogeneous and involve an element of arbitrariness, we advocate a practice based on the meaning of the text, separating semantic words wherever possible. -->
+Distinguishing between the presence or absence of a typographic space is sometimes purely subjective, as this notion only really makes sense for printed matter. 
+<!-- AC:I think this is too convoluted here, since they are guidelines, it needs to be more straight forward--> 
+<!--However, while we are aware that practice will always be heterogeneous and involve an element of arbitrariness, we advocate a practice based on the meaning of the text, separating semantic words wherever possible. -->
 To simplify decision making, we suggest following the meaning of the text, separating semantic words wherever possible.
 
 To ensure homogeneity, the separation of words should follow a modernized segmentation, even if this does not prevent some ambiguities. 
