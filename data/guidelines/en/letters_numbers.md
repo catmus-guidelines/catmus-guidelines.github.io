@@ -1,49 +1,51 @@
-## Pas de correction d'éditeur 
+<span class="rule">The source MUST be transcribed following the letters used in the source: there MUST NOT be any editorial corrections.</span>
 
+## Ramist letters ("u"/"v", "i"/"j")
 
-<!-- I don't know where to add:
-- the precision that text decorations (like underscoring) should not be transcribed using a pseudo annotation. 
-- reference marks, such as "*" [U+002A], "§" [U+00A7] or "※" [U+203B] should kept in the transcription.
--->
+### In medieval documents
 
-## Ramist letters («u» and «v», «i» and «j»)
+<span class="rule">Ramist letters are a distinction of form, and MUST be normalized and transcribed as "i" and "u".</span>
 
-For most **medieval Romance languages**, ramists are a distinction of form, and are therefore normalized to i and u.
+### In modern and contemporary documents
 
-In **modern and contemporary documents**, however, the rules are more difficult to establish and the period of writing of the document can be determinant. To facilitate decision-making, we offer the following principles:
+For modern and contemporary manuscripts, <span class="rule">ramist normalization MAY NOT be applied and instead the transcription MAY follow the modern usage, including for capital letters</span>.
 
-- in printed sources, the transcription should follow the usage of the printer: u and v or i and j should be transcribed as u and v or i and j where they are used, even if it does not correspond to modern norms.
-- in manuscripts however, we distinguish u and v or i and j following modern usage, including for capital letters.
+<span class="rule">In printed sources, the transcription MUST follow the usage of the printer</span>.
 
 ## Capital letters
 
+<!-- TODO: this needs to be translated and detailed, but I don't know the precise rules -->
 Trois cas d'usage recommandés:
-- lettrines ou initiales ornées;
+- lettrines ou initiales ornées; <!-- transcribed with a capital letter, without additional markup -->
 - titres courants;
 - lettres en début de mot sémantiques;
 
 La pratique de transcription doit être homogène. 
-La normalisation par ajout de majuscules est à proscrire.
 
-<!-- AC: todo: this is the rule for moderne and contemporary documents:
+<!-- end of TODO-->
 
-As much as possible, we should distinguish between upper case and lower case letters having in mind that 1) some letters appear progressively (e.g. J or Z don't have a lower case form at all time thus they sometimes appear as capital letters in the middle of words) and 2) the tracing of some capital letters can be ambiguous in more recent periods. In such cases, we recommend to transcribe such letters with a capital letter if the modern usage corresponds to what we see on the document.
+The distinction between lowercase and uppercase can be difficult to make: <span class="rule">transcribing upper or lower case MUST be consistent.</span>
 
-Regarding oversized capitals, in particular the beginning of paragraphs, when their tracing goes above the baseline, even if they are not entirely capture by the mask's polygon, they should be transcribed as a normal letter. However, drop capitals and decorated letters they shouldn't be part of the same text line and should be identified as drop capitals during the image segmentation phase.
--->
+<span class="rule">Lowercase letters MUST NOT be normalized into capital letters.</span> However, when the tracing of a letter at the beginning of a word is ambiguous and could be considered a lowercase letter when we expect a capital letter, we MAY transcribe it as a capital letter.
 
-## Numbers
+<span class="rule">Drop capitals and decorated letters MUST be transcribed with capital letters</span> and MUST be considered as not a part of the same text line as the line they semantically belong to: they should be identified as drop capitals during the image segmentation phase.
 
-## Numbers are transcribed as such
+However, oversized capitals  expanding above the baseline, in particular at the beginning of paragraphs MUST be transcribed regardless of much of the letter is missing in the mask's polygon.
 
-Numbers are transcribed as they appear in the document, whether as Roman or Arabic numerals. In the former case, ramist standardization (u, v, i, j) must be applied as specified in the [dedicated section](./ramists.md) of the guidelines. 
+<!-- some letters appear progressively (e.g. J or Z don't have a lower case form at all time thus they sometimes appear as capital letters in the middle of words) -->
 
-For numbers written with superscript letters, they will be represented by superscript<!--todo: add link to section on superscripted texts--> numbers as well. 
+## Digits and numerals
 
-The groups of numbers should be clearly separated. The punctuation surrounding the figures should be retained where it exists. In the case of medieval documents, we recommend systematically framing them with dots, as is frequently done in manuscripts. 
+<span class="rule">Numbers MUST be transcribed as they appear in the document, whether as Roman or Arabic numerals.</span>.
 
-For **modern documents**, the case should be respected when roman numbers are used, and, when the distinction between a capital I and a 1 is difficult to make (as can be the case in typewritten documents or in some manuscripts), we recommend using the transcription that makes the most sense. 
+- For Roman numerals, ramist standardization (u, v, i, j) MAY be applied following the rules specified above.
+- Numbers written with superscript letters MUST follow the rules specified in the section dedicated to superscript [abbreviations](./abbreviations.md).
+- The groups of numbers MUST be clearly separated, and the punctuation around the number MUST be retained where it exists.
 
-<!-- should this be presented as modern-only ? -->[Old-style roman numerals](https://textcreationpartnership.org/docs/dox/rnums.html) M and D (sometimes transcribed as "CIↃ" and "IↃ") should be transcribed as, respectively, M and D.
+In modern and contemporary documents, when the distinction between a capital I and a 1 is difficult to make (as can be the case in typewritten documents or in some manuscripts), we MAY follow the transcription that makes the most sense in the source.
 
-Still in modern documents, decimals should be transcribed following the convention used in the document ("," or "."). In case of a doubt, we recommend sticking to the system used more commonly in the rest of the document. If the source uses a symbol or a space to separate thousands, we should follow the report it in the transcription. 
+<!-- should this be presented as modern-only ? -->
+[Old-style roman numerals](https://textcreationpartnership.org/docs/dox/rnums.html) M and D (sometimes transcribed as "CIↃ" and "IↃ") MUST be transcribed as, respectively, M and D.
+
+<!-- I don't know if it is necessary to precise... -->
+<!--Still in modern documents, decimals should be transcribed following the convention used in the document ("," or "."). In case of a doubt, we recommend sticking to the system used more commonly in the rest of the document. If the source uses a symbol or a space to separate thousands, we should follow the report it in the transcription. -->
