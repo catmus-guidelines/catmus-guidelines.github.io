@@ -28,9 +28,9 @@ Most frequently in modern and contemporary documents, abbreviations take the for
 
 1. <span class="rule">Superscript sequential additions MUST be transcribed using a pseudo markup system based on "^" [U+005E], which marks the beginning of the sequence.</span> Therefore, "1ˢᵗ" MUST be transcribed as "1^st".
 
-    - <span class="rule">Abbreviation markers associated to superscript text MUST not be transcribed.</span> Therefore, "1ˢᵗ" MUST not be transcribed as "1.st", "1.^st", "1=st" or "1^st." (unless, in the latter, "." marks the end of a sentence in the source).
+    - <span class="rule">Abbreviation markers associated to superscript text MUST NOT be transcribed.</span> Therefore, "1ˢᵗ" MUST NOT be transcribed as "1.st", "1.^st", "1=st" or "1^st." (unless, in the latter, "." marks the end of a sentence in the source).
 
-    - Commonly found equivalent to superscript characters, such as "°" MUST not be used as a replacement to this rule. Therefore "n°" MUST be transcribed as "n^o" and not "n°".
+    - Commonly found equivalent to superscript characters, such as "°" MUST NOT be used as a replacement to this rule. Therefore "n°" MUST be transcribed as "n^o" and not "n°".
 
 2. <span class="rule">Interlinear corrections MUST NOT be confused with superscript sequential additions</span>.
 
