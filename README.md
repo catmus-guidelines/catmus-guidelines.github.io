@@ -5,6 +5,7 @@
 
 Les fichiers sont à modifier dans `data/guidelines/page.md`
 
+`<span class="rule"> ... </span>` permet de mettre une règle en évidence.
 
 ## Description des caractères
 
