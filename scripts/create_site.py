@@ -346,7 +346,8 @@ def create_site():
     
     # We create a dynamic absolute path to use it on local build or online
     if sys.argv[1] == "local":
-        abspath = "/home/mgl/Bureau/Travail/projets/HTR/CatMus/website"
+        #abspath = "/home/mgl/Bureau/Travail/projets/HTR/CatMus/website"
+        abspath = ""
     else:
         abspath = sys.argv[1]
         
@@ -430,15 +431,17 @@ def create_site():
     for lang in ['en']:
         for name, title in {'abbreviations': "Abbreviations",
                             'ligatures': "Ligatures",
-                            'numbers': "Numbers",
+                            #'numbers': "Numbers",
                             'segmentation': "Linguistic segmentation",
                             'generalites': "General principles",
                             'punctuation': "Punctuation",
                             'accents_cedillas': "Accents and cedillas",
-                            'capitals': "Capital letters",
-                            'ramists': "Ramist letters («u» and «v», «i» and «j»)",
-                            'lettres_generalites': "Generalities",
-                            "corrections_and_others": "Corrections, additions and functional signs"}.items():
+                            #'capitals': "Capital letters",
+                            #'ramists': "Ramist letters («u» and «v», «i» and «j»)",
+                            #'lettres_generalites': "Generalities",
+                            'letters_numbers': "Letters and numbers",
+                            "corrections_and_others": "Corrections, additions and functional signs",
+                            "decorations": "Text decorations"}.items():
             create_pages(yaml_dict=whole_pages_dictionnary,
                          title=title,
                          template='templates/index-template.html',
