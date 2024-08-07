@@ -16,7 +16,10 @@ For modern and contemporary manuscripts, <span class="rule">ramist normalization
 
 <!-- TODO: this needs to be translated and detailed, but I don't know the precise rules -->
 Trois cas d'usage recommandés:
-- lettrines ou initiales ornées; <!-- transcribed with a capital letter, without additional markup -->
+- lettrines ou initiales ornées; 
+
+<!-- transcribed with a capital letter, without additional markup -->
+
 - titres courants;
 - lettres en début de mot sémantiques;
 

@@ -12,7 +12,10 @@ The characters used most frequently by CATMuS are all listed in the character ta
 
 The abbreviations were organized into the following categories: 
 
-- Tildes <!-- "~" [U+007E] -->
+- Tildes 
+
+<!-- "~" [U+007E] -->
+
 - Abbreviations using superscript letters.
 - Abbreviations using special signs: strikethrough letters (d, l, p, q) are among the most common. 
 

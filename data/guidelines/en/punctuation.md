@@ -8,7 +8,10 @@
 
 <span class="rule">In modern and contemporary sources, a greater variety of punctuation signs MAY be used in order to follow modern punctuation.</span> 
 
-- For example, diastoles used as commas may be transcribed with "/" [U+002F] or "," [(U+002C], depending on the sign used in the source document rather than only with ",". <!-- Otherwise, oblique strokes should always be transcribed with "/". -->
+- For example, diastoles used as commas may be transcribed with "/" [U+002F] or "," [(U+002C], depending on the sign used in the source document rather than only with ",". 
+
+<!-- Otherwise, oblique strokes should always be transcribed with "/". -->
+
 - However, the transcription of dashes MUST be reduced to one sign: "-" [U+002D] sign. 
 
 <!-- TODO: confirm that this rule applies for medieval documents as well -->

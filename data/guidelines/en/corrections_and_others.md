@@ -1,4 +1,6 @@
-<span class="rule">For in-line corrections, the combination of "⟦" [U+27E6] and "⟧" [U+27E7] MUST be used</span> to encapsulate a legible word marked as crossed out. When the word is not decipherable (because of a stain, an incomplete tracing or any other reason), "⟦" and "⟧" MAY be used without any letter in between ("⟦⟧"). <!-- AC: I almost want to say that this is also this symbol that should be used to mark transcription uncertainty during the transcription -->
+<span class="rule">For in-line corrections, the combination of "⟦" [U+27E6] and "⟧" [U+27E7] MUST be used</span> to encapsulate a legible word marked as crossed out. When the word is not decipherable (because of a stain, an incomplete tracing or any other reason), "⟦" and "⟧" MAY be used without any letter in between ("⟦⟧"). 
+
+<!-- AC: I almost want to say that this is also this symbol that should be used to mark transcription uncertainty during the transcription -->
 
 For corrections relying on an interlinear addition: 
 
