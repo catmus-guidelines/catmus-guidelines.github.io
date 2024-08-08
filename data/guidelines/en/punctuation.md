@@ -19,6 +19,12 @@
 
 <span class="rule">In **modern and contemporary** documents, reference marks, such as "\*" [U+002A] or "※" [U+203B] MUST be transcribed as "\*" [U+002A]. Referencing signs such as "§" [U+00A7] MUST be transcribed as it appears.</span>
 
+## Quotation marks and apostrophes
+
+<span class="rule">Any character functioning as a marker for quotation, from French quotation mark to single quotation mark, are transcribed as standard unicode Quotation Mark [U+0022] `"`</span>
+
+<span class="rule">Apostrophes are transcribed as Single Quotation Mark `'` [U+0027].</span>
+
 ## Spacing around punctuation
 
 <span class="rule">Spacing MUST be normalized before and after punctuation</span>. There should always be a space after a punctuation sign (except "(", "[" or "⟦", etc.) but there should not be a space before a punctuation sign.
