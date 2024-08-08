@@ -17,12 +17,18 @@ Agglutinations and dragging strokes in cursive writing MUST NOT be imitated in t
 
 Hyphenation refers to the act of indicating that a word was cut off at the end of a line. It can be marginal in medieval manuscripts but is frequent in modern and contemporary sources.
 
-<span class="rule">Hyphenation MUST be transcribed whenever it exists in the source.</span> It MUST NOT be added when no symbol is used to signal the hyphenation in the source.
+<span class="rule">Hyphenation MUST be transcribed whenever it exists in the source.</span> 
 
-<span class="rule">Only the character "-" [U+002D] MUST be used to transcribe the hyphenation symbol</span>, whichever symbol is traced on the source. When the hyphenation symbol is repeated at the beginning of the next line, it should also be transcribed with "-" [U+002D].
+<span class="rule">The transcription MUST NOT add hyphenation symbol to signal the hyphenation in the source if the hyphenation mark is not in the source.</span>
+
+<span class="rule">The character "-" [U+002D] MUST be used to transcribe the hyphenation symbol</span>, whichever symbol is traced on the source. 
+
+<span class="rule">When the hyphenation symbol is repeated at the beginning of the next line, it should also be transcribed with "-" [U+002D].</span>
 
 
 ## Diastoles
 
-Sometimes, diastoles (vertical or oblique pen strokes) are drawn between two contiguous letters to indicate that they belong to different words. <span class="rules">Such diastoles MAY be transcribed with the sign: "/" [U+002F]</span>. 
+Sometimes, diastoles (vertical or oblique pen strokes) are drawn between two contiguous letters to indicate that they belong to different words. 
+
+<span class="rules">Word-separating diastoles MAY be transcribed with the sign "/" [U+002F]</span>. 
 
