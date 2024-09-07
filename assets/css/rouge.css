@@ -1,3 +1,12 @@
+@font-face {
+    font-family: "Junicode";
+    /* src: url("./webfiles/JunicodeTwoBetaVF-Roman.woff2"); */
+    src: url("/assets/fonts/Junicode.woff2");
+    font-weight: 300 700;
+    font-stretch: 75% 125%;
+}
+
+
 .chrome\:sidebar_item_text{
     font-size:1.5rem
 }
@@ -306,4 +315,13 @@ padding: 1em;
 .rule {
   font-family: Consolas, "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", Monaco, "Courier New", Courier, monospace;
   color: #3b3b3b;
+}
+
+
+#character_table tbody > tr > td:nth-child(6) > img {
+    display:inline;
+    max-height:2em;
+}
+#character_table tbody > tr > td:nth-child(2) {
+    font-family: "Junicode";
 }

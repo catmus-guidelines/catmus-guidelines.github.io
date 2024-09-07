@@ -441,7 +441,8 @@ def create_site():
                             #'lettres_generalites': "Generalities",
                             'letters_numbers': "Letters and numbers",
                             "corrections_and_others": "Corrections, additions and functional signs",
-                            "decorations": "Text decorations"}.items():
+                            "decorations": "Text decorations",
+                            "character_table": "Table of Characters"}.items():
             create_pages(yaml_dict=whole_pages_dictionnary,
                          title=title,
                          template='templates/index-template.html',
