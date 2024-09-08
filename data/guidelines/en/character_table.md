@@ -111,32 +111,41 @@ This table is currently limited to Middle Ages.
     <td>-</td>
     <td>st</td>
     <td></td>
-    <td> <img src="/data/examples/st/st_Latin8236.png" alt="example" />   <img src="/data/examples/enim_Montpelier.H 318.png" alt="example" /> <img src="/data/examples/enim_Phil10a135.png" alt="example" /> </td>
+    <td> <img src="/data/examples/st/st_Latin8236.png" alt="example" />   </td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Ligature</td>
+    <td>.n.</td>
+    <td>-</td>
+    <td>-</td>
+    <td>enim</td>
+    <td>  <img src="/data/examples/enim_Montpelier.H 318.png" alt="example" /> <img src="/data/examples/enim_Phil10a135.png" alt="example" /> </td>
     <td></td>
   </tr>
   <tr>
     <td>Ligature</td>
     <td>qr</td>
     <td>-</td>
-    <td>quia</td>
     <td></td>
+    <td>quia</td>
     <td> <img src="/data/examples/quia/quia_Montpelier.H 318.png" alt="example" /> <img src="/data/examples/quia/quia_MsWettF 15.png" alt="example" /> <img src="/data/examples/quia/quia_Sorbonne193.png" alt="example" /> </td>
     <td></td>
   </tr>
   <tr>
-    <td>Monogrammatic Ligature</td>
+    <td>Ligature</td>
     <td>qd</td>
     <td>-</td>
-    <td>quod</td>
     <td></td>
+    <td>quod</td>
     <td> <img src="/data/examples/quod-Et/quod_Montpelier.H 318.png" alt="example" /> <img src="/data/examples/quod-Et/quod_egerton821.png" alt="example" /> </td>
   </tr>
   <tr>
-    <td>Monogrammatic ligature</td>
+    <td>Ligature</td>
     <td>Et</td>
     <td>-</td>
-    <td>Et</td>
     <td></td>
+    <td>Et</td>
     <td> <img src="/data/examples/quod-Et/Et_Montpelier.H 318.png" alt="example" /> </td>
     <td></td>
   </tr>
@@ -162,7 +171,7 @@ This table is currently limited to Middle Ages.
     <td>Contraction</td>
     <td>tp̃̃a</td>
     <td>-</td>
-    <td>Two stacked tildes</td>
+    <td>Two stacked horizontal tildes</td>
     <td></td>
     <td> <img src="/data/examples/extended_macron/superposed_macron_CML13027_bis.png" alt="example" /> </td>
     <td></td>
@@ -213,15 +222,6 @@ This table is currently limited to Middle Ages.
     <td></td>
   </tr>
   <tr>
-    <td>Reference mark</td>
-    <td>‸</td>
-    <td>U+2038</td>
-    <td>CARET</td>
-    <td>Omission sign 'caret'(reintroduction of content)</td>
-    <td><img src="/data/examples/additions/addition_CML13027.png" alt=""/> <img src="/data/examples/additions/addition_Sorbonne193.png" alt=""/> <img src="/data/examples/additions/addition_VatLat373.png" alt=""/> </td>
-    <td></td>
-  </tr>
-  <tr>
     <td>Punctuation</td>
     <td>:</td>
     <td>U+003A</td>
@@ -237,6 +237,15 @@ This table is currently limited to Middle Ages.
     <td>COLON</td>
     <td>Punctus interrogativus</td>
     <td><img src="/data/examples/punctuation/punctus_interrogativus_CCCC165n.png" alt=""/> <img src="/data/examples/punctuation/punctus_interrogativus_Laurentianus39.34.png" alt=""/> <img src="/data/examples/punctuation/punctus_interrogativus_Montpelier.H 318.png" alt=""/> </td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Reference mark</td>
+    <td>‸</td>
+    <td>U+2038</td>
+    <td>CARET</td>
+    <td>Omission sign 'caret'(reintroduction of content)</td>
+    <td><img src="/data/examples/additions/addition_CML13027.png" alt=""/> <img src="/data/examples/additions/addition_Sorbonne193.png" alt=""/> <img src="/data/examples/additions/addition_VatLat373.png" alt=""/> </td>
     <td></td>
   </tr>
 </tbody>
