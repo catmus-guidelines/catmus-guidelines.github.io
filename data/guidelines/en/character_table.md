@@ -16,6 +16,78 @@ This table is currently limited to Middle Ages.
 </thead>
 <tbody>
   <tr>
+    <td>Abbreviation (Strikes)</td>
+    <td>đ</td>
+    <td>U+0111</td>
+    <td>LATIN SMALL LETTER D WITH STROKE</td>
+    <td>d + any desinence truncation</td>
+    <td><img src="/data/examples/d_strike/d_barré_charte.png" alt="Graphical Example" />  </td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Abbreviation (Strikes)</td>
+    <td>ħ</td>
+    <td>U+0127</td>
+    <td>LATIN SMALL LETTER H WITH STROKE</td>
+    <td></td>
+    <td><img src="/data/examples/h_strike/bnf_lat_15168_h_stroke.png" alt="Graphical Example" /> </td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Abbreviation (Strikes)</td>
+    <td>ł</td>
+    <td>U+0142</td>
+    <td>LATIN SMALL LETTER L WITH STROKE</td>
+    <td></td>
+    <td><img src="/data/examples/l_strike/eutyches_78r_lbarre.png" alt="Graphical Example" /> </td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Abbreviation (Strikes)</td>
+    <td>ꝑ</td>
+    <td>U+A751</td>
+    <td>LATIN SMALL LETTER P WITH STROKE</td>
+    <td></td>
+    <td><img src="/data/examples/p_strike/BnF_22550_pabarre.png" alt="Graphical Example" /> </td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Abbreviation (Strikes)</td>
+    <td>ꝓ</td>
+    <td>U+A753</td>
+    <td>LATIN SMALL LETTER P WITH FLOURISH</td>
+    <td></td>
+    <td><img src="/data/examples/p_obl/Bodmer_168_pro.png" alt="Graphical Example" /> </td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Abbreviation (Strikes)</td>
+    <td>ꝙ</td>
+    <td>U+A759</td>
+    <td>LATIN SMALL LETTER Q WITH DIAGONAL STROKE</td>
+    <td></td>
+    <td><img src="/data/examples/q_strike/laurentiusPletus33.31_qbarre.png" alt="Graphical Example" /> </td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Abbreviation (Strikes)</td>
+    <td>ꝵ</td>
+    <td>U+A775</td>
+    <td>LATIN SMALL LETTER RUM</td>
+    <td>-rum</td>
+    <td><img src="/data/examples/-rum/-rum_CML13027.png" alt="Graphical Example" /> <img src="/data/examples/-rum/rum_Plut 53.08.png" alt="Graphical Example" /> <img src="/data/examples/-rum/-rum_egerton821.png" alt="Graphical Example" /> <img src="/data/examples/-rum/-rum_MsWettF 15.png" alt="Graphical Example" /> <img src="/data/examples/-rum/-rum_Phil10a135.png" alt="Graphical Example" /> <img src="/data/examples/-rum/-rum_Latin 16195.png" alt="Graphical Example" />  </td>
+    <td><pre>ꝝ</pre></td>
+  </tr>
+  <tr>
+    <td>Abbreviation (Strikes)</td>
+    <td>ẜ</td>
+    <td>U+1E9C</td>
+    <td>LATIN SMALL LETTER LONG S WITH DIAGONAL STROKE</td>
+    <td></td>
+    <td><img src="/data/examples/s_strike/Abbr_sbarre.png" alt="Graphical Example" /> </td>
+    <td></td>
+  </tr>
+  <tr>
     <td>Abbreviation</td>
     <td>⁊</td>
     <td>U+204A</td>
@@ -30,7 +102,7 @@ This table is currently limited to Middle Ages.
     <td>U+0026</td>
     <td>Ampersand</td>
     <td>Et</td>
-    <td></td>
+    <td><img src="/data/examples/ampersand/bsb00046285_5r_amp.png" alt="Ampersand" /></td>
     <td></td>
   </tr>
   <tr>
@@ -40,15 +112,6 @@ This table is currently limited to Middle Ages.
     <td>LATIN SMALL LETTER IS</td>
     <td>-is</td>
     <td><img src="/data/examples/is/is_Sorbonne193.png" alt="Graphical Example" /> <img src="/data/examples/is/is_VatLat373.png" alt="Graphical Example" />  </td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>Abbreviation</td>
-    <td>đ</td>
-    <td>U+0111</td>
-    <td>LATIN SMALL LETTER D WITH STROKE</td>
-    <td>d + any desinence truncation</td>
-    <td><img src="/data/examples/d_barré_charte.png" alt="Graphical Example" />  </td>
     <td></td>
   </tr>
   <tr>
@@ -88,69 +151,6 @@ This table is currently limited to Middle Ages.
     <td><pre>z</pre>, <pre>ꝫ</pre></td>
   </tr>
   <tr>
-    <td>Abbreviation</td>
-    <td>ꝵ</td>
-    <td>U+A775</td>
-    <td>LATIN SMALL LETTER RUM</td>
-    <td>-rum</td>
-    <td><img src="/data/examples/-rum/-rum_CML13027.png" alt="Graphical Example" /> <img src="/data/examples/-rum/rum_Plut 53.08.png" alt="Graphical Example" /> <img src="/data/examples/-rum/-rum_egerton821.png" alt="Graphical Example" /> <img src="/data/examples/-rum/-rum_MsWettF 15.png" alt="Graphical Example" /> <img src="/data/examples/-rum/-rum_Phil10a135.png" alt="Graphical Example" /> <img src="/data/examples/-rum/-rum_Latin 16195.png" alt="Graphical Example" />  </td>
-    <td><pre>ꝝ</pre></td>
-  </tr>
-  <tr>
-    <td>Abbreviation</td>
-    <td>ł</td>
-    <td>U+0142</td>
-    <td>LATIN SMALL LETTER L WITH STROKE</td>
-    <td></td>
-    <td><img src="/data/examples/-rum/-rum_Latin 16195.png" alt="Graphical Example" /> </td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>Abbreviation</td>
-    <td>ꝑ</td>
-    <td>U+A751</td>
-    <td>LATIN SMALL LETTER P WITH STROKE</td>
-    <td></td>
-    <td><img src="/data/examples/p_strike/BnF_22550_pabarre.png" alt="Graphical Example" /> </td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>Abbreviation</td>
-    <td>ħ</td>
-    <td>U+0127</td>
-    <td>LATIN SMALL LETTER H WITH STROKE</td>
-    <td></td>
-    <td><img src="/data/examples/p_strike/BnF_22550_pabarre.png" alt="Graphical Example" /> </td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>Abbreviation</td>
-    <td>ꝓ</td>
-    <td>U+A753</td>
-    <td>LATIN SMALL LETTER P WITH FLOURISH</td>
-    <td></td>
-    <td><img src="/data/examples/p_obl/Bodmer_168_pro.png" alt="Graphical Example" /> </td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>Abbreviation</td>
-    <td>ꝙ</td>
-    <td>U+A759</td>
-    <td>LATIN SMALL LETTER Q WITH DIAGONAL STROKE</td>
-    <td></td>
-    <td><img src="/data/examples/q_strike/laurentiusPletus33.31_qbarre.png" alt="Graphical Example" /> </td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>Abbreviation</td>
-    <td>ẜ</td>
-    <td>U+1E9C</td>
-    <td>LATIN SMALL LETTER LONG S WITH DIAGONAL STROKE</td>
-    <td></td>
-    <td><img src="/data/examples/s_strike/Abbr_sbarre.png" alt="Graphical Example" /> </td>
-    <td></td>
-  </tr>
-  <tr>
     <td>Abbreviations</td>
     <td>∅</td>
     <td>U+2205</td>
@@ -174,7 +174,10 @@ This table is currently limited to Middle Ages.
     <td>U+0327</td>
     <td>COMBINING CEDILLA</td>
     <td>ȩ = ae</td>
-    <td></td>
+    <td>
+      <img src="/data/examples/cedilla/lat_130_cedilla.png" alt="-ae" />
+      <img src="/data/examples/cedilla/lat_12449_cedilla.png" alt="-ae" />
+    </td>
     <td></td>
   </tr>
   <tr>
@@ -251,7 +254,7 @@ This table is currently limited to Middle Ages.
   </tr>
   <tr>
     <td>Combining Abbreviation</td>
-    <td></td>
+    <td></td>
     <td>U+F033</td>
     <td>COMBINING LATIN SMALL LETTER Q</td>
     <td></td>
@@ -282,7 +285,7 @@ This table is currently limited to Middle Ages.
     <td>U+036D</td>
     <td>COMBINING LATIN SMALL LETTER T</td>
     <td></td>
-    <td></td>
+    <td><img src="/data/examples/superscripts/t/nal_730_t.png" alt="" /></td>
     <td></td>
   </tr>
   <tr>
@@ -328,6 +331,19 @@ This table is currently limited to Middle Ages.
     <td>TIRONIAN SIGN ET + COMBINING TILDE</td>
     <td>Etiam</td>
     <td><img src="/data/examples/etiam/etiam_CML13027.png" alt="Graphical Example" /> <img src="/data/examples/etiam/etiam_Latin 16195.png" alt="Graphical Example" /> <img src="/data/examples/etiam/etiam_MsWettF 15.png" alt="Graphical Example" /> </td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Superscript Abbreviation</td>
+    <td>ꝰ</td>
+    <td>U+A770</td>
+    <td>MODIFIER LETTER US</td>
+    <td>-us, -os</td>
+    <td>
+       <img src="/data/examples/us/abbr_ussuscrit.png" alt="-us" />
+       <img src="/data/examples/us/abbrVos.png" alt="-os" />
+       <img src="/data/examples/us/BnF_fr_25516_plus.png" alt="-us" />
+    </td>
     <td></td>
   </tr>
   <tr>
