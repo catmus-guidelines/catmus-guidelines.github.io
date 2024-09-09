@@ -76,7 +76,7 @@ This table is currently limited to Middle Ages.
     <td>LATIN SMALL LETTER RUM</td>
     <td>-rum</td>
     <td><img src="/data/examples/-rum/-rum_CML13027.png" alt="Graphical Example" /> <img src="/data/examples/-rum/rum_Plut 53.08.png" alt="Graphical Example" /> <img src="/data/examples/-rum/-rum_egerton821.png" alt="Graphical Example" /> <img src="/data/examples/-rum/-rum_MsWettF 15.png" alt="Graphical Example" /> <img src="/data/examples/-rum/-rum_Phil10a135.png" alt="Graphical Example" /> <img src="/data/examples/-rum/-rum_Latin 16195.png" alt="Graphical Example" />  </td>
-    <td><pre>ꝝ</pre></td>
+    <td><kbd>ꝝ</kbd></td>
   </tr>
   <tr>
     <td>Abbreviation (Strikes)</td>
@@ -148,7 +148,7 @@ This table is currently limited to Middle Ages.
     <td>LATIN ABBREVIATION SIGN SEMICOLON</td>
     <td>-que/-bus/-m/-et</td>
     <td><img src="/data/examples/que/-que_CML13027.png" alt="Graphical Example" /> <img src="/data/examples/que/que_2_Latin6395.png" alt="Graphical Example" /> <img src="/data/examples/que/que_2_Phil10a135.png" alt="Graphical Example" /> <img src="/data/examples/que/que_CCCC165n.png" alt="Graphical Example" /> <img src="/data/examples/que/que_egerton821.png" alt="Graphical Example" /> <img src="/data/examples/que/que_Latin 16195.png" alt="Graphical Example" /> <img src="/data/examples/que/que_Latin6395.png" alt="Graphical Example" /> <img src="/data/examples/que/que_Laurentianus39.34.png" alt="Graphical Example" /> <img src="/data/examples/que/que_Montpelier.H 318.png" alt="Graphical Example" /> <img src="/data/examples/que/que_Phil10a135.png" alt="Graphical Example" /> <img src="/data/examples/que/que_Plut 53.08.png" alt="Graphical Example" /> <img src="/data/examples/que/que_Plut.53.09.png" alt="Graphical Example" /> <img src="/data/examples/que/que_VatLat373.png" alt="Graphical Example" /></td>
-    <td><pre>z</pre>, <pre>ꝫ</pre></td>
+    <td><kbd>z</kbd>, <kbd>ꝫ</kbd></td>
   </tr>
   <tr>
     <td>Abbreviations</td>
@@ -196,7 +196,7 @@ This table is currently limited to Middle Ages.
     <td>COMBINING VERTICAL TILDE(</td>
     <td>-r, -er</td>
     <td><img src="/data/examples/tilde_vert/BnF_fr_24428_verticalterre.png" alt="vert. tilde"/> <img src="/data/examples/tilde_vert/BnF_fr_25516_vers.png" alt="vert. tilde"/> <img src="/data/examples/tilde_vert/abbrMessagier.png" alt="vert. tilde" /></td>
-    <td><pre>͛</pre></td>
+    <td><kbd>͛</kbd></td>
   </tr>
   <tr>
     <td>Combining Abbreviation</td>
@@ -205,7 +205,7 @@ This table is currently limited to Middle Ages.
     <td>COMBINING LATIN SMALL LETTER A</td>
     <td></td>
     <td><img src="/data/examples/superscripts/a/BnF_fr_22550_asuscrit.png" alt="a"/> <img src="/data/examples/superscripts/a/abbrgrant.png" alt="a" /> <img src="/data/examples/superscripts/a/Phil10a135.png" alt="A Superscript Combined"/></td>
-    <td>COMBINING OPEN A: _ᷓ</td>
+    <td><kbd>_ᷓ</kbd></td>
   </tr>
   <tr>
     <td>Combining Abbreviation</td>
@@ -415,7 +415,7 @@ This table is currently limited to Middle Ages.
     <td>PILCROW SIGN</td>
     <td>Content change</td>
     <td><img src="/data/examples/pilcrow/pilcrow_CML13027.png" alt=""/>  <img src="/data/examples/pilcrow/pilcrow_Maz915.png" alt=""/>  <img src="/data/examples/pilcrow/pilcrow_faded_CML13027.png" alt=""/>  <img src="/data/examples/pilcrow/pilcrow_gamma_CML13027.png" alt=""/> <img src="/data/examples/pilcrow/pilcrow_Montpelier.H 318.png" alt=""/>  <img src="/data/examples/pilcrow/pilcrow_red_CML13027.png" alt=""/>  <img src="/data/examples/pilcrow/pilcrow_Latin6395.png" alt=""/>  <img src="/data/examples/pilcrow/pilcrow_Laurentianus39.34.png" alt=""/> </td>
-    <td></td>
+    <td><kbd>⁋</kbd> <kbd></kbd> <kbd>§</kbd></td>
   </tr>
   <tr>
     <td>Punctuation</td>
