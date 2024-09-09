@@ -308,6 +308,17 @@ This table is currently limited to Middle Ages.
   </tr>
   <tr>
     <td>Combining Abbreviation</td>
+    <td>᷒</td>
+    <td>U+1DD2</td>
+    <td>MODIFIER US ABOVE</td>
+    <td>-us, -os (does not replace MODIFIER LETTER US, below)</td>
+    <td>
+       <img src="/data/examples/us/abbrVos.png" alt="-os" />
+    </td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Combining Abbreviation</td>
     <td>◌̃ ◌̃ </td>
     <td>LETTER + U+0303 &amp; LETTER + U+0303</td>
     <td>COMBINING TILDE on two consecutive characters</td>
@@ -341,7 +352,6 @@ This table is currently limited to Middle Ages.
     <td>-us, -os</td>
     <td>
        <img src="/data/examples/us/abbr_ussuscrit.png" alt="-us" />
-       <img src="/data/examples/us/abbrVos.png" alt="-os" />
        <img src="/data/examples/us/BnF_fr_25516_plus.png" alt="-us" />
     </td>
     <td></td>
