@@ -1,14 +1,16 @@
 ## Spacing
 
-Segmentation, referring to the separation of text into "words", can be purely subjective as this notion only really makes sense of printed matter. To simplify decision making, <span class="rule">we MAY follow the meaning of the text, separating semantic words with a typographic space (" " [U+0020]) whenever possible.</span>
+Segmentation, referring to the separation of text into "words", can be purely subjective as this notion only really makes sense of printed matter. The irregularility of spacing in manuscripts have led to the following choices:
 
-Word segmentation MAY follow a modernized segmentation, to ensure homogeneity.
+**Word segmentation MUST follow a modernized segmentation**, to ensure homogeneity, using typographic space (" " [U+0020]).
 
-When modern usage would like to show an elision, whereas the source tends to use an agglutination, this agglutination MAY be transcribed.
+### Exceptions and special cases
 
-When in doubt, word segmentation MAY follow the usage of the contemporary language of the manuscript.
+- When modern usage would like to show an elision (such as `q'il` for `qil` or doubled consonants such as `á riva` for `arriva`), whereas the source tends to use an agglutination, **agglutinations MUST be kept** (we note `qil` and `arriva`.
+- When in doubt, word segmentation MAY follow the usage of the contemporary or normalized language of the manuscript.
+- **Locutions in the process of being lexicalized** (such as for verbs like `enchargier`/`en chargier`, `en fuir`/`enfuir`or certain locutions such as `aujourd'hui`) **MUST stay as close as possible to the source**.
+- Initial in poetry separated from the rest of the text MAY be transcribed separately.
 
-For cases which me be difficult to decide (such as for verbs like "enchargier", "en fuir", "en partir" or certain locutions), we MAY stay as close as possible to the source and follow either the dictionary entry or modern usage. In French, such dictionary MAY be the [DMF](http://zeus.atilf.fr/dmf/).
 
 Agglutinations and dragging strokes in cursive writing MUST NOT be imitated in the transcription. Therefore, we MUST transcribe "et en effet" and not "eteneffet" or "et_en_effet", even when the quill was not lifted from the paper.
 
