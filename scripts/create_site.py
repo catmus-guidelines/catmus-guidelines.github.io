@@ -56,7 +56,7 @@ def create_characters_table_page(yaml_list, title, template):
     :return: None
     """
     try:
-        os.mkdir("html/characters")
+        os.makedirs("html/characters")
     except FileExistsError:
         pass
     
@@ -146,11 +146,11 @@ def create_pages(yaml_dict, title, template, md_source, out_dir, lang, index_pag
     :return: None
     """
     try:
-        os.mkdir("html/guidelines")
+        os.makedirs("html/guidelines")
     except FileExistsError:
         pass
     try:
-        os.mkdir(f"html/guidelines/{lang}")
+        os.makedirs(f"html/guidelines/{lang}")
     except FileExistsError:
         pass
     if index_page is True:
@@ -299,12 +299,12 @@ def create_character_page(file_and_class:tuple, surrounding_files:tuple, pages_d
     
     # Let's create the dirs
     try:
-        os.mkdir("html")
+        os.makedirs("html")
     except FileExistsError:
         pass
 
     try:
-        os.mkdir("html/characters")
+        os.makedirs("html/characters")
     except FileExistsError:
         pass
     html_path = f"html/characters/{filename}.html"
@@ -445,7 +445,6 @@ def create_site():
     # Now create each page in the target languages
     for lang in pages:
         for name, title in pages[lang].items():
-
             create_pages(yaml_dict=whole_pages_dictionnary,
                          title=title,
                          template='templates/index-template.html',

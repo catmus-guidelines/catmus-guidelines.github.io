@@ -325,3 +325,6 @@ padding: 1em;
 #character_table tbody > tr > td:nth-child(2) {
     font-family: "Junicode";
 }
+#character_table kbd {
+    font-family: "Junicode";
+}
