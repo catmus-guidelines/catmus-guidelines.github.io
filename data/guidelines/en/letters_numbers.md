@@ -14,22 +14,13 @@ For modern and contemporary manuscripts, <span class="rule">ramist normalization
 
 ## Capital letters
 
-<!-- TODO: this needs to be translated and detailed, but I don't know the precise rules -->
-Trois cas d'usage recommandés:
-- lettrines ou initiales ornées; 
+<span class="rule">Lowercase letters MUST NOT be normalized into capital letters.</span>
 
-<!-- transcribed with a capital letter, without additional markup -->
-
-- titres courants;
-- lettres en début de mot sémantiques;
-
-La pratique de transcription doit être homogène. 
-
-<!-- end of TODO-->
+Series of capital letters, such as the one found in running title, MAY be transcribed as series of capital letter, depending on their inner variation.
 
 The distinction between lowercase and uppercase can be difficult to make: <span class="rule">transcribing upper or lower case MUST be consistent.</span>
 
-<span class="rule">Lowercase letters MUST NOT be normalized into capital letters.</span> However, when the tracing of a letter at the beginning of a word is ambiguous and could be considered a lowercase letter when we expect a capital letter, we MAY transcribe it as a capital letter.
+ However, when the tracing of a letter at the beginning of a word is ambiguous and could be considered a lowercase letter when we expect a capital letter, we MAY transcribe it as a capital letter.
 
 <span class="rule">Drop capitals and decorated letters MUST be transcribed with capital letters</span> and MUST be considered as not a part of the same text line as the line they semantically belong to: they should be identified as drop capitals during the image segmentation phase.
 

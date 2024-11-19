@@ -354,21 +354,21 @@ def create_site():
     # Whole pages dictionnary is used to create the sidebar items.
     whole_pages_dictionnary = {"classes": chars_as_dict,
                      "abspath": abspath}
-    all_chars = []
-    for index, file in enumerate(files):
-        try:
-            next_file = files[index + 1]
-        except IndexError:
-            next_file = None
-        try:
-            previous_file = files[index - 1]
-        except IndexError:
-            previous_file = None
+    # all_chars = []
+    # for index, file in enumerate(files):
+    #     try:
+    #         next_file = files[index + 1]
+    #     except IndexError:
+    #         next_file = None
+    #     try:
+    #         previous_file = files[index - 1]
+    #     except IndexError:
+    #         previous_file = None
             
-        new_char = create_character_page((file, classe), (previous_file, next_file), whole_pages_dictionnary)
+    #     new_char = create_character_page((file, classe), (previous_file, next_file), whole_pages_dictionnary)
         
-        # All chars will be reused to create the characters table
-        all_chars.append(new_char)
+    #     # All chars will be reused to create the characters table
+    #     all_chars.append(new_char)
 
     # Create guidelines pages
 
@@ -427,22 +427,25 @@ def create_site():
         file.write(soup)
         
 
+    pages = {
+        "en": {
+            'abbreviations': "Abbreviations",
+            'ligatures': "Ligatures",
+            'segmentation': "Linguistic segmentation",
+            'generalites': "General principles",
+            'punctuation': "Punctuation",
+            'accents_cedillas': "Accents and cedillas",
+            'letters_numbers': "Letters and numbers",
+            "corrections_and_others": "Corrections, additions and functional signs",
+            "decorations": "Text decorations",
+            "character_table": "Table of Characters"
+        }
+    }
+
     # Now create each page in the target languages
-    for lang in ['en']:
-        for name, title in {'abbreviations': "Abbreviations",
-                            'ligatures': "Ligatures",
-                            #'numbers': "Numbers",
-                            'segmentation': "Linguistic segmentation",
-                            'generalites': "General principles",
-                            'punctuation': "Punctuation",
-                            'accents_cedillas': "Accents and cedillas",
-                            #'capitals': "Capital letters",
-                            #'ramists': "Ramist letters («u» and «v», «i» and «j»)",
-                            #'lettres_generalites': "Generalities",
-                            'letters_numbers': "Letters and numbers",
-                            "corrections_and_others": "Corrections, additions and functional signs",
-                            "decorations": "Text decorations",
-                            "character_table": "Table of Characters"}.items():
+    for lang in pages:
+        for name, title in pages[lang].items():
+
             create_pages(yaml_dict=whole_pages_dictionnary,
                          title=title,
                          template='templates/index-template.html',
@@ -451,9 +454,9 @@ def create_site():
                          lang=lang)
 
     # Finally, create the index of characters using the info gathered before
-    create_characters_table_page(yaml_list=all_chars,
-                 title='Index of Characters',
-                 template='templates/index-template.html')
+    # create_characters_table_page(yaml_list=all_chars,
+    #              title='Index of Characters',
+    #              template='templates/index-template.html')
     
 
 
