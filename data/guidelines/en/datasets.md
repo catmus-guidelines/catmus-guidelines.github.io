@@ -1,13 +1,11 @@
-Datasets
-========
-
-
 ## Medieval Dataset
 
+- [HuggingFace](https://huggingface.co/datasets/CATMuS/medieval) ([Samples](https://huggingface.co/datasets/CATMuS/medieval-samples))
 
-The Folowwing datasets are in the current version of the HuggingFace dataset, as seen in the paper from CATMuS Medieval.
 
-All data were passed through Choco Mufin. Any attempt to replicate the HuggingFace dataset should use the conversion table provided with each dataset. The conversion table for the modified dataset will be made available.
+The following datasets are in the current version of the HuggingFace dataset, as seen in the paper from CATMuS Medieval.
+
+All data were passed through [Choco Mufin](https://github.com/PonteIneptique/choco-mufin/). Any attempt to replicate the HuggingFace dataset should use the conversion table provided with each dataset. The conversion table for the modified dataset will be made available.
 
 <table>
 <thead>
