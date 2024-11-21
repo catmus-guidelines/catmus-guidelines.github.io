@@ -401,6 +401,15 @@ def create_site():
                  index_page=True)
     
 
+    create_pages(yaml_dict=whole_pages_dictionnary,
+                 title='Datasets',
+                 template='templates/index-template.html',
+                 md_source=f"data/guidelines/en/datasets.md",
+                 out_dir=".",
+                 lang="en",
+                 index_page=True)
+    
+
     # Create 404
     current_dict = whole_pages_dictionnary
     current_dict['target'] = 'pages'
