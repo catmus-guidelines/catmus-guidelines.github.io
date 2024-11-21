@@ -9,26 +9,103 @@ The Folowwing datasets are in the current version of the HuggingFace dataset, as
 
 All data were passed through Choco Mufin. Any attempt to replicate the HuggingFace dataset should use the conversion table provided with each dataset. The conversion table for the modified dataset will be made available.
 
+<table>
+<thead>
+<tr>
+<th>language</th>
+<th>url</th>
+<th>version</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Latin</td>
+<td><a href="https://DEEDS-Project/htr-dataset">DEEDS-Project/htr-dataset</a></td>
+<td>v0.0.8</td>
+</tr>
+<tr>
+<td>Latin</td>
+<td><a href="https://HTRomance-Project/medieval-latin">HTRomance-Project/medieval-latin</a></td>
+<td>v0.0.8</td>
+</tr>
+<tr>
+<td>Spanish Languages</td>
+<td><a href="https://HTRomance-Project/middle-ages-in-spain">HTRomance-Project/middle-ages-in-spain</a></td>
+<td>v0.0.6</td>
+</tr>
+<tr>
+<td>Old/Middle French</td>
+<td><a href="https://HTRomance-Project/medieval-french">HTRomance-Project/medieval-french</a></td>
+<td>v0.0.9</td>
+</tr>
+<tr>
+<td>Italian Languages</td>
+<td><a href="https://HTRomance-Project/medieval-italian">HTRomance-Project/medieval-italian</a></td>
+<td>v1.0.2</td>
+</tr>
+<tr>
+<td>Old/Middle French</td>
+<td><a href="https://HTR-United/cremma-medieval">HTR-United/cremma-medieval</a></td>
+<td>v2.0.1</td>
+</tr>
+<tr>
+<td>Latin</td>
+<td><a href="https://HTR-United/cremma-medieval-lat">HTR-United/cremma-medieval-lat</a></td>
+<td>v0.1.2</td>
+</tr>
+<tr>
+<td>Old/Middle French</td>
+<td><a href="https://Gallicorpora/HTR-imprime-gothique-16e-siecle">Gallicorpora/HTR-imprime-gothique-16e-siecle</a></td>
+<td>v0.0.19</td>
+</tr>
+<tr>
+<td>Old/Middle French</td>
+<td><a href="https://Gallicorpora/HTR-MSS-15e-Siecle">Gallicorpora/HTR-MSS-15e-Siecle</a></td>
+<td>v0.0.37</td>
+</tr>
+<tr>
+<td>Old/Middle French</td>
+<td><a href="https://Gallicorpora/HTR-incunable-15e-siecle">Gallicorpora/HTR-incunable-15e-siecle</a></td>
+<td>v0.0.29</td>
+</tr>
+<tr>
+<td>Old/Middle French</td>
+<td><a href="https://ciham-htr/fabliaux">ciham-htr/fabliaux</a></td>
+<td>v0.0.22</td>
+</tr>
+<tr>
+<td>Old/Middle French</td>
+<td><a href="https://ciham-htr/liber">ciham-htr/liber</a></td>
+<td>v0.0.5</td>
+</tr>
+<tr>
+<td>Latin/Italian/French</td>
+<td>Reorganized from <a href="https://github.com/PSL-Chartes-HTR-Students/HN2021-Boccace">HN2021 Boccace</a></td>
+<td>last</td>
+</tr>
+<tr>
+<td>Old/Middle French</td>
+<td>Reorganized [Decameron-Fr]</td>
+<td>last</td>
+</tr>
+<tr>
+<td>Latin</td>
+<td>Reorganized <a href="https://github.com/malamatenia/Eutyches">malamatenia/Eutyches</a></td>
+<td>last</td>
+</tr>
+<tr>
+<td>Spanish Languages</td>
+<td>Reorganized &amp; Augmented <a href="https://zenodo.org/records/8406222">Gille-Levenson&#39;s PhD Data</a></td>
+<td>last</td>
+</tr>
+<tr>
+<td>Latin</td>
+<td>Adapted <a href="https://github.com/rescribe/carolineminuscule-groundtruth">rescribe/carolineminuscule-groundtruth</a></td>
+<td>2023-10-03</td>
+</tr>
+</tbody>
+</table>
 
-| language             | url                                          | version    |
-|----------------------|----------------------------------------------|------------|
-| Latin                | [DEEDS-Project/htr-dataset](https://DEEDS-Project/htr-dataset)                    | v0.0.8     |
-| Latin                | [HTRomance-Project/medieval-latin](https://HTRomance-Project/medieval-latin)             | v0.0.8     |
-| Spanish Languages    | [HTRomance-Project/middle-ages-in-spain](https://HTRomance-Project/middle-ages-in-spain)       | v0.0.6     |
-| Old/Middle French    | [HTRomance-Project/medieval-french](https://HTRomance-Project/medieval-french)            | v0.0.9     |
-| Italian Languages    | [HTRomance-Project/medieval-italian](https://HTRomance-Project/medieval-italian)           | v1.0.2     |
-| Old/Middle French    | [HTR-United/cremma-medieval](https://HTR-United/cremma-medieval)                   | v2.0.1     |
-| Latin                | [HTR-United/cremma-medieval-lat](https://HTR-United/cremma-medieval-lat)               | v0.1.2     |
-| Old/Middle French    | [Gallicorpora/HTR-imprime-gothique-16e-siecle](https://Gallicorpora/HTR-imprime-gothique-16e-siecle) | v0.0.19    |
-| Old/Middle French    | [Gallicorpora/HTR-MSS-15e-Siecle](https://Gallicorpora/HTR-MSS-15e-Siecle)              | v0.0.37    |
-| Old/Middle French    | [Gallicorpora/HTR-incunable-15e-siecle](https://Gallicorpora/HTR-incunable-15e-siecle)        | v0.0.29    |
-| Old/Middle French    | [ciham-htr/fabliaux](https://ciham-htr/fabliaux)                           | v0.0.22    |
-| Old/Middle French    | [ciham-htr/liber](https://ciham-htr/liber)                              | v0.0.5     |
-| Latin/Italian/French | Reorganized from [HN2021 Boccace](https://github.com/PSL-Chartes-HTR-Students/HN2021-Boccace)                                      | last       |
-| Old/Middle French    | Reorganized [Decameron-Fr]                                 | last       |
-| Latin                | Reorganized [malamatenia/Eutyches](https://github.com/malamatenia/Eutyches)                                     | last       |
-| Spanish Languages    | Reorganized & Augmented [Gille-Levenson's PhD Data](https://zenodo.org/records/8406222)                                      | last       |
-| Latin                | Adapted [rescribe/carolineminuscule-groundtruth](https://github.com/rescribe/carolineminuscule-groundtruth)       | 2023-10-03 |
 
 ### Vocabulary:
 
