@@ -33,7 +33,7 @@ However, oversized capitals  expanding above the baseline, in particular at the 
 <span class="rule">Numbers MUST be transcribed as they appear in the document, whether as Roman or Arabic numerals.</span>.
 
 - For Roman numerals, ramist standardization (u, v, i, j) MAY be applied following the rules specified above.
-- Numbers written with superscript letters MUST follow the rules specified in the section dedicated to superscript [abbreviations](./abbreviations.md).
+- Numbers written with superscript letters MUST follow the rules specified in the section dedicated to superscript [abbreviations](./abbreviations.html).
 - The groups of numbers MUST be clearly separated, and the punctuation around the number MUST be retained where it exists.
 
 In modern and contemporary documents, when the distinction between a capital I and a 1 is difficult to make (as can be the case in typewritten documents or in some manuscripts), we MAY follow the transcription that makes the most sense in the source.

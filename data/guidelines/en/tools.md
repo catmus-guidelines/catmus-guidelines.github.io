@@ -11,3 +11,8 @@ eScriptorium interface (see <a target="_blank" href="https://escriptorium.readth
 - Superscript characters <a href="/keyboards/catmus-superscript.json" download="catmus-superscript.json">here</a>.
 - Medieval specific characters <a href="/keyboards/catmus-medieval.json" download="catmus-medieval.json">here</a>.
 
+<div class="json" data-target="keyboards/catmus-combining.json"></div>
+
+<div class="json" data-target="keyboards/catmus-superscript.json"></div>
+
+<div class="json" data-target="keyboards/catmus-medieval.json"></div>

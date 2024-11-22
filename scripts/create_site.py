@@ -1,4 +1,5 @@
 import glob
+import json
 import os
 import sys
 
@@ -11,6 +12,7 @@ from jinja2 import Environment, FileSystemLoader
 from bs4 import BeautifulSoup
 import git
 import datetime
+import tabulate
 
 
 def write_to_log(message):
@@ -132,7 +134,8 @@ def create_characters_table_page(yaml_list, title, template):
     with open(f"html/characters/index_of_characters.html", "w") as index:
         index.write(soup)
 
-def create_pages(yaml_dict, title, template, md_source, out_dir, lang, index_page=False):
+
+def create_pages(yaml_dict, title, template, md_source, out_dir, lang, index_page=False) -> str:
     """
     This function creates an HTML page out of an markdown document, using marko transformation and jinja HTML templating.
     
@@ -143,7 +146,7 @@ def create_pages(yaml_dict, title, template, md_source, out_dir, lang, index_pag
     :param out_dir: path to out dir
     :param lang: lang for localisation
     :param index_page: Whether the page created is the index or not.
-    :return: None
+    :return: HTML path
     """
     try:
         os.makedirs("html/guidelines")
@@ -171,8 +174,7 @@ def create_pages(yaml_dict, title, template, md_source, out_dir, lang, index_pag
     yaml_dict['title'] = title
     yaml_dict['target'] = 'pages'
     html_string = template.render(yaml_dict)
-    
-    
+
     with open(md_source, "r") as index_page:
         md_doc = index_page.read()
 
@@ -195,15 +197,16 @@ def create_pages(yaml_dict, title, template, md_source, out_dir, lang, index_pag
         title = ET.Element("h2")
         title.text = "Notes"
         footnotes.insert(0, title)
-    
 
     soup = BeautifulSoup(ET.tostring(html_tree), 'html.parser')
     soup = str(soup)
     
-    
-    with open(f"{out_dir}/{lang_dir}{md_source.split('/')[-1].replace('.md', '')}{suffix}.html", "w") as index:
+    out = f"{out_dir}/{lang_dir}{md_source.split('/')[-1].replace('.md', '')}{suffix}.html"
+
+    with open(out, "w") as index:
         index.write(soup)
 
+    return out
 
 
 def create_character_page(file_and_class:tuple, surrounding_files:tuple, pages_dictionnary:dict) -> dict:
@@ -390,16 +393,41 @@ def create_site():
                  out_dir=".",
                  lang="en",
                  index_page=True)
-    
 
-    create_pages(yaml_dict=whole_pages_dictionnary,
+    keyboard = create_pages(yaml_dict=whole_pages_dictionnary,
                  title='Tools and keyboards',
                  template='templates/index-template.html',
                  md_source=f"data/guidelines/en/tools.md",
                  out_dir=".",
                  lang="en",
                  index_page=True)
-    
+
+    def write_json_tables(target: str) -> str:
+        with open(target) as f:
+            html = BeautifulSoup(f.read())
+        for json_div in html.select("div.json"):
+            with open(json_div["data-target"]) as f:
+                j = json.load(f)
+            max_row = max([el["row"] for el in j["characters"]])
+            max_col = max([el["column"] for el in j["characters"]])
+
+            table = [
+                ([""] * (max_col+1))
+                for _ in range(max_row+1)
+            ]
+
+            for c in j["characters"]:
+                table[c["row"]][c["column"]] = f'<a alt="{c.get("legend", "")}"><kbd>{c["character"]}</kbd></a>'
+
+            table = tabulate.tabulate(table, tablefmt="unsafehtml")
+            table = BeautifulSoup(f"""<section><h3>{json_div["data-target"]}</h3>{table}</section>""")
+            json_div.append(table.body.section.h3)
+            json_div.append(table.body.section.table)
+
+        with open(target, "w") as f:
+            f.write(str(html))
+
+    keyboard = write_json_tables(keyboard)
 
     create_pages(yaml_dict=whole_pages_dictionnary,
                  title='Datasets',
@@ -408,7 +436,6 @@ def create_site():
                  out_dir=".",
                  lang="en",
                  index_page=True)
-    
 
     # Create 404
     current_dict = whole_pages_dictionnary
@@ -422,7 +449,6 @@ def create_site():
     with open("404.html", 'w') as file:
         file.write(soup)
         
-        
     # Create searchpage
     current_dict = whole_pages_dictionnary
     env = Environment(loader=FileSystemLoader('.'))
@@ -434,7 +460,6 @@ def create_site():
     soup = soup.prettify()
     with open("search.html", 'w') as file:
         file.write(soup)
-        
 
     pages = {
         "en": {

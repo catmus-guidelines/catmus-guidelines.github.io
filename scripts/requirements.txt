@@ -16,3 +16,4 @@ rpds-py==0.18.0
 smmap==5.0.1
 soupsieve==2.5
 zipp==3.17.0
+tabulate
