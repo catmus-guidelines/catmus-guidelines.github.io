@@ -6,3 +6,6 @@ search.html
 index.html
 
 html/*
+.DS_Store
+._*
+

@@ -1,1 +1,0 @@
-<span class="rule">Text decoration like underline MUST NOT be transcribed, even using any form of pseudo-markup.</span>

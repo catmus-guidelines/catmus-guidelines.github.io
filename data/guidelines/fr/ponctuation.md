@@ -1,1 +1,0 @@
-## Une réduction à trois graphèmes principaux
