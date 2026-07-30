@@ -385,7 +385,7 @@ def copy_static():
         shutil.copytree(source, os.path.join(OUT, dest_rel), dirs_exist_ok=True)
 
 
-def build(with_pdf=True, with_index=True):
+def build(with_pdf=True, with_index=True, require_pdf=False):
     started = time.time()
 
     pages, root_pages, sections, lang = catmus.load_manifest()
@@ -416,7 +416,11 @@ def build(with_pdf=True, with_index=True):
             pdf.build_pdf(catmus.pdf_pages(pages), meta, OUT)
             pdf_built = True
         except pdf.PdfUnavailable as exc:
-            # A missing pandoc or xelatex must not fail the whole site build.
+            # Locally a missing pandoc or xelatex must not fail the whole site
+            # build. In CI it must: a silently skipped PDF ships a site whose
+            # download links have simply vanished, which is easy not to notice.
+            if require_pdf:
+                raise catmus.BuildError(f"PDF build failed (--require-pdf):\n{exc}")
             print(f"  ! PDF skipped: {exc}", file=sys.stderr)
     elif kept_pdf:
         shutil.copy2(kept_pdf, PDF_PATH)
@@ -613,6 +617,11 @@ def main():
     parser.add_argument("--port", type=int, default=8000)
     parser.add_argument("--no-pdf", action="store_true", help="skip the PDF build")
     parser.add_argument(
+        "--require-pdf",
+        action="store_true",
+        help="fail if the PDF cannot be built, instead of skipping it (use in CI)",
+    )
+    parser.add_argument(
         "--strict",
         action="store_true",
         help="exit non-zero if any link is broken (use in CI)",
@@ -620,7 +629,7 @@ def main():
     args = parser.parse_args()
 
     try:
-        broken = build(with_pdf=not args.no_pdf)
+        broken = build(with_pdf=not args.no_pdf, require_pdf=args.require_pdf)
     except catmus.BuildError as exc:
         print(f"\nbuild error: {exc}", file=sys.stderr)
         return 1

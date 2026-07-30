@@ -109,5 +109,5 @@ All data were passed through [Choco Mufin](https://github.com/PonteIneptique/cho
 
 - **Adapted**: Image were replaced / rescaled
 - **Reorganized**: Data were reorganized in a way that made them more usable
-- **Agumented**: Data whose digitization were not publicly available where used to extract lines.
+- **Augmented**: Data whose digitization were not publicly available where used to extract lines.
 

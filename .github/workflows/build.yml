@@ -41,25 +41,42 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r scripts/requirements.txt
 
-      # pandoc and XeLaTeX build the downloadable PDF. If this step is removed
+      # pandoc and XeLaTeX build the downloadable PDF. If these are unavailable
       # the site still builds -- the PDF is skipped and its download links are
       # omitted rather than left pointing at a missing file.
+      #
+      # Every package the template loads (fontspec, pdflscape, booktabs,
+      # microtype, xcolor / fancyhdr, geometry, longtable, calc, hyperref) comes
+      # from texlive-latex-recommended or texlive-latex-base, so the ~500 MB
+      # texlive-latex-extra is not installed.
+      - name: Cache the PDF toolchain packages
+        uses: actions/cache@v4
+        with:
+          path: ~/apt-archives
+          key: apt-pdf-${{ runner.os }}-${{ hashFiles('.github/workflows/build.yml') }}
+          restore-keys: apt-pdf-${{ runner.os }}-
+
       - name: Install PDF toolchain
         run: |
+          mkdir -p ~/apt-archives/partial
           sudo apt-get update
+          # Downloaded .debs are kept in the cached directory, so repeat runs
+          # install from disk instead of re-fetching ~90 MB from the archive.
           sudo apt-get install -y --no-install-recommends \
-            pandoc texlive-xetex texlive-latex-recommended texlive-latex-extra \
-            texlive-fonts-recommended lmodern
+            -o Dir::Cache::archives="$HOME/apt-archives" \
+            pandoc texlive-xetex texlive-latex-recommended lmodern
+          sudo chown -R "$(id -u):$(id -g)" ~/apt-archives
 
       - name: Validate character files
         run: python3 scripts/files_validation.py -s scripts/schema.json
 
-      # --strict fails the build on a broken internal link. The image paths here
-      # are written relative to the markdown sources and have drifted between
+      # --strict fails on a broken internal link: the image paths here are
+      # written relative to the markdown sources and have drifted between
       # Unicode normalisation forms before, which is not something to discover
-      # from a reader's bug report.
+      # from a reader's bug report. --require-pdf fails if the PDF cannot be
+      # built, rather than quietly publishing a site with no download links.
       - name: Build site
-        run: python3 scripts/build.py --strict
+        run: python3 scripts/build.py --strict --require-pdf
 
       - uses: actions/upload-pages-artifact@v3
         with:
