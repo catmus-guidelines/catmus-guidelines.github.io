@@ -128,8 +128,20 @@ def _table_to_latex(table, source_dir, warnings, landscape=False, glyph_columns=
 
     # Fixed-width p{} columns: these tables have long labels and stacked images,
     # and are the only thing that wraps sanely.
+    #
+    # The widths must be shares of the text block *minus* the inter-column
+    # padding, which is 2\tabcolsep per column. Taking them as plain fractions of
+    # \linewidth makes the table wider than the page by that padding -- 43pt for
+    # the seven-column character table -- and the overflow lands on the last
+    # columns, pushing the example images out past the table rule.
     weights = COLUMN_WEIGHTS.get(width) or [1.0 / width] * width
-    spec = " ".join(f"p{{{0.94 * w:.3f}\\linewidth}}" for w in weights)
+    total = sum(weights)
+    padding = 2 * width
+    spec = " ".join(
+        ">{\\raggedright\\arraybackslash}"
+        f"p{{(\\linewidth - {padding}\\tabcolsep) * \\real{{{w / total:.4f}}}}}"
+        for w in weights
+    )
 
     lines = [r"\begingroup\footnotesize", rf"\begin{{longtable}}{{{spec}}}", r"\hline"]
     if any(header):
