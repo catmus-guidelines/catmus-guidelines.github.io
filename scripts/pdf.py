@@ -214,11 +214,23 @@ def _restore_code_spans(text, stash):
 
 
 def _rewrite_markdown_images(text, source_dir, warnings):
-    """Resolve `![alt](../img/x.png)` to an absolute path.
+    """Resolve `![alt](../img/x.png)` to an absolute path and give it a width.
 
-    Pandoc resolves image paths against --resource-path, but these are relative
-    to the markdown file itself, so a shared resource path cannot work for pages
-    at different depths. Resolving here makes every reference unambiguous.
+    Two things are being fixed here.
+
+    The path: pandoc resolves images against --resource-path, but these are
+    written relative to the markdown file itself, so one shared resource path
+    cannot serve pages at different depths. Resolving here makes every
+    reference unambiguous.
+
+    The width: `{width=100%}` becomes `\\includegraphics[width=\\linewidth]`,
+    which inside a table cell is the column width. Without it the rendering
+    depends on the pandoc version -- 3.5 and later wrap images in
+    \\pandocbounded, which scales them to fit, while older releases (3.1.3, the
+    one Ubuntu ships and CI therefore used) emit the image at its natural size.
+    These scans are far wider than any column, so on the older pandoc they ran
+    straight through the cell and off the page, and the document came out five
+    pages longer. Stating the width keeps both versions identical.
     """
 
     def replace(match):
@@ -229,7 +241,7 @@ def _rewrite_markdown_images(text, source_dir, warnings):
         if path is None:
             warnings.append(f"image not found: {src}")
             return ""
-        return f"![{alt}]({path})"
+        return f"![{alt}]({path}){{width=100%}}"
 
     return re.sub(r"!\[([^\]]*)\]\(([^)]+)\)", replace, text)
 

@@ -24,6 +24,11 @@ concurrency:
   group: "pages"
   cancel-in-progress: false
 
+env:
+  # Keep in step with what contributors run locally; see the pandoc install
+  # step for why this is pinned.
+  PANDOC_VERSION: "3.7.0.2"
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -54,21 +59,35 @@ jobs:
       - name: Cache the PDF toolchain packages
         uses: actions/cache@v4
         with:
-          path: ~/apt-archives
-          key: apt-pdf-${{ runner.os }}-${{ hashFiles('.github/workflows/build.yml') }}
+          path: |
+            ~/apt-archives
+            ~/pandoc-deb
+          key: apt-pdf-${{ runner.os }}-pandoc${{ env.PANDOC_VERSION }}-${{ hashFiles('.github/workflows/build.yml') }}
           restore-keys: apt-pdf-${{ runner.os }}-
 
       - name: Install PDF toolchain
         run: |
-          mkdir -p ~/apt-archives/partial
+          mkdir -p ~/apt-archives/partial ~/pandoc-deb
           sudo apt-get update
           # Downloaded .debs are kept in the cached directory, so repeat runs
-          # install from disk instead of re-fetching ~90 MB from the archive.
+          # install from disk instead of re-fetching from the archive.
           sudo apt-get install -y --no-install-recommends \
             -o Dir::Cache::archives="$HOME/apt-archives" \
-            pandoc texlive-xetex texlive-latex-recommended \
+            texlive-xetex texlive-latex-recommended \
             texlive-fonts-recommended lmodern
           sudo chown -R "$(id -u):$(id -g)" ~/apt-archives
+
+          # Pandoc is pinned rather than taken from the Ubuntu archive, which
+          # carries 3.1.3. Its LaTeX output differs from current pandoc in ways
+          # that change the rendered document -- image bounding, table layout --
+          # so an unpinned pandoc means the published PDF does not match the one
+          # anybody builds locally.
+          if [ ! -f ~/pandoc-deb/pandoc.deb ]; then
+            curl -fsSL -o ~/pandoc-deb/pandoc.deb \
+              "https://github.com/jgm/pandoc/releases/download/${PANDOC_VERSION}/pandoc-${PANDOC_VERSION}-1-amd64.deb"
+          fi
+          sudo dpkg -i ~/pandoc-deb/pandoc.deb
+          pandoc --version | head -1
 
       - name: Validate character files
         run: python3 scripts/files_validation.py -s scripts/schema.json
