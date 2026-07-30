@@ -25,12 +25,6 @@ This section includes: (1) a **character table** describing the main characters 
 - [External links](html/guidelines/en/11_links.html)
 
 
-### CATMuS members
-
-Members of the CATMuS community are: Ariane Pinche, Thibault Clérice, Alix Chagué, Jean-Baptiste Camps, 
-Malamatenia Vlachou-Efstathiou, Matthias Gille Levenson, Olivier Brisville-Fertin, Federico Boschetti, Franz Fischer, Michael Gervers, Agnès Boutreux, Avery Manton, Simon Gabay, Wouter Haverals, Mike Kestemont, Caroline Vandyck and Patricia O'Connor.
-
-
 ### Cite CATMuS
 
 > Ariane Pinche, Thibault Clérice, Alix Chagué, Jean-Baptiste Camps, Malamatenia Vlachou-

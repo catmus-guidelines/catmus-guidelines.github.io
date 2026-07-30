@@ -48,7 +48,9 @@ jobs:
       # Every package the template loads (fontspec, pdflscape, booktabs,
       # microtype, xcolor / fancyhdr, geometry, longtable, calc, hyperref) comes
       # from texlive-latex-recommended or texlive-latex-base, so the ~500 MB
-      # texlive-latex-extra is not installed.
+      # texlive-latex-extra is not installed. texlive-fonts-recommended is,
+      # though: hyperref's XeTeX backend loads ZapfDingbats (pzdr) for link
+      # borders and dies without it.
       - name: Cache the PDF toolchain packages
         uses: actions/cache@v4
         with:
@@ -64,7 +66,8 @@ jobs:
           # install from disk instead of re-fetching ~90 MB from the archive.
           sudo apt-get install -y --no-install-recommends \
             -o Dir::Cache::archives="$HOME/apt-archives" \
-            pandoc texlive-xetex texlive-latex-recommended lmodern
+            pandoc texlive-xetex texlive-latex-recommended \
+            texlive-fonts-recommended lmodern
           sudo chown -R "$(id -u):$(id -g)" ~/apt-archives
 
       - name: Validate character files
