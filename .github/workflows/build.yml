@@ -10,9 +10,9 @@ name: Build and deploy
 
 on:
   push:
-    branches: ["gh-pages", "guidelines-updates"]
+    branches: ["main"]
   pull_request:
-    branches: ["gh-pages"]
+    branches: ["main"]
   workflow_dispatch:
 
 permissions:
@@ -67,7 +67,7 @@ jobs:
 
   deploy:
     # Only the default branch publishes; other branches build as a check.
-    if: github.ref == 'refs/heads/gh-pages'
+    if: github.ref == 'refs/heads/main'
     needs: build
     environment:
       name: github-pages
