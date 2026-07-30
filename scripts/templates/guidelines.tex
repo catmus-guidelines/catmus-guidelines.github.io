@@ -1,0 +1,143 @@
+% Pandoc template for the CATMuS guidelines PDF.
+%
+% Deliberately minimal: this document is 90% tables of medieval glyphs and
+% manuscript images, so the template's job is to load Junicode through fontspec,
+% make longtable/landscape/graphics available, and stay out of the way.
+% Everything variable comes from data/guidelines/meta.yml via scripts/pdf.py.
+\documentclass[11pt,a4paper]{article}
+
+\usepackage{fontspec}
+\usepackage{calc}
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage{pdflscape}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{microtype}
+\usepackage[normalem]{ulem}
+\usepackage{xcolor}
+\usepackage[hidelinks,unicode,bookmarks,bookmarksnumbered]{hyperref}
+
+\geometry{margin=2.4cm,includefoot}
+
+% --------------------------------------------------------------------------- %
+% Junicode. The whole reason this is XeLaTeX and not pdfLaTeX: the sources are
+% full of codepoints (U+A751, U+0363, U+1DD3, U+204A ...) that no default TeX
+% font covers. Faces are given by explicit filename from a vendored directory so
+% the build is reproducible and never silently picks up a system copy.
+% --------------------------------------------------------------------------- %
+$if(junicodedir)$
+\setmainfont{$junicodeupright$}[
+  Path = $junicodedir$ ,
+  BoldFont = $junicodebold$ ,
+  ItalicFont = $junicodeitalic$ ,
+  BoldItalicFont = $junicodebolditalic$ ,
+  Ligatures = TeX
+]
+\newfontfamily\junicode{$junicodeupright$}[Path = $junicodedir$]
+$else$
+\newcommand{\junicode}{}
+$endif$
+
+% Glyphs quoted in running text and in table cells. Slightly enlarged: many are
+% combining marks or superscripts that are unreadable at body size.
+\newcommand{\glyph}[1]{{\junicode\large #1}}
+
+% Manuscript examples inside table cells. Both dimensions are capped: the width
+% so a wide strip cannot push the column past the page, and the height so a tall
+% crop cannot stretch its row over a whole page (which is what happens when only
+% the width is set -- the character table has 51 of these).
+\newcommand{\exampleimage}[1]{%
+  \includegraphics[width=\linewidth,height=1.3cm,keepaspectratio]{#1}%
+}
+
+% --------------------------------------------------------------------------- %
+% Pandoc boilerplate. These are defined in pandoc's *default* template, which a
+% custom template replaces wholesale -- without them the emitted document does
+% not compile: \real appears in every generated longtable column spec, and
+% \pandocbounded wraps every image.
+% --------------------------------------------------------------------------- %
+\newcommand{\real}[1]{#1}
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\providecommand{\passthrough}[1]{#1}
+
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{%
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi%
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+\makeatother
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.6em}
+\renewcommand{\arraystretch}{1.25}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\nouppercase{\leftmark}}
+\fancyfoot[C]{\small\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+$if(highlighting-macros)$
+$highlighting-macros$
+$endif$
+
+\hypersetup{
+  pdftitle={$title$},
+  pdfauthor={$for(author)$$author$$sep$, $endfor$},
+  pdfsubject={$subtitle$},
+  pdfkeywords={CATMuS, transcription, HTR, OCR, palaeography}
+}
+
+\begin{document}
+
+% --------------------------------------------------------------------------- %
+% Title page
+% --------------------------------------------------------------------------- %
+\begin{titlepage}
+\centering
+\vspace*{4cm}
+
+{\Huge\bfseries $title$\par}
+$if(subtitle)$
+\vspace{0.8cm}
+{\Large $subtitle$\par}
+$endif$
+
+\vspace{2.5cm}
+% One flowing author line, as in the paper this credits, rather than a stacked
+% list -- the last entry is "et al.", which reads wrongly on a line of its own.
+{\large $for(author)$$author$$sep$, $endfor$\par}
+
+\vfill
+
+\begin{tabular}{rl}
+$if(version)$Version & $version$ \\$endif$
+$if(builddate)$Built & $builddate$ \\$endif$
+$if(commit)$Commit & \texttt{$commit$} \\$endif$
+$if(siteurl)$Online & \url{$siteurl$} \\$endif$
+$if(licence)$Licence & $licence$ \\$endif$
+\end{tabular}
+
+\vspace{1cm}
+\end{titlepage}
+
+$if(toc)$
+\hypersetup{linkcolor=black}
+\setcounter{tocdepth}{$toc-depth$}
+\tableofcontents
+\clearpage
+$endif$
+
+$body$
+
+\end{document}

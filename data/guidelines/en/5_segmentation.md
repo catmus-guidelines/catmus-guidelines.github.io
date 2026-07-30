@@ -1,6 +1,6 @@
 ## Word Segmentation
 
-<span class="rule">Word segmentation **MUST** be transcribed as closely as possible to the source, without normalization.</span>
+Word segmentation **MUST** be transcribed as closely as possible to the source, without normalization.
 
 However, the medieval period marks a transition from *scripta continua* (continuous script without spaces) to the use of typographic spaces between words, a practice fully established only with the advent of print technology. Word separation in medieval manuscripts—and sometimes in manuscripts more generally—is therefore **not standardized**, making it inherently complex.[^1].  
 
@@ -25,12 +25,12 @@ When in doubt, word segmentation should follow the usage of the contemporary or 
 
 Hyphenation refers to the indication that a word has been split at the end of a line. While it appears inconsistently in medieval manuscripts, it is frequent in modern and contemporary sources.  
   
-<span class="rule">Hyphenation **MUST** be transcribed whenever it appears in the source.</span>  
+Hyphenation **MUST** be transcribed whenever it appears in the source.  
 
-<span class="rule">A hyphenation symbol **MUST NOT** be added if it is not present in the source.</span>  
+A hyphenation symbol **MUST NOT** be added if it is not present in the source.  
 
-<span class="rule">The character "-" [U+002D] **MUST** be used to transcribe the hyphenation symbol</span>,  regardless of its form in the source.
-<span class="rule">If the hyphenation symbol is repeated at the beginning of the next line, it **MUST** also be transcribed as "-" [U+002D].</span>  
+The character "-" [U+002D] **MUST** be used to transcribe the hyphenation symbol,  regardless of its form in the source.
+If the hyphenation symbol is repeated at the beginning of the next line, it **MUST** also be transcribed as "-" [U+002D].  
 
 
 | BnF,  département Littérature et art, Y2-27423             | Transcription                                                                                                                        |
@@ -39,7 +39,7 @@ Hyphenation refers to the indication that a word has been split at the end of a 
 
 ## Diastoles
 
-Sometimes, diastoles (vertical or oblique pen strokes) are drawn between two contiguous letters to indicate that they belong to different words. Diastoles (vertical or oblique pen strokes) **MUST** be transcribed with the sign "/" [U+002F]</span>. 
+Sometimes, diastoles (vertical or oblique pen strokes) are drawn between two contiguous letters to indicate that they belong to different words. Diastoles (vertical or oblique pen strokes) **MUST** be transcribed with the sign "/" [U+002F]. 
 
 | University of Pennsylvania, ms. 660                    | Transcription                                                                                                 |
 |--------------------------------------------------------|---------------------------------------------------------------------------------------------------------------|

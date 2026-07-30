@@ -1,11 +1,14 @@
+# Build output. The site is generated into _site/ and published from there by
+# CI, so nothing generated is ever committed. The entries this replaces
+# (json/, html/*, index.html, 404.html, search.html) existed because the old
+# build wrote its output back into the repository root.
+_site/
+
+# Local tooling
 .idea/
 venv/
-json/
-404.html
-search.html
-index.html
+__pycache__/
+*.pyc
 
-html/*
 .DS_Store
 ._*
-

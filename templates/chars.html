@@ -1,117 +1,139 @@
+{# One page per character. Fields come from the character table (every character)
+   optionally enriched by a data/characters/*/*.md file (a few characters). Every
+   block below is therefore conditional: the table has no columns for position,
+   prose description or named allographs, so a page must degrade cleanly when
+   only the table supplied the data. #}
 <div class="chrome:content">
-   <div class="chrome:main">
-      <h1>{{ label }}</h1>
-      <div id="description">
-      </div>
+   <div class="chrome:main" id="main">
+      <h1>
+         <span class="indexchars character-display">{{ character.char }}</span>
+         {{ character.name | default(character.label, true) | default(character.char, true) }}
+      </h1>
       <hr/>
+
+      {% if character.description_html %}
+      <div id="description" class="natural_language_desc">{{ character.description_html | safe }}</div>
+      {% elif character.description %}
+      <div id="description" class="natural_language_desc"><p>{{ character.description }}</p></div>
+      {% endif %}
+
       <dl>
+         {% if character.name %}
          <dt>Name</dt>
-         <dd>{{ name }}</dd>
-         <dt>Code Unicode</dt>
-         <dd>{{ code }}</dd>
-         <dt>Char</dt>
-         <dd class="indexchars">{{ char }}</dd>
-         <dt>Group</dt>
-         <dd>{{ group }}</dd>
-         <dt>Position</dt>
-         <dd><div class="centered-element">
-            <table  class="position_table">
-               <tr>
-                  {% if "A" in position %}
-                  <td class="active">X</td>
-                  {% else %}
-                  <td class="inactive">X</td>
-                  {% endif %}
-                  {% if "B" in position %}
-                  <td class="active">X</td>
-                  {% else %}
-                  <td class="inactive">X</td>
-                  {% endif %}
-                  {% if "C" in position %}
-                  <td class="active">X</td>
-                  {% else %}
-                  <td class="inactive">X</td>
-                  {% endif %}
-               </tr>
-               <tr>
-                  {% if "D" in position %}
-                  <td class="active">X</td>
-                  {% else %}
-                  <td class="inactive">X</td>
-                  {% endif %}
-                  {% if "E" in position %}
-                  <td class="active">X</td>
-                  {% else %}
-                  <td class="inactive">X</td>
-                  {% endif %}
-                  {% if "F" in position %}
-                  <td class="active">X</td>
-                  {% else %}
-                  <td class="inactive">X</td>
-                  {% endif %}
-               </tr>
-               <tr>
-                  {% if "G" in position %}
-                  <td class="active">X</td>
-                  {% else %}
-                  <td class="inactive">X</td>
-                  {% endif %}
-                  {% if "H" in position %}
-                  <td class="active">X</td>
-                  {% else %}
-                  <td class="inactive">X</td>
-                  {% endif %}
-                  {% if "I" in position %}
-                  <td class="active">X</td>
-                  {% else %}
-                  <td class="inactive">X</td>
-                  {% endif %}
-               </tr>
-            </table>
-         </div>
-         </dd>
-         <dt>Description</dt>
-         <dd>{{ description }}</dd>
-         {% if other_names %}
-         <dt>Other names</dt>
-         <ul>
-            {% for other_name in other_names %}
-            <li>{{ other_name }}</li>
-            {% endfor %}
-         </ul>
+         <dd>{{ character.name }}</dd>
          {% endif %}
-         <dt>Examples</dt>
-         <dd>{% for example in examples %}
-            <span class="image"><img src="{{ abspath }}/{{ example }}" alt="Some char image"/></span>
-            {% endfor %}
-         </dd>
-         {% if corresp %}
-         <div>
-            <h6>Related characters</h6>
+
+         <dt>Character</dt>
+         <dd class="indexchars">{{ character.char }}</dd>
+
+         {% if character.code and character.code != '-' %}
+         <dt>Unicode</dt>
+         <dd>{{ character.code }}</dd>
+         {% endif %}
+
+         <dt>Class</dt>
+         <dd>{{ character.group }}</dd>
+
+         {% if character.label %}
+         <dt>Label</dt>
+         <dd>{{ character.label }}</dd>
+         {% endif %}
+
+         {% if character.other_names %}
+         <dt>Other names</dt>
+         <dd>
             <ul>
-               {% for corresp_char in corresp %}
-               <li class="retrait">
-                  {{ corresp_char['name'] }}
-                  <dl class="retrait">
-                     <dt>Char</dt>
-                     <dd class="indexchars">{{ corresp_char['transcription'] }}</dd>
-                     <dt>Code</dt>
-                     <dd>{{ corresp_char['code'] }}</dd>
-                     {% if corresp_char['examples'] %}
-                     <dt> Examples</dt>
-                     <dd>  {% for corresponding_example in corresp_char['examples'] %}
-                        <span class="image"><img src="{{ abspath }}/{{ corresponding_example }}" alt="some other image"/></span>
-                        {% endfor %}
-                     </dd>
-                     {% endif %}
-                  </dl>
-               </li>
+               {% for other_name in character.other_names %}
+               <li>{{ other_name }}</li>
                {% endfor %}
             </ul>
-         </div>
+         </dd>
+         {% endif %}
+
+         {% if character.position %}
+         <dt>Position</dt>
+         <dd>
+            <div class="centered-element">
+               <table class="position_table">
+                  {% for row in [['A', 'B', 'C'], ['D', 'E', 'F'], ['G', 'H', 'I']] %}
+                  <tr>
+                     {% for cell in row %}
+                     <td class="{{ 'active' if cell in character.position else 'inactive' }}">X</td>
+                     {% endfor %}
+                  </tr>
+                  {% endfor %}
+               </table>
+            </div>
+         </dd>
+         {% endif %}
+
+         {% if character.examples %}
+         <dt>Examples</dt>
+         <dd>
+            {% for example in character.examples %}
+            <span class="image"><img src="{{ example }}" alt="Manuscript example of {{ character.name | default(character.char, true) }}"/></span>
+            {% endfor %}
+         </dd>
          {% endif %}
       </dl>
-      <div id="next_previous"></div>
+
+      {% if character.corresp %}
+      <h2>Related characters</h2>
+      <ul class="corresp-list">
+         {% for corresp in character.corresp %}
+         {% if corresp is mapping %}
+         {# Enriched form, from a markdown file: name, code and its own examples. #}
+         <li class="retrait">
+            {{ corresp['name'] | default('Related character', true) }}
+            <dl class="retrait">
+               {% if corresp['transcription'] %}
+               <dt>Character</dt>
+               <dd class="indexchars">{{ corresp['transcription'] }}</dd>
+               {% endif %}
+               {% if corresp['code'] %}
+               <dt>Unicode</dt>
+               <dd>{{ corresp['code'] }}</dd>
+               {% endif %}
+               {% if corresp['examples'] %}
+               <dt>Examples</dt>
+               <dd>
+                  {% for example in corresp['examples'] %}
+                  <span class="image"><img src="{{ example }}" alt="Manuscript example"/></span>
+                  {% endfor %}
+               </dd>
+               {% endif %}
+            </dl>
+         </li>
+         {% else %}
+         {# Plain form, from the table's Allographs column: a bare glyph. #}
+         <li><span class="indexchars character-display">{{ corresp }}</span></li>
+         {% endif %}
+         {% endfor %}
+      </ul>
+      {% endif %}
+
+      <nav id="next_previous" class="next-previous" aria-label="Character navigation">
+         {% if previous_character %}
+         <span class="previous">
+            <a href="/html/characters/{{ previous_character.slug }}.html" rel="prev">
+               &larr; <span class="indexchars">{{ previous_character.char }}</span>
+               {{ previous_character.name | default(previous_character.char, true) | lower }}
+            </a>
+         </span>
+         {% endif %}
+         {% if next_character %}
+         <span class="next">
+            <a href="/html/characters/{{ next_character.slug }}.html" rel="next">
+               <span class="indexchars">{{ next_character.char }}</span>
+               {{ next_character.name | default(next_character.char, true) | lower }} &rarr;
+            </a>
+         </span>
+         {% endif %}
+      </nav>
+
+      {% if character.source_md %}
+      <p class="source-note">Described in <code>{{ character.source_md }}</code>.</p>
+      {% endif %}
    </div>
    {% include 'templates/sidebar.html' %}
 </div>

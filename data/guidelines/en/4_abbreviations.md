@@ -1,7 +1,7 @@
 # Abbreviations 
 
 ## General Rule
-<span class="rule">Abbreviations **MUST** be reproduced and **MUST NOT** be expanded in the transcription.</span>
+Abbreviations **MUST** be reproduced and **MUST NOT** be expanded in the transcription.
 *Expanding abbreviations at the transcription stage—where automated tools lack contextual and linguistic information **MUST** be avoided, as it risks introducing inconsistencies and degrading model performance. We therefore consider that abbreviation expansion **SHOULD** be treated as a separate normalization task, performed after the transcription stage.*
 
 
@@ -61,8 +61,8 @@ For commonly abbreviated letters (e.g., "ꝑ" [U+A751], "⁊" [U+204A], "&" [U+0
 ### Superscript Letters
 In modern and contemporary documents, abbreviations often take the form of superscripted letters (e.g., "1ˢᵗ" for *first*, "Mᵉˡˡᵉ" for *Mademoiselle*). The following rules **MUST** be applied :
 
-1. <span class="rule">Superscript sequential additions must be transcribed with superscript caracters, see keyboard in section [Tools](html/guidelines/en/9_tools.html). *P.S : <span class="rule">Superscript sequential additions have been transcribed in the first datasets using a pseudo markup system based on "^" [U+005E], which marks the beginning of the sequence.*
+1. Superscript sequential additions must be transcribed with superscript caracters, see keyboard in section [Tools](html/guidelines/en/9_tools.html). *P.S : Superscript sequential additions have been transcribed in the first datasets using a pseudo markup system based on "^" [U+005E], which marks the beginning of the sequence.*
 
-3. <span class="rule">Interlinear corrections **MUST NOT** be confused with superscript sequential additions. If a superscript sequence forms a complete word or a sequence of words, it **MUST** be transcribed on its own line.</span>
+3. Interlinear corrections **MUST NOT** be confused with superscript sequential additions. If a superscript sequence forms a complete word or a sequence of words, it **MUST** be transcribed on its own line.
 
-4. <span class="rule">In modern documents, a unique letter used above a word, as it can be found in medieval documents, **SHOULD** be transcribed with the corresponding combining letter, combined to the character it relates to</span>.
+4. In modern documents, a unique letter used above a word, as it can be found in medieval documents, **SHOULD** be transcribed with the corresponding combining letter, combined to the character it relates to.

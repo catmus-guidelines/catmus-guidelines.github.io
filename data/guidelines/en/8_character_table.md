@@ -39,7 +39,7 @@ This table is currently limited to Middle Ages.
     <td>U+0142</td>
     <td>LATIN SMALL LETTER L WITH STROKE</td>
     <td></td>
-    <td><img src="/../../examples/l_strike/eutyches_78r_lbarre.png" alt="Graphical Example" /> </td>
+    <td><img src="../../examples/l_strike/eutyches_78r_lbarre.png" alt="Graphical Example" /> </td>
     <td></td>
   </tr>
   <tr>
@@ -205,6 +205,7 @@ This table is currently limited to Middle Ages.
     <td>COMBINING LATIN SMALL LETTER A</td>
     <td></td>
     <td><img src="../../examples/superscripts/a/asuscrit_Vaticana_Reglat_1616.png" alt="a"></td>
+    <td></td>
   </tr>
    <tr>
     <td>Combining Abbreviation</td>
@@ -213,6 +214,7 @@ This table is currently limited to Middle Ages.
     <td>FLATTENED OPEN A ABOVE</td>
     <td></td>
     <td><img src="../../examples/superscripts/a/abbrgrant.png" alt="a" /> <img src="../../examples/superscripts/a/Phil10a135.png" alt="A Superscript Combined"/></td>
+    <td></td>
   </tr>
   <tr>
     <td>Combining Abbreviation</td>
@@ -397,6 +399,7 @@ This table is currently limited to Middle Ages.
     <td></td>
     <td>quod</td>
     <td> <img src="../../examples/quod-Et/quod_Montpelier.H 318.png" alt="example" /> <img src="../../examples/quod-Et/quod_egerton821.png" alt="example" /> </td>
+    <td></td>
   </tr>
   <tr>
     <td>Ligature</td>

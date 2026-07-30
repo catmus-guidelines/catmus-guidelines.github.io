@@ -3,7 +3,7 @@
 Since alphabet compositions and letterform variations are not consistent over time, some letters having emerged (such as w) while others tended to disappear (such as *ſ* and *ƞ*), we aimed to find a balanced approach between faithful rendering of the source and feasibility and reproducibility of the method across a broad scientific community.
 
 ### General Principles
-<span class="rule">**The transcription of alphabetic and numerical signs MUST follow the modern Latin alphabet.**</span>
+**The transcription of alphabetic and numerical signs MUST follow the modern Latin alphabet.**
 *This ensures consistency and readability, as historical variations in letter shapes are too numerous and complex to classify systematically.*
 
 
@@ -14,20 +14,20 @@ Since alphabet compositions and letterform variations are not consistent over ti
 - Stylistic elements (e.g., italics, bold) **MUST NOT** be transcribed.
   *These do not involve distinct characters.*
 
-<span class="rule"> **Core Rule**: The transcription **MUST** follow the letters as they appear in the source, with **NO** editorial corrections.
-*This preserves the source text, which is critical for historical and linguistic analysis.* </span>
+**Core Rule**: The transcription **MUST** follow the letters as they appear in the source, with **NO** editorial corrections.
+*This preserves the source text, which is critical for historical and linguistic analysis.* 
 
 |BnF, Département des manuscrits, Smith-Lesouëf 22                                  | Transcription                                                                                                                                                                        |
 |--------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| ![alt text](../img/BnF_Smith-Lesouëf_general.png) | Exordio litteris distinguere persuadeã: Pa-<br />rebo clementiȩ tuȩ & operam dabo aliquid<br />ingenii: sed parum laboris occupare. Nam  ̧q̃<br />poscis cum ab historicis studiosissimisq: ue-  |
+| ![alt text](../img/BnF_Smith-Lesouëf_general.png) | Exordio litteris distinguere persuadeã: Pa-<br />rebo clementiȩ tuȩ & operam dabo aliquid<br />ingenii: sed parum laboris occupare. Nam  ̧q̃<br />poscis cum ab historicis studiosissimisq: ue-  |
 
 ## Ligatures
 
-<span class="rule">As ligatures represent graphical variations combining two letters into a single form, ligatures MUST be transcribed as separate letters.</span>
+As ligatures represent graphical variations combining two letters into a single form, ligatures MUST be transcribed as separate letters.
 
-<span class="rule">In **medieval documents**, the ampersand (`&` [U+0026]) **MUST** be transcribed as is.</span> This is based on the fact that this sign can bear additional abbreviation marks, such as macrons to indicate "etiam" in Latin.
+In **medieval documents**, the ampersand (`&` [U+0026]) **MUST** be transcribed as is. This is based on the fact that this sign can bear additional abbreviation marks, such as macrons to indicate "etiam" in Latin.
 
-<span class="rule">In **modern and contemporary** documents, both "&" [U+0026] and "ß" [U+00DF] **MUST** be transcribed as is.</span>
+In **modern and contemporary** documents, both "&" [U+0026] and "ß" [U+00DF] **MUST** be transcribed as is.
 
 | BnF, Département Réserve des livres rares, RES-Y2-746            | Transcription         |
 |------------------------------------------------------------------|-----------------------|
@@ -37,8 +37,8 @@ Since alphabet compositions and letterform variations are not consistent over ti
 
 ### In medieval documents
 
-<span class="rule">In **medieval documents**, since the use of these signs does not distinguish between vocalic and consonantal uses, ramist letters are purely allographic variations. Therefore, Ramist letters (`u`/`v`, `i`/`j`) **MUST** be transcribed as `i` and `u`, respectively. 
-</span>
+In **medieval documents**, since the use of these signs does not distinguish between vocalic and consonantal uses, ramist letters are purely allographic variations. Therefore, Ramist letters (`u`/`v`, `i`/`j`) **MUST** be transcribed as `i` and `u`, respectively. 
+
 
 | BnF, Département des manuscrits, Latin, 6                              | Transcription                                                                                                                                                                                  |
 |------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -60,7 +60,7 @@ In **printed sources**, the transcription **MUST** follow the printer’s usage.
 
 ## Capital letters
 
-<span class="rule">Lowercase letters **MUST NOT** be normalized to uppercase.</span>
+Lowercase letters **MUST NOT** be normalized to uppercase.
 
 If the distinction between uppercase and lowercase is unclear, the transcription **MUST** remain consistent.
 
@@ -71,15 +71,15 @@ If the distinction between uppercase and lowercase is unclear, the transcription
 
 Series of capital letters or emphasized letters, such as the one found in running title, **MAY** be transcribed as series of capital letter, depending on their inner variation.
 
-<span class="rule">Drop capitals and decorated letters **MUST** be transcribed as uppercase./span> and MUST be considered as not a part of the same text line as the line they semantically belong to: they should be identified as drop capitals during the image segmentation phase. *Drop capitals often misalign with the baseline, so treating them separately avoids segmentation errors.*
+Drop capitals and decorated letters **MUST** be transcribed as uppercase. and MUST be considered as not a part of the same text line as the line they semantically belong to: they should be identified as drop capitals during the image segmentation phase. *Drop capitals often misalign with the baseline, so treating them separately avoids segmentation errors.*
 
-<span class="rule"> Oversized capitals expanding above the baseline, particularly at the beginning of paragraphs, **MUST** be transcribed</span>, even if part of the letter is missing in the mask's polygon.
+Oversized capitals expanding above the baseline, particularly at the beginning of paragraphs, **MUST** be transcribed, even if part of the letter is missing in the mask's polygon.
 
 
 ## Digits and numerals
 
 ### General Rules for Numerals
-<span class="rule">Numbers **MUST** be transcribed as they appear in the document, whether as Roman or Arabic numerals.</span>
+Numbers **MUST** be transcribed as they appear in the document, whether as Roman or Arabic numerals.
 *This preserves the original format, which may be significant for historical or stylistic analysis.*
 
 - For Roman numerals, ramist standardization (u, v, i, j) **MAY** be applied following the rules specified above.

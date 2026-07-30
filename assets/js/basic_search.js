@@ -1,65 +1,50 @@
-let miniSearch = new MiniSearch({
-  fields: ['title', 'node', 'url'], // fields to index for full-text search
-  storeFields: ['title', 'node', 'url'], // fields to return with search results,
-  idField: 'id',
-  searchOptions: {
-    boost: { 'node': 2 },
-    fuzzy: false
-  }
-})
+/* Client-side search over json/index.json, built by scripts/index_site.py.
+   Results are handed to search.html through sessionStorage. */
 
-
-   
-function fetch_json() {
-var all_chars_url = url + "/json/index.json"
-let itemsById = {}
-fetch(all_chars_url)
-  .then(response => response.json())
-  .then((allItems) => {
-    itemsById = allItems.reduce((byId, item) => {
-      byId[item.id] = item
-      return byId
-    }, {})
-    console.log(allItems);
-    return miniSearch.addAll(allItems)
-  }).then(() => {
-  })
-}
-  
-
-// Index all documents
-
-
-// Search with default options
-// => [
-//   { id: 2, title: 'Zen and the Art of Motorcycle Maintenance', category: 'fiction', score: 2.77258, match: { ... } },
-//   { id: 4, title: 'Zen and the Art of Archery', category: 'non-fiction', score: 1.38629, match: { ... } }
-// ]
-
-
-var head = document.head
-console.log(head)
-const url = head.getAttribute("about");
-
-fetch_json();
-document.getElementById("search").addEventListener("submit", function (event) {
-event.preventDefault();
-console.log("Initiating search")
-input_value = document.getElementById("search_input_guidelines").value;
-let results = miniSearch.search(input_value)
-var myList = []
-for (result  of results) {
-    var myDict = {}
-    myDict['title'] = result['title']
-    myDict['url'] = result['url']
-    myDict['node'] = result['node']
-    myDict['id'] = result['id']
-    myList.push(myDict)
-}
-sessionStorage.setItem('myArray', JSON.stringify(myList));
-sessionStorage.setItem('search_string', input_value);
-window.location.replace(url + "/search.html");
+const miniSearch = new MiniSearch({
+   fields: ['title', 'node'],
+   storeFields: ['title', 'node', 'url', 'anchor'],
+   idField: 'id',
+   searchOptions: {
+      boost: { node: 2 },
+      prefix: true,
+      fuzzy: 0.15
+   }
 });
 
+let indexReady = fetch('/json/index.json')
+   .then((response) => {
+      if (!response.ok) {
+         throw new Error('index.json returned ' + response.status);
+      }
+      return response.json();
+   })
+   .then((items) => miniSearch.addAll(items))
+   .catch((error) => console.error('search index unavailable:', error));
 
-
+const form = document.getElementById('search');
+if (form) {
+   form.addEventListener('submit', function (event) {
+      event.preventDefault();
+      const query = document.getElementById('search_input_guidelines').value.trim();
+      if (!query) {
+         return;
+      }
+      // The index may still be loading on a fast submit, so wait on it rather
+      // than searching an empty index and reporting no results.
+      indexReady.then(() => {
+         const results = miniSearch.search(query).slice(0, 100).map((result) => ({
+            title: result.title,
+            url: result.url,
+            // `anchor` is the id stamped onto the indexed block; the previous
+            // version used the record id, which is not an element id at all, so
+            // every result link landed at the top of the page.
+            anchor: result.anchor,
+            node: result.node
+         }));
+         sessionStorage.setItem('catmus_results', JSON.stringify(results));
+         sessionStorage.setItem('catmus_query', query);
+         window.location.assign('/search.html');
+      });
+   });
+}

@@ -1,0 +1,81 @@
+# Build the guidelines site and publish it to GitHub Pages.
+#
+# The previous workflow uploaded `path: '.'` -- the whole repository -- so the
+# published site included every markdown source, the scripts, and a 35 MB
+# data.zip. It also shuttled the output through three separate artifacts to
+# reassemble it in the deploy job. The build now emits a complete tree into
+# _site/, so there is exactly one artifact and nothing unpublished leaks out.
+
+name: Build and deploy
+
+on:
+  push:
+    branches: ["gh-pages", "guidelines-updates"]
+  pull_request:
+    branches: ["gh-pages"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: scripts/requirements.txt
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r scripts/requirements.txt
+
+      # pandoc and XeLaTeX build the downloadable PDF. If this step is removed
+      # the site still builds -- the PDF is skipped and its download links are
+      # omitted rather than left pointing at a missing file.
+      - name: Install PDF toolchain
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            pandoc texlive-xetex texlive-latex-recommended texlive-latex-extra \
+            texlive-fonts-recommended lmodern
+
+      - name: Validate character files
+        run: python3 scripts/files_validation.py -s scripts/schema.json
+
+      # --strict fails the build on a broken internal link. The image paths here
+      # are written relative to the markdown sources and have drifted between
+      # Unicode normalisation forms before, which is not something to discover
+      # from a reader's bug report.
+      - name: Build site
+        run: python3 scripts/build.py --strict
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    # Only the default branch publishes; other branches build as a check.
+    if: github.ref == 'refs/heads/gh-pages'
+    needs: build
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

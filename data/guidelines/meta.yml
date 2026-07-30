@@ -1,0 +1,35 @@
+# Front matter for the downloadable PDF (scripts/pdf.py) and page metadata.
+#
+# The authors and their order are taken from the CATMuS-Medieval paper, quoted
+# under "Cite CATMuS" in data/guidelines/en/0_index.md (hal-04346939), so the PDF
+# credits the same people in the same order as the publication it accompanies.
+
+title: CATMuS
+subtitle: Consistent Approaches to Transcribing ManuScripts
+description: >-
+  Common rules for the transcription of documents from the Middle Ages to today,
+  collectively established by the CATMuS community.
+
+authors:
+  - Ariane Pinche
+  - Thibault Clérice
+  - Alix Chagué
+  - Malamatenia Vlachou-Efstathiou
+  - Simon Gabay
+
+# The citation ends "et al."; the full membership is listed under "CATMuS
+# members" on the presentation page. Printed after the named authors.
+corporate_author: et al.
+
+url: https://catmus-guidelines.github.io
+repository: https://github.com/catmus-guidelines/catmus-guidelines.github.io
+
+# TODO: the repository has no LICENSE file and no licence statement anywhere in
+# the content. Left blank on purpose -- publishing a PDF under an invented licence
+# would be worse than publishing one with no licence stated. Fill this in (and add
+# a LICENSE file) when the community has decided.
+license: ""
+
+# Shown as the document version on the title page. The build also stamps the
+# short commit hash and build date automatically.
+version: ""

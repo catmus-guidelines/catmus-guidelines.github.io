@@ -1,0 +1,51 @@
+{# Index of every character, generated from the same parsed table as the
+   individual pages, so the two can never disagree. #}
+<div class="chrome:content">
+   <div class="chrome:main" id="main">
+      <h1>{{ title }}</h1>
+      <hr/>
+      <p>
+         {{ characters | length }} characters, parsed from the
+         <a href="/html/guidelines/{{ lang }}/character_table.html">table of characters</a>.
+      </p>
+      <div class="table-scroll">
+         <table id="character_index">
+            <thead>
+               <tr>
+                  <th>Class</th>
+                  <th>Character</th>
+                  <th>Name</th>
+                  <th>Examples</th>
+                  <th>Label</th>
+                  <th>Allographs</th>
+               </tr>
+            </thead>
+            <tbody>
+               {% for character in characters %}
+               <tr>
+                  <td>{{ character.group }}</td>
+                  <td class="indexchars">{{ character.char }}</td>
+                  <td>
+                     <a href="/html/characters/{{ character.slug }}.html">
+                        {{ character.name | default(character.label, true) | default(character.char, true) }}
+                     </a>
+                  </td>
+                  <td>
+                     {# Two examples is enough for an index row; the character's own
+                        page shows the full set. #}
+                     {% for example in character.examples[:2] %}
+                     <span class="image"><img src="{{ example }}" alt=""/></span>
+                     {% endfor %}
+                  </td>
+                  <td>{{ character.label }}</td>
+                  <td class="indexchars">
+                     {% for corresp in character.corresp %}{% if corresp is mapping %}{{ corresp['transcription'] }}{% else %}{{ corresp }}{% endif %}&#160;{% endfor %}
+                  </td>
+               </tr>
+               {% endfor %}
+            </tbody>
+         </table>
+      </div>
+   </div>
+   {% include 'templates/sidebar.html' %}
+</div>

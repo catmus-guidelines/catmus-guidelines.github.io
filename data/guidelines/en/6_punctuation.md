@@ -2,17 +2,17 @@
 ## Punctuation 
 
 ### General Rule
-<span class="rule">Punctuation in the source **MUST** be transcribed exactly as it appears in the document and **MUST NOT** be normalized. Spacing **MUST** be standardized as follows:
+Punctuation in the source **MUST** be transcribed exactly as it appears in the document and **MUST NOT** be normalized. Spacing **MUST** be standardized as follows:
 - No double spaces.
 - No space before punctuation marks.
-- A single space after punctuation marks, *except for quotation marks and apostrophes*.</span>
+- A single space after punctuation marks, *except for quotation marks and apostrophes*.
 
 | Paris, BnF, RESP-Y2-2462, 18th c.                             | Transcription                           |
 |--------------------------------------------------|-----------------------------------------|
 | ![alt text](../img/BnF_RESP-Y2-2462_ponctuation.png) | vagues et d'abstractions; et celui  |
 
 ### Medieval Sources
-<span class="rule">Punctuation transcription in medieval sources **MUST** be simplified to ensure consistency.</span>
+Punctuation transcription in medieval sources **MUST** be simplified to ensure consistency.
 
 Because the dot-based punctuation system displays a wide variety of shapes (simple dot, middle dot, punctus elevatus, double dot, colon, semicolon, etc.), and since their use frequently varies across scribes and manuscripts, the following simplification rules MUST be applied:
 
@@ -34,7 +34,7 @@ Any such adaptation *MUST* be explicitly documented and justified.
 
 | Paris, BnF, esp. 225 , 15-16th c.                                | Transcription                           |
 |--------------------------------------------------|-----------------------------------------|
-| ![alt text](../img/Paris_BnF_esp_225_Punctuation.png) | De plants eplors/ tots estam molt fornits |
+| ![alt text](../img/Paris_BnF_esp_225_punctuation.png) | De plants eplors/ tots estam molt fornits |
 
 
 - At the end of a line, all hyphenation marks **MUST** be represented by the sign <-> [U+00AC].
@@ -44,7 +44,7 @@ Any such adaptation *MUST* be explicitly documented and justified.
 | ![alt text](../img/BnF_Y2-82_Punctuation.png) | tira uers eulx et auisa la belle bellis- |
 
 ### Modern and Contemporary Sources
-<span class="rule">Punctuation marks in modern and contemporary sources **MUST** be transcribed exactly as they appear in the source. This includes periods, commas, exclamation marks, question marks, and similar signs, which **MUST** be represented faithfully.</span> 
+Punctuation marks in modern and contemporary sources **MUST** be transcribed exactly as they appear in the source. This includes periods, commas, exclamation marks, question marks, and similar signs, which **MUST** be represented faithfully. 
 
 #### Standardization of Allographic Variations
 Some graphical variations are considered allographic. In such cases, **the representation MUST be reduced to a single standardized sign**:

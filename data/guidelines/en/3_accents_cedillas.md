@@ -1,13 +1,13 @@
 ## Accents
 
 ### Modern and Contemporary Documents
-<span class="rule">Accents **MUST** be transcribed whenever they appear in the source..</span>
+Accents **MUST** be transcribed whenever they appear in the source..
 
 | Paris, AD75, D1U10 386, 19^th c.              | Transcription                           |
 |--------------------------------------------|-----------------------------------------|
 | ![alt text](../img/Paris_AD75_D1U10_386_accent.png)|  la cause fut renvoyé devant le Bureau Général du dit Conseil séant le |
 
-<span class="rule">In medieval documents, accents are relatively marginal and SHOULD be transcribed when they occur. **Be careful: pointed *i* MUST NOT be transcribed with an acute accent, but simply as a regular *i*.**</span>
+In medieval documents, accents are relatively marginal and SHOULD be transcribed when they occur. **Be careful: pointed *i* MUST NOT be transcribed with an acute accent, but simply as a regular *i*.**
 
 |Paris, BnF, Arsenal, 5103, 15th c.        | Transcription                    |
 |--------------------------------------------------|-----------------------------------------|
@@ -15,7 +15,7 @@
 
 ### Medieval Documents
 
-<span class="rule">Accents are relatively marginal in medieval documents and **SHOULD **be transcribed when they occur.</span>
+Accents are relatively marginal in medieval documents and **SHOULD **be transcribed when they occur.
 
 #### Special Cases
 - When an accent is misaligned with the letter it belongs to—often the case in cursive writing—the accent **MUST** be transcribed in its expected position, rather than at the place where it was physically drawn.
@@ -28,13 +28,13 @@ Automatic baseline or polygon detection may exclude an accent traced too far abo
 
 ### General Rule
 
-<span class="rule">Cedillas **MUST** be transcribed using the combining cedilla [U+0327].</span>
+Cedillas **MUST** be transcribed using the combining cedilla [U+0327].
 
 |Paris, AN, MC/CM - Projet Lectaurep, 19^th c.                             | Transcription                           |
 |--------------------------------------------------|-----------------------------------------|
 | ![alt text](../img/Paris_AN_MC_CM_cedille.png) | Parisot, ---- françois Etienne -----  |
 
-NB: In Latin manuscripts from the 10<sup>th</sup> to the 13<sup>th</sup> centuries, cedilla-marked e’s frequently represent the Latin diphthong ae. <span class="rule">Cedillas **MUST** therefore be transcribed in medieval French manuscripts as well, in order to ensure consistent encoding.</span>
+NB: In Latin manuscripts from the 10<sup>th</sup> to the 13<sup>th</sup> centuries, cedilla-marked e’s frequently represent the Latin diphthong ae. Cedillas **MUST** therefore be transcribed in medieval French manuscripts as well, in order to ensure consistent encoding.
 
  
 | Paris, Mazarine, Inc. 59, 15^th c.   | Transcription       |

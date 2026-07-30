@@ -1,84 +1,74 @@
-    <div class="chrome:sidebar">
-                  <a href="{{abspath}}/index.html" class="chrome:sidebar_item chrome:active_sidebar_item">
-                  <span class="chrome:sidebar_item_text">Presentation</span>
-                  </a>
-                  <a href="{{abspath}}/tools.html" class="chrome:sidebar_item chrome:active_sidebar_item">
-                  <span class="chrome:sidebar_item_text">Tools and keyboards</span>
-                  </a>
-                  <a href="{{abspath}}/datasets.html" class="chrome:sidebar_item chrome:active_sidebar_item">
-                  <span class="chrome:sidebar_item_text">Datasets</span>
-                  </a>
-                  <hr>
-                  <button id="sidebar_item:lettres" class="chrome:sidebar_item chrome:sidebar_item_collapsible chrome:sidebar_item_expanded" onclick="toggleAccordian('sidebar_item:lettres')">
-                     <span class="chrome:sidebar_item_text">Transcription principles</span>
-                     <div class="chrome:collapsible_sub_nav_item_icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" focusable="false" role="presentation">
-                           <path fill="currentColor" d="M1.646 3.646a.5.5 0 01.638-.057l.07.057L6 7.293l3.646-3.647a.5.5 0 01.638-.057l.07.057a.5.5 0 01.057.638l-.057.07-4 4a.5.5 0 01-.638.057l-.07-.057-4-4a.5.5 0 010-.708z"></path>
-                        </svg>
-                     </div>
-                  </button>
-                  <div id="sidebar_item:lettres:accordian" class="chrome:sidebar_item_accordian chrome:sidebar_item_accordian_expanded">
-                     <a href="{{abspath}}/html/guidelines/{{lang}}/generalites.html" class="chrome:sidebar_item text-sm  chrome:sidebar_item_child">
-                        General principles
-                     </a>
-                     <a href="{{abspath}}/html/guidelines/{{lang}}/letters_numbers.html" class="chrome:sidebar_item text-sm  chrome:sidebar_item_child">
-                        Letters and numbers
-                     </a>
-                     <a href="{{abspath}}/html/guidelines/{{lang}}/segmentation.html" class="chrome:sidebar_item text-sm  chrome:sidebar_item_child">
-                       Linguistic segmentation
-                     </a>
-                     <a href="{{abspath}}/html/guidelines/{{lang}}/abbreviations.html" class="chrome:sidebar_item text-sm  chrome:sidebar_item_child">
-                       Abbreviations
-                     </a>
-                     <a href="{{abspath}}/html/guidelines/{{lang}}/accents_cedillas.html" class="chrome:sidebar_item text-sm  chrome:sidebar_item_child">
-                       Accents, caedillas
-                     </a>
-                     <a href="{{abspath}}/html/guidelines/{{lang}}/punctuation.html" class="chrome:sidebar_item text-sm  chrome:sidebar_item_child">
-                       Punctuation
-                     </a>
-                     <a href="{{abspath}}/html/guidelines/{{lang}}/corrections_and_others.html" class="chrome:sidebar_item text-sm  chrome:sidebar_item_child">
-                       Corrections and other functional elements
-                     </a>
-                     <a href="{{abspath}}/html/guidelines/{{lang}}/decorations.html" class="chrome:sidebar_item text-sm  chrome:sidebar_item_child">
-                       Text decoration
-                     </a>
-                     </a>
-                     <a href="{{abspath}}/html/guidelines/{{lang}}/character_table.html" class="chrome:sidebar_item text-sm  chrome:sidebar_item_child">
-                       Table of characters
-                     </a>
-                  </div>
-                  <hr>
+{# Navigation is generated from data/guidelines/pages.yml. It used to be a
+   hand-maintained list, which is how it ended up pointing at three pages that no
+   longer exist while omitting two that do. Adding a page to the manifest is now
+   the only step required. #}
+{% macro chevron() %}
+<div class="chrome:collapsible_sub_nav_item_icon">
+   <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" focusable="false" role="presentation">
+      <path fill="currentColor" d="M1.646 3.646a.5.5 0 01.638-.057l.07.057L6 7.293l3.646-3.647a.5.5 0 01.638-.057l.07.057a.5.5 0 01.057.638l-.057.07-4 4a.5.5 0 01-.638.057l-.07-.057-4-4a.5.5 0 010-.708z"></path>
+   </svg>
+</div>
+{% endmacro %}
 
-                 <!--  <button id="sidebar_item:char_table" class="chrome:sidebar_item chrome:sidebar_item_collapsible chrome:sidebar_item_expanded" onclick="toggleAccordian('sidebar_item:char_table')">
-                     <span class="chrome:sidebar_item_text">Characters table</span>
-                     <div class="chrome:collapsible_sub_nav_item_icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" focusable="false" role="presentation">
-                           <path fill="currentColor" d="M1.646 3.646a.5.5 0 01.638-.057l.07.057L6 7.293l3.646-3.647a.5.5 0 01.638-.057l.07.057a.5.5 0 01.057.638l-.057.07-4 4a.5.5 0 01-.638.057l-.07-.057-4-4a.5.5 0 010-.708z"></path>
-                        </svg>
-                     </div>
-                  </button>
-                    
-                  <div id="sidebar_item:char_table:accordian" class="chrome:sidebar_item_accordian chrome:sidebar_item_accordian_expanded">
-                      <a href="{{abspath}}/html/characters/index_of_characters.html" class="chrome:sidebar_item text-sm  chrome:sidebar_item_child">
-                        Index of characters
-                        </a>
-                  {% for class, liste in classes.items() %}
-                     <button id="sidebar_item:{{class}}" class="chrome:sidebar_item chrome:sidebar_item_collapsible chrome:sidebar_item_expanded chrome:level_2" onclick="toggleAccordian('sidebar_item:{{class}}')">
-                        <span class="chrome:sidebar_item_text text-sm">{{first_letter_uppercase(class)}}</span>
-                        <div class="chrome:collapsible_sub_nav_item_icon">
-                           <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" focusable="false" role="presentation">
-                              <path fill="currentColor" d="M1.646 3.646a.5.5 0 01.638-.057l.07.057L6 7.293l3.646-3.647a.5.5 0 01.638-.057l.07.057a.5.5 0 01.057.638l-.057.07-4 4a.5.5 0 01-.638.057l-.07-.057-4-4a.5.5 0 010-.708z"></path>
-                           </svg>
-                        </div>
-                     </button>
-                     <div id="sidebar_item:{{ class }}:accordian" class="chrome:sidebar_item_accordian chrome:sidebar_item_accordian_expanded">
-                     {% for item in liste %}
-                        <a href="{{abspath}}/html/characters/{{item}}.html" class="chrome:sidebar_item text-sm  chrome:sidebar_item_child chrome:level_2 text-ssm">
-                        {{ first_letter_uppercase(item) }}
-                        </a>
-                     {% endfor  %}
-                     </div>
-                  {% endfor %}
-                  </div> -->
-               </div>
-           
+<nav id="sidebar" class="chrome:sidebar" aria-label="Guidelines navigation">
+   {% for page in root_pages %}
+   {# Only the current page gets the active class. Previously every item carried
+      it, so nothing was ever highlighted distinctly. #}
+   <a href="{{ page.url }}" class="chrome:sidebar_item{% if page.slug == current_slug %} chrome:active_sidebar_item{% endif %}"{% if page.slug == current_slug %} aria-current="page"{% endif %}>
+      <span class="chrome:sidebar_item_text">{{ page.title }}</span>
+   </a>
+   {% endfor %}
+
+   {% for section in sections %}
+   <hr>
+   {% set section_id = 'sidebar_item:' ~ section.id %}
+   {% set section_active = section.pages | selectattr('slug', 'equalto', current_slug) | list | length > 0 %}
+   <button id="{{ section_id }}" class="chrome:sidebar_item chrome:sidebar_item_collapsible chrome:sidebar_item_expanded" onclick="toggleAccordian('{{ section_id }}')" aria-expanded="true">
+      <span class="chrome:sidebar_item_text">{{ section.title }}</span>
+      {{ chevron() }}
+   </button>
+   <div id="{{ section_id }}:accordian" class="chrome:sidebar_item_accordian chrome:sidebar_item_accordian_expanded">
+      {% for page in section.pages %}
+      <a href="{{ page.url }}" class="chrome:sidebar_item text-sm chrome:sidebar_item_child{% if page.slug == current_slug %} chrome:active_sidebar_item{% endif %}"{% if page.slug == current_slug %} aria-current="page"{% endif %}>
+         {{ page.title }}
+      </a>
+      {% endfor %}
+   </div>
+   {% endfor %}
+
+   {% if character_groups %}
+   <hr>
+   {% set chars_id = 'sidebar_item:characters' %}
+   <button id="{{ chars_id }}" class="chrome:sidebar_item chrome:sidebar_item_collapsible chrome:sidebar_item_expanded" onclick="toggleAccordian('{{ chars_id }}')" aria-expanded="true">
+      <span class="chrome:sidebar_item_text">Characters</span>
+      {{ chevron() }}
+   </button>
+   <div id="{{ chars_id }}:accordian" class="chrome:sidebar_item_accordian chrome:sidebar_item_accordian_expanded">
+      <a href="/html/characters/index_of_characters.html" class="chrome:sidebar_item text-sm chrome:sidebar_item_child{% if current_slug == 'index_of_characters' %} chrome:active_sidebar_item{% endif %}">
+         Index of characters
+      </a>
+      {% for group, entries in character_groups.items() %}
+      {% set group_id = 'sidebar_item:group:' ~ loop.index %}
+      <button id="{{ group_id }}" class="chrome:sidebar_item chrome:sidebar_item_collapsible chrome:level_2" onclick="toggleAccordian('{{ group_id }}')" aria-expanded="false">
+         <span class="chrome:sidebar_item_text text-sm">{{ group }}</span>
+         {{ chevron() }}
+      </button>
+      <div id="{{ group_id }}:accordian" class="chrome:sidebar_item_accordian chrome:sidebar_item_accordian_collapsed">
+         {% for entry in entries %}
+         <a href="/html/characters/{{ entry.slug }}.html" class="chrome:sidebar_item text-sm chrome:sidebar_item_child chrome:level_2 text-ssm">
+            <span class="indexchars">{{ entry.char }}</span>
+            {{ entry.name | default(entry.label, true) | lower }}
+         </a>
+         {% endfor %}
+      </div>
+      {% endfor %}
+   </div>
+   {% endif %}
+
+   {% if has_pdf %}
+   <hr>
+   <a href="{{ pdf_url }}" class="chrome:sidebar_item sidebar-download" download>
+      <span class="chrome:sidebar_item_text">Download the guidelines (PDF)</span>
+   </a>
+   {% endif %}
+</nav>

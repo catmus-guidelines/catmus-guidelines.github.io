@@ -2,7 +2,7 @@
 
 The CATMuS guidelines aim to propose a systematic approach to transcription in the context of creating training data for automatic text recognition (ATR)[^1]. Our task is to find a way to translate how a text is rendered on its original medium into a machine-readable system that facilitates learning.
 
-Our solutions will inevitably be reductive, as it is impossible to fully capture the diversity of handwriting using the limited character set available to a computer and the necessity of simplication due to the production of a generic model and the need for those rules to be accessible to non paleograph experts. The proposed rules must strike a balance between principles suited for machine learning and a palaeographic approach. They must also adhere to a principle of simplicity (as much as possible), since producing this kind of data is fundamentally a collective effort. Therefore, we must establish the simplest common ground in our practice. For any specific corpus, CATMuS guidelines can be adapted, specify, e.g if your corpus need a distinction between <macron> and <tilde> (that have been rendered with the same sign (tilde) in our corpus), as it is significant in your corpus, then if consistent it can be later converted to be compatible wiht catmus guidelines, if you want to integrated your corpus in it. 
+Our solutions will inevitably be reductive, as it is impossible to fully capture the diversity of handwriting using the limited character set available to a computer and the necessity of simplication due to the production of a generic model and the need for those rules to be accessible to non paleograph experts. The proposed rules must strike a balance between principles suited for machine learning and a palaeographic approach. They must also adhere to a principle of simplicity (as much as possible), since producing this kind of data is fundamentally a collective effort. Therefore, we must establish the simplest common ground in our practice. For any specific corpus, CATMuS guidelines can be adapted, specify, e.g if your corpus need a distinction between `<macron>` and `<tilde>` (that have been rendered with the same sign (tilde) in our corpus), as it is significant in your corpus, then if consistent it can be later converted to be compatible wiht catmus guidelines, if you want to integrated your corpus in it. 
 
 Finally, it is essential to emphasize that adhering to the guidelines is the best way to ensure compatibility between datasets. In order to facilitate access to special characters and ensure consistent character use, we provide JSON keyboard layouts that can be uploaded to eScriptorium through the Tools and Keyboard section. The keybord is devided into three : special caracter, combining sign (sign above a letter), suscript sign ( like exposant, eg. 9)
 
@@ -19,11 +19,12 @@ This approach is particularly challenging for abbreviations, as the boundary bet
 Our goal is to strike a balance and avoid unnecessarily multiplying the number of distinct signs, ensuring they are both recognizable and sufficiently represented in the dataset. A second argument is that multiplying the number of signs can be confusing for transcribers from different backgrounds. For example, in the CATMuS guidelines, the transcription of a flattened superscript open a can be ambiguous, as it visually resembles a tilde. Some transcribe it as a tilde (since it visually resembles one), while others transcribe it as a superscript open a < ᷓ>. The choice of this specific sign is recent: it was previously transcribed with a superscript < a > as an allograph, but since some extensions of the abbreviation have lost the sense that it originally stood for an <a>, we chose to stick to the form and use a specific sign instead.
 
 Some examples of macrons, tildes and flattened open a:
+
 | Graz, Universitätsbibliothek, Ms. 1265, 13th c.| Transcription |
 |---|---|
-| ![alt text](../img/Graz_Universitätsbibliothek_Ms.1265_flatteneda.png) | rectionẽ dñi sigᷓr. q̃ ꝯpleta ĩ capite xp̃o ĩplen |
+| ![alt text](../img/Graz_Universitätsbibliothek_Ms.1265_flatteneda.png) | rectionẽ dñi sigᷓr. q̃ ꝯpleta ĩ capite xp̃o ĩplen |
 | Graz, Universitätsbibliothek, Ms. 1265, 13th c.| Transcription |
-| ![alt text](../img/Graz_Universitätsbibliothek_Ms.1265_flattened_a2.png) | ĩcipit oẽ opꝰ miᷓtoriũ. s imꝑfecte dt᷑ post psalm̃ |
+| ![alt text](../img/Graz_Universitätsbibliothek_Ms.1265_flattened_a2.png) | ĩcipit oẽ opꝰ miᷓtoriũ. s imꝑfecte dt᷑ post psalm̃ |
 | Munich, BayerischeStaatsbibliothek, CLM 13027, 13th c. | Transcription |
 | ![alt text](../img/Munich_BayerischeStaatsbibliothek_CLM13027_flattena.png) |  s̃ ⁊gᷓues facti quoꝵ alt̾i studiosi. alii ciboꝵ auidi ⁊t  |
 

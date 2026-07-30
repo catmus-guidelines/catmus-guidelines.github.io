@@ -1,49 +1,76 @@
-import glob
-import os
-import uuid
-import re
-import lxml.etree as ET
+"""Build the client-side search index (json/index.json) for minisearch.
+
+Indexes the pages the manifest actually produced, rather than globbing a
+directory, and stamps a stable id onto each indexed block in the emitted HTML so
+search results can deep-link to it.
+
+Two things the previous version got wrong, both of which broke result links:
+  * `title` was the output filename ("7_functionnal_sign"), not the page title
+  * `url` was a repo-relative path with no leading slash, so following a result
+    from a nested page resolved against the wrong directory
+"""
+
 import json
+import os
+import re
 
-def create_id():
-    id = f"id_{str(uuid.uuid4()).split('-')[0]}"
-    return id
+from bs4 import BeautifulSoup
 
-def index(xpath):
-    """
-    This function indexes the pages of a site and add UUID to each node (node)
-    :return: None
-    """
-    index = list()
-    spaces_replacement = re.compile(r"\s+")
-    for html_page in glob.glob("html/guidelines/en/*.html"):
-        print(html_page)
-        title = html_page.split("/")[-1].replace(".html", "")
-        parsed = ET.parse(html_page)
-        searched_nodes = parsed.xpath(xpath)
-        if len(searched_nodes) > 0:
-            for node in searched_nodes:
-                id = create_id()
-                node.set("id", id)
-                par_dict = dict()
-                par_dict['id'] = id
-                par_dict['url'] = html_page
-                paragraph_text = re.sub(spaces_replacement, ' ',  ''.join(node.itertext()))
-                par_dict['node'] = paragraph_text
-                print(paragraph_text)
-                par_dict['title'] = title
-                index.append(par_dict)
-        with open(html_page, "w") as output_html_with_id:
-            output_html_with_id.write(ET.tostring(parsed).decode('utf-8'))
-    try:
-        os.mkdir("json")
-    except FileExistsError:
-        pass
-    
-    with open("json/index.json", "w") as index_file:
-        index_file.write(json.dumps(index, indent=4))
+WHITESPACE = re.compile(r"\s+")
+
+# Blocks worth indexing: prose and standalone lists. Table cells are excluded
+# because the character table would otherwise flood the index with single glyphs.
+INDEXED = ("p", "li", "dd", "blockquote")
+
+MIN_LENGTH = 25
 
 
+def build_index(out_root, pages):
+    """Index the built pages in place, writing out_root/json/index.json."""
+    records = []
 
-if __name__ == '__main__':
-    index("//p | //ul[not(descendant::p)] | //ol[not(descendant::p)]")
+    for page in pages:
+        path = os.path.join(out_root, page.out_path)
+        if not os.path.isfile(path):
+            continue
+
+        with open(path, encoding="utf-8") as handle:
+            soup = BeautifulSoup(handle.read(), "html.parser")
+
+        main = soup.find(id="main") or soup
+        counter = 0
+
+        for node in main.find_all(INDEXED):
+            # Skip list items that merely wrap other indexed blocks: indexing both
+            # the <li> and its <p> stores the same text twice under two ids.
+            if node.name == "li" and node.find("p"):
+                continue
+
+            text = WHITESPACE.sub(" ", node.get_text(" ", strip=True)).strip()
+            if len(text) < MIN_LENGTH:
+                continue
+
+            counter += 1
+            node_id = node.get("id") or f"idx-{page.slug}-{counter}"
+            node["id"] = node_id
+
+            records.append(
+                {
+                    "id": f"{page.slug}:{counter}",
+                    "anchor": node_id,
+                    "url": page.url,
+                    "title": page.title,
+                    "node": text,
+                }
+            )
+
+        with open(path, "w", encoding="utf-8") as handle:
+            handle.write(str(soup))
+
+    destination = os.path.join(out_root, "json", "index.json")
+    os.makedirs(os.path.dirname(destination), exist_ok=True)
+    with open(destination, "w", encoding="utf-8") as handle:
+        json.dump(records, handle, indent=1, ensure_ascii=False)
+
+    print(f"  json/index.json ({len(records)} blocks from {len(pages)} pages)")
+    return records

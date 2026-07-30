@@ -1,0 +1,989 @@
+/* ==========================================================================
+   CATMuS guidelines — site.css
+
+   Hand-authored replacement for the 2.7 MB Tailwind v1 dump. It targets the
+   same class names as the current stylesheet, so both themes render the same
+   markup and can be compared side by side (build.py --theme=new).
+
+   The design is typography-led and Junicode is the star. Junicode is a
+   humanist face built for medievalists, and it is the one thing this project
+   genuinely depends on: it carries the abbreviation marks, superscripts and
+   combining signs the guidelines are about (U+A751, U+0363, U+1DD3, U+204A …).
+   In the old theme it was scoped to a handful of table cells and had to win a
+   specificity fight against a framework. Here it sets the body text, and the
+   system sans is demoted to interface chrome.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Fonts. Declared here as well as in stylesheet.css so the two themes are
+   independent — neither should need the other to be loaded.
+   -------------------------------------------------------------------------- */
+@font-face {
+    font-family: 'Junicode';
+    src: url('/assets/fonts/Junicode.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Junicode';
+    src: url('/assets/fonts/Junicode-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Junicode';
+    src: url('/assets/fonts/Junicode-Italic.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Junicode';
+    src: url('/assets/fonts/Junicode-BoldItalic.woff') format('woff');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'FoulisGreek';
+    src: url('/assets/fonts/FoulisGreek.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* --------------------------------------------------------------------------
+   Tokens
+   -------------------------------------------------------------------------- */
+:root {
+    /* Junicode first, FoulisGreek for the polytonic Greek, then a serif that
+       is likely to carry what neither does — Junicode has no U+2661 (♡) and no
+       U+107A5, both of which the guidelines use. */
+    --font-text: 'Junicode', 'FoulisGreek', 'Gentium Plus', 'Charis SIL',
+                 'FreeSerif', 'Times New Roman', serif;
+    --font-ui: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    --font-mono: ui-monospace, 'SFMono-Regular', 'Cascadia Mono', Menlo, monospace;
+
+    --text-base: 1.0625rem;
+    --text-sm: 0.9rem;
+    --text-ssm: 0.8rem;
+    --text-lg: 1.125rem;
+    --measure: 40rem;
+
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-5: 1.5rem;
+    --space-6: 2rem;
+    --space-7: 3rem;
+
+    --radius: 6px;
+    --rail: 3.5rem;
+    --sidebar: 17rem;
+
+    /* Light. Warm neutrals: the pages are full of parchment-coloured scans, and
+       a cold grey UI makes them look dirty. */
+    --bg: #fbf9f6;
+    --bg-raised: #ffffff;
+    --bg-sunken: #f2ede5;
+    --ink: #241f1b;
+    --ink-soft: #5c5349;
+    --ink-faint: #857a6d;
+    --line: #ddd4c7;
+    --line-strong: #c3b7a5;
+    --accent: #8c3503;
+    --accent-soft: #f6ebe2;
+    --rail-bg: #241f1b;
+    --rail-ink: #f6f1ea;
+    --focus: #0b63c5;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg: #17140f;
+        --bg-raised: #201c16;
+        --bg-sunken: #100e0a;
+        --ink: #ece5da;
+        --ink-soft: #b6ab9c;
+        --ink-faint: #8b8072;
+        --line: #362f26;
+        --line-strong: #4d4437;
+        --accent: #e08b52;
+        --accent-soft: #2b2118;
+        --rail-bg: #0e0c09;
+        --rail-ink: #ece5da;
+        --focus: #79b0f5;
+    }
+}
+
+/* The viewer's explicit choice must beat the OS preference in both directions,
+   so these come after the media query and are scoped to the root element. */
+:root[data-theme="light"] {
+    --bg: #fbf9f6;
+    --bg-raised: #ffffff;
+    --bg-sunken: #f2ede5;
+    --ink: #241f1b;
+    --ink-soft: #5c5349;
+    --ink-faint: #857a6d;
+    --line: #ddd4c7;
+    --line-strong: #c3b7a5;
+    --accent: #8c3503;
+    --accent-soft: #f6ebe2;
+    --rail-bg: #241f1b;
+    --rail-ink: #f6f1ea;
+    --focus: #0b63c5;
+}
+
+:root[data-theme="dark"] {
+    --bg: #17140f;
+    --bg-raised: #201c16;
+    --bg-sunken: #100e0a;
+    --ink: #ece5da;
+    --ink-soft: #b6ab9c;
+    --ink-faint: #8b8072;
+    --line: #362f26;
+    --line-strong: #4d4437;
+    --accent: #e08b52;
+    --accent-soft: #2b2118;
+    --rail-bg: #0e0c09;
+    --rail-ink: #ece5da;
+    --focus: #79b0f5;
+}
+
+/* --------------------------------------------------------------------------
+   Base
+   -------------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-text);
+    font-size: var(--text-base);
+    line-height: 1.65;
+    text-rendering: optimizeLegibility;
+    font-kerning: normal;
+}
+
+a {
+    color: var(--accent);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.15em;
+}
+
+a:hover {
+    text-decoration-thickness: 2px;
+}
+
+:focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+    border-radius: 2px;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+hr {
+    border: 0;
+    border-top: 1px solid var(--line);
+    margin: var(--space-5) 0;
+}
+
+code,
+samp {
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+    background: var(--bg-sunken);
+    padding: 0.1em 0.35em;
+    border-radius: 3px;
+}
+
+/* kbd holds glyphs being documented, not keystrokes, so it must stay Junicode
+   and be a little larger — many are combining marks that are illegible at
+   body size. This is the rule the old stylesheet had to fight `code,kbd,samp`
+   twice over to apply. */
+kbd,
+.indexchars,
+.junicode,
+.character-display {
+    font-family: var(--font-text);
+    font-size: 1.2em;
+    line-height: 1.4;
+    background: none;
+    padding: 0;
+}
+
+kbd {
+    border: 1px solid var(--line-strong);
+    border-radius: 4px;
+    padding: 0.05em 0.3em;
+    background: var(--bg-raised);
+}
+
+/* --------------------------------------------------------------------------
+   Layout
+
+   .chrome            grid: icon rail | body
+     .chrome:nav      the rail
+     .chrome:body     header / content / footer
+       .chrome:content  grid: sidebar | main   (main comes first in the DOM,
+                                                so the columns are assigned)
+   -------------------------------------------------------------------------- */
+.chrome {
+    display: grid;
+    grid-template-columns: var(--rail) minmax(0, 1fr);
+    min-height: 100vh;
+}
+
+.chrome\:nav {
+    grid-column: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-4);
+    padding: var(--space-4) var(--space-2);
+    background: var(--rail-bg);
+    color: var(--rail-ink);
+    position: sticky;
+    top: 0;
+    height: 100vh;
+}
+
+.chrome\:logo_nav_item img {
+    width: 28px;
+    height: 28px;
+    display: block;
+}
+
+.chrome\:logo_nav_item.bottom {
+    margin-top: auto;
+}
+
+.wip-badge {
+    font-family: var(--font-ui);
+    font-size: 0.6rem;
+    letter-spacing: 0.05em;
+    color: var(--rail-ink);
+    opacity: 0.65;
+    writing-mode: vertical-rl;
+}
+
+.chrome\:body {
+    grid-column: 2;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.chrome\:header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-5);
+    flex-wrap: wrap;
+    padding: var(--space-4) var(--space-6);
+    border-bottom: 1px solid var(--line);
+    background: var(--bg-raised);
+    position: sticky;
+    top: 0;
+    z-index: 20;
+}
+
+.chrome\:header_title a {
+    color: var(--ink);
+    text-decoration: none;
+}
+
+.chrome\:header_title .text-3xl {
+    font-size: clamp(1.1rem, 2.2vw, 1.5rem);
+    font-weight: bold;
+    letter-spacing: -0.01em;
+}
+
+/* Search */
+#search {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    border: 1px solid var(--line-strong);
+    border-radius: 999px;
+    padding: 0.15rem 0.15rem 0.15rem var(--space-4);
+    background: var(--bg);
+}
+
+#search:focus-within {
+    border-color: var(--focus);
+}
+
+.search_input {
+    border: 0;
+    background: none;
+    color: inherit;
+    font: inherit;
+    font-size: var(--text-sm);
+    padding: var(--space-2) 0;
+    width: 15rem;
+    max-width: 40vw;
+}
+
+.search_input:focus {
+    outline: none;
+}
+
+#search_button {
+    display: grid;
+    place-items: center;
+    width: 2rem;
+    height: 2rem;
+    border: 0;
+    border-radius: 999px;
+    background: none;
+    color: var(--ink-soft);
+    cursor: pointer;
+}
+
+#search_button:hover {
+    background: var(--bg-sunken);
+    color: var(--accent);
+}
+
+/* Light/dark switch. Each glyph shows only in the theme it switches *to*. */
+.theme-toggle {
+    display: grid;
+    place-items: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    border: 1px solid var(--line-strong);
+    border-radius: 999px;
+    background: var(--bg);
+    color: var(--ink-soft);
+    font-size: 1rem;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.theme-toggle:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+}
+
+.theme-toggle_light { display: none; }
+.theme-toggle_dark { display: block; }
+
+@media (prefers-color-scheme: dark) {
+    .theme-toggle_light { display: block; }
+    .theme-toggle_dark { display: none; }
+}
+
+:root[data-theme="light"] .theme-toggle_light { display: none; }
+:root[data-theme="light"] .theme-toggle_dark { display: block; }
+:root[data-theme="dark"] .theme-toggle_light { display: block; }
+:root[data-theme="dark"] .theme-toggle_dark { display: none; }
+
+.chrome\:content {
+    flex: 1;
+    display: grid;
+    grid-template-columns: var(--sidebar) minmax(0, 1fr);
+    align-items: start;
+    gap: 0;
+}
+
+.chrome\:main {
+    grid-column: 2;
+    min-width: 0;
+    padding: var(--space-6) var(--space-7) var(--space-7);
+    /* Generous, because prose is separately capped at --measure. Only the wide
+       things -- the seven-column character table, the manuscript figures --
+       actually use this room. */
+    max-width: 74rem;
+}
+
+/* --------------------------------------------------------------------------
+   Sidebar
+   -------------------------------------------------------------------------- */
+.chrome\:sidebar {
+    grid-column: 1;
+    grid-row: 1;
+    position: sticky;
+    top: 4.5rem;
+    max-height: calc(100vh - 4.5rem);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: var(--space-5) var(--space-3) var(--space-6);
+    border-right: 1px solid var(--line);
+    font-family: var(--font-ui);
+    font-size: var(--text-sm);
+}
+
+.chrome\:sidebar hr {
+    margin: var(--space-3) var(--space-2);
+}
+
+.chrome\:sidebar_item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    width: 100%;
+    padding: var(--space-2) var(--space-3);
+    border: 0;
+    border-radius: var(--radius);
+    background: none;
+    color: var(--ink-soft);
+    font: inherit;
+    text-align: left;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.chrome\:sidebar_item:hover {
+    background: var(--bg-sunken);
+    color: var(--ink);
+}
+
+.chrome\:active_sidebar_item {
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-weight: bold;
+    box-shadow: inset 2px 0 0 var(--accent);
+}
+
+.chrome\:sidebar_item_text {
+    flex: 1;
+    min-width: 0;
+}
+
+.chrome\:sidebar_item_child {
+    padding-left: var(--space-5);
+}
+
+.chrome\:level_2 {
+    padding-left: var(--space-6);
+    font-size: var(--text-ssm);
+}
+
+.chrome\:sidebar_item_collapsible {
+    color: var(--ink);
+    font-weight: bold;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    font-size: var(--text-ssm);
+}
+
+.chrome\:collapsible_sub_nav_item_icon {
+    display: grid;
+    place-items: center;
+    transition: transform 0.15s ease;
+}
+
+.chrome\:sidebar_item_collapsed .chrome\:collapsible_sub_nav_item_icon {
+    transform: rotate(-90deg);
+}
+
+/* The accordion state classes are toggled by assets/js/accordian.js. */
+.chrome\:sidebar_item_accordian_collapsed {
+    display: none;
+}
+
+.chrome\:sidebar_item_accordian_expanded {
+    display: block;
+}
+
+.sidebar-download {
+    color: var(--accent);
+    font-style: normal;
+    font-weight: bold;
+}
+
+/* --------------------------------------------------------------------------
+   Content typography
+   -------------------------------------------------------------------------- */
+.chrome\:main h1 {
+    font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+    line-height: 1.2;
+    margin: 0 0 var(--space-3);
+    letter-spacing: -0.015em;
+}
+
+.chrome\:main h1 + hr {
+    margin-top: 0;
+    border-top-color: var(--line-strong);
+}
+
+.chrome\:main h2 {
+    font-size: 1.5rem;
+    margin: var(--space-7) 0 var(--space-3);
+    padding-bottom: var(--space-2);
+    border-bottom: 1px solid var(--line);
+}
+
+.chrome\:main h3 {
+    font-size: 1.25rem;
+    margin: var(--space-6) 0 var(--space-2);
+}
+
+.chrome\:main h4 {
+    font-size: 1.1rem;
+    margin: var(--space-5) 0 var(--space-2);
+}
+
+.chrome\:main p,
+.chrome\:main ul,
+.chrome\:main ol {
+    max-width: var(--measure);
+}
+
+.chrome\:main li {
+    margin-bottom: var(--space-2);
+}
+
+.chrome\:main blockquote {
+    margin: var(--space-5) 0;
+    padding-left: var(--space-4);
+    border-left: 3px solid var(--line-strong);
+    color: var(--ink-soft);
+    font-style: italic;
+}
+
+/* Anchor links added by assets/js/heading_links.js. */
+.heading_link {
+    color: inherit;
+    text-decoration: none;
+}
+
+.heading_link:hover {
+    color: var(--accent);
+}
+
+.heading_link:hover::after {
+    content: ' #';
+    color: var(--ink-faint);
+    font-weight: normal;
+}
+
+/* --------------------------------------------------------------------------
+   Tables
+   -------------------------------------------------------------------------- */
+.table-scroll {
+    overflow-x: auto;
+    max-width: 100%;
+    margin: var(--space-5) 0;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--bg-raised);
+}
+
+.table-scroll table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 0;
+}
+
+.table-scroll th,
+.table-scroll td {
+    padding: var(--space-3) var(--space-4);
+    border-bottom: 1px solid var(--line);
+    vertical-align: middle;
+    text-align: left;
+}
+
+.table-scroll thead th {
+    position: sticky;
+    top: 0;
+    background: var(--bg-sunken);
+    font-size: var(--text-sm);
+    font-family: var(--font-ui);
+    font-weight: bold;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.table-scroll tr:last-child td {
+    border-bottom: 0;
+}
+
+/* Caption rows: a repeated "<shelfmark> | Transcription" header partway down a
+   table, promoted to <th> by build.py. */
+.table-scroll tr.caption-row th {
+    background: var(--bg-sunken);
+    border-top: 2px solid var(--line-strong);
+    font-family: var(--font-ui);
+    font-size: var(--text-sm);
+    font-weight: bold;
+}
+
+/* Manuscript example / transcription tables, flagged by build.py. Fixed layout
+   gives equal columns, so the scan cannot claim the width and starve the
+   reading beside it. Small text throughout: a transcription is a supporting
+   apparatus, not body copy. */
+.transcription-table {
+    table-layout: fixed;
+}
+
+.transcription-table th,
+.transcription-table td {
+    font-size: var(--text-sm);
+}
+
+/* Shelfmarks are long and the columns are fixed, so these headers must wrap;
+   the nowrap that suits the character table would clip them. */
+.transcription-table thead th,
+.transcription-table tr.caption-row th {
+    white-space: normal;
+}
+
+/* Manuscript strips: wide scans that must not set the table's width. */
+.table-scroll td img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    border-radius: 3px;
+}
+
+/* The character table's example column is many small crops, not one wide strip. */
+#character_table td img {
+    display: inline-block;
+    max-height: 3rem;
+    width: auto;
+    margin: 0.1rem;
+    vertical-align: middle;
+}
+
+#character_table td {
+    font-size: var(--text-sm);
+}
+
+/* Column 2 is the character being documented. */
+#character_table td:nth-child(2) {
+    font-size: 1.5em;
+    text-align: center;
+}
+
+/* Keyboard layouts rendered from keyboards/*.json. */
+.keyboard {
+    font-family: var(--font-text);
+}
+
+.keyboard td {
+    text-align: center;
+    font-size: 1.3em;
+    padding: var(--space-2);
+    border: 1px solid var(--line);
+}
+
+.keyboard td.empty {
+    background: var(--bg-sunken);
+}
+
+.keyboard-download {
+    font-family: var(--font-ui);
+    font-size: var(--text-sm);
+}
+
+/* --------------------------------------------------------------------------
+   Character pages
+   -------------------------------------------------------------------------- */
+.character-display {
+    font-size: 4rem;
+    line-height: 1.1;
+    display: inline-block;
+    padding: var(--space-4) var(--space-6);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--bg-raised);
+}
+
+.corresp-list {
+    list-style: none;
+    padding-left: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+}
+
+.corresp-list li {
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--bg-raised);
+}
+
+.next-previous {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-4);
+    margin-top: var(--space-7);
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--line);
+    font-family: var(--font-ui);
+    font-size: var(--text-sm);
+}
+
+.source-note {
+    font-family: var(--font-ui);
+    font-size: var(--text-ssm);
+    color: var(--ink-faint);
+}
+
+/* --------------------------------------------------------------------------
+   Footnotes
+   -------------------------------------------------------------------------- */
+.footnotes {
+    margin-top: var(--space-7);
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--line-strong);
+    font-size: var(--text-sm);
+    color: var(--ink-soft);
+}
+
+.footnotes h2 {
+    font-size: 1.15rem;
+    border-bottom: 0;
+    margin-top: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Search results
+   -------------------------------------------------------------------------- */
+.search_summary {
+    font-family: var(--font-ui);
+    color: var(--ink-soft);
+}
+
+.search_result {
+    padding: var(--space-4) 0;
+    border-bottom: 1px solid var(--line);
+    max-width: var(--measure);
+}
+
+.spanResult a {
+    font-size: var(--text-lg);
+    font-weight: bold;
+}
+
+.search_result p {
+    margin: var(--space-2) 0 0;
+    color: var(--ink-soft);
+}
+
+.highlight {
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-weight: bold;
+    border-radius: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   Footer
+   -------------------------------------------------------------------------- */
+.chrome\:footer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-5);
+    justify-content: space-between;
+    padding: var(--space-5) var(--space-6);
+    border-top: 1px solid var(--line);
+    background: var(--bg-sunken);
+    font-family: var(--font-ui);
+    color: var(--ink-faint);
+}
+
+.chrome\:footer .text-lg {
+    font-size: var(--text-sm);
+}
+
+/* --------------------------------------------------------------------------
+   Utilities kept from the old markup
+   -------------------------------------------------------------------------- */
+.text-sm { font-size: var(--text-sm); }
+.text-ssm { font-size: var(--text-ssm); }
+.text-lg { font-size: var(--text-lg); }
+.center { text-align: center; }
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
+}
+
+/* --------------------------------------------------------------------------
+   Mobile. The old layout had no responsive behaviour at all: the three fixed
+   columns simply overflowed. Below 60rem the sidebar becomes a drawer, opened
+   by the button that templates/index-template.html renders for this theme.
+   -------------------------------------------------------------------------- */
+.nav-toggle {
+    display: none;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius);
+    background: var(--bg-raised);
+    color: var(--ink);
+    font-family: var(--font-ui);
+    font-size: var(--text-sm);
+    cursor: pointer;
+}
+
+@media (max-width: 60rem) {
+    :root {
+        --rail: 2.75rem;
+    }
+
+    .chrome\:main {
+        grid-column: 1 / -1;
+        padding: var(--space-5) var(--space-4) var(--space-6);
+    }
+
+    .chrome\:content {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .nav-toggle {
+        display: inline-flex;
+    }
+
+    .chrome\:sidebar {
+        grid-column: 1 / -1;
+        grid-row: auto;
+        position: fixed;
+        inset: 0 auto 0 var(--rail);
+        width: min(20rem, 80vw);
+        max-height: none;
+        z-index: 40;
+        background: var(--bg-raised);
+        border-right: 1px solid var(--line-strong);
+        box-shadow: 0 0 40px rgb(0 0 0 / 0.25);
+        /* Must clear the icon rail it is offset by, or the drawer's edge and
+           shadow stay visible over it when closed. */
+        transform: translateX(calc(-100% - var(--rail) - 1rem));
+        visibility: hidden;
+        transition: transform 0.2s ease, visibility 0.2s;
+    }
+
+    body.nav-open .chrome\:sidebar {
+        transform: translateX(0);
+        visibility: visible;
+    }
+
+    .chrome\:header {
+        position: static;
+    }
+}
+
+@media (max-width: 40rem) {
+    .chrome\:header {
+        gap: var(--space-3);
+    }
+
+    .search_input {
+        width: 100%;
+        max-width: none;
+    }
+
+    #search {
+        width: 100%;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   Print. Shared intent with the PDF: drop the interface, keep the content, let
+   Junicode carry the glyphs.
+   -------------------------------------------------------------------------- */
+@media print {
+    .chrome\:nav,
+    .chrome\:sidebar,
+    .chrome\:header,
+    .chrome\:footer,
+    .nav-toggle {
+        display: none !important;
+    }
+
+    .chrome,
+    .chrome\:content {
+        display: block;
+    }
+
+    .chrome\:main {
+        max-width: none;
+        padding: 0;
+    }
+
+    body {
+        background: #fff;
+        color: #000;
+        font-size: 11pt;
+    }
+
+    .table-scroll {
+        overflow: visible;
+        border: 0;
+    }
+
+    .table-scroll th,
+    .table-scroll td {
+        border: 1px solid #999;
+    }
+
+    a {
+        color: inherit;
+    }
+
+    h2,
+    h3 {
+        break-after: avoid;
+    }
+
+    tr,
+    img {
+        break-inside: avoid;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   PDF download callout, shown under the page title.
+   -------------------------------------------------------------------------- */
+.pdf-callout {
+    margin: 0 0 var(--space-4);
+    font-family: var(--font-ui);
+    font-size: var(--text-sm);
+}
+
+.pdf-callout a {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius);
+    background: var(--bg-raised);
+    text-decoration: none;
+}
+
+.pdf-callout a:hover {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+}

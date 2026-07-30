@@ -1,0 +1,83 @@
+# Single source of truth for the guidelines site.
+#
+# This file drives, all at once:
+#   * which markdown sources are built             (a missing one fails the build)
+#   * the output path / URL of every page          (via `slug`)
+#   * the order and grouping of the sidebar
+#   * the chapter order of the downloadable PDF
+#
+# Source filenames keep their numeric prefixes for authoring convenience, but the
+# `slug` is what reaches the URL -- so files can be renumbered or reordered without
+# breaking a single published link. Slugs below match the URLs that are already
+# live; do not change one without leaving a redirect.
+#
+# The build FAILS if a `source` here is missing on disk, and also if a file in
+# data/guidelines/<lang>/ is not listed here. That is deliberate: an unlisted file
+# silently disappearing from the site is exactly the drift that broke this branch.
+
+lang: en
+
+# Chapter order of the downloadable PDF, by slug.
+#
+# The PDF is not the website: the site-navigation pages (Presentation, Tools and
+# keyboards, Models and datasets) are about using the website and its resources,
+# so they are deliberately left out of a document meant to be read or printed on
+# its own. Datasets comes last, as an appendix to the transcription rules.
+#
+# Any slug listed here must exist; any page not listed is simply not in the PDF.
+pdf:
+  - generalites
+  - letters_numbers
+  - segmentation
+  - abbreviations
+  - accents_cedillas
+  - punctuation
+  - functionnal_sign
+  - character_table
+  - datasets
+
+# Top-level pages, emitted to the site root as <slug>.html
+root:
+  - source: 0_index.md
+    slug: index
+    title: Presentation
+  - source: 9_tools.md
+    slug: tools
+    title: Tools and keyboards
+  - source: 10_datasets.md
+    slug: datasets
+    title: Datasets
+  - source: 11_links.md
+    slug: links
+    title: Models and datasets
+
+# Grouped pages, emitted to html/guidelines/<lang>/<slug>.html
+# Each entry becomes one collapsible section in the sidebar.
+sections:
+  - title: Transcription principles
+    id: principles
+    pages:
+      - source: 1_generalites.md
+        slug: generalites
+        title: General principles
+      - source: 2_letters_numbers.md
+        slug: letters_numbers
+        title: Letters and numbers
+      - source: 5_segmentation.md
+        slug: segmentation
+        title: Linguistic segmentation
+      - source: 4_abbreviations.md
+        slug: abbreviations
+        title: Abbreviations
+      - source: 3_accents_cedillas.md
+        slug: accents_cedillas
+        title: Accents and cedillas
+      - source: 6_punctuation.md
+        slug: punctuation
+        title: Punctuation
+      - source: 7_functionnal_sign.md
+        slug: functionnal_sign
+        title: Corrections and functional signs
+      - source: 8_character_table.md
+        slug: character_table
+        title: Table of characters

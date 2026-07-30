@@ -1,8 +1,17 @@
-   <div class="chrome:content">
-               <div class="chrome:main" id="main">
-                  <h1>{{title}}</h1>
-                  <hr/>
-               </div>
-                {% include 'templates/sidebar.html' %}
-            </div>
-         
+<div class="chrome:content">
+   <div class="chrome:main" id="main">
+      <h1>{{ title }}</h1>
+      {% if has_pdf %}
+      {# The whole guidelines as one document. Offered in the page itself, not
+         only in the sidebar and footer: people cite and circulate this. #}
+      <p class="pdf-callout">
+         <a href="{{ pdf_url }}" download>
+            <span aria-hidden="true">⤓</span> Download the complete guidelines (PDF)
+         </a>
+      </p>
+      {% endif %}
+      <hr/>
+      {{ content | safe }}
+   </div>
+   {% include 'templates/sidebar.html' %}
+</div>
