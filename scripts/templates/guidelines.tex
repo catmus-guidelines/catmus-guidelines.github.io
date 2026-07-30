@@ -113,9 +113,10 @@ $if(subtitle)$
 $endif$
 
 \vspace{2.5cm}
-% One flowing author line, as in the paper this credits, rather than a stacked
-% list -- the last entry is "et al.", which reads wrongly on a line of its own.
-{\large $for(author)$$author$$sep$, $endfor$\par}
+$for(author)$
+{\large $author$\par}
+\vspace{0.3cm}
+$endfor$
 
 \vfill
 
