@@ -85,7 +85,6 @@
     --space-7: 3rem;
 
     --radius: 6px;
-    --rail: 3.5rem;
     --sidebar: 17rem;
 
     /* Light. Warm neutrals: the pages are full of parchment-coloured scans, and
@@ -100,8 +99,6 @@
     --line-strong: #c3b7a5;
     --accent: #8c3503;
     --accent-soft: #f6ebe2;
-    --rail-bg: #241f1b;
-    --rail-ink: #f6f1ea;
     --focus: #0b63c5;
 }
 
@@ -117,8 +114,6 @@
         --line-strong: #4d4437;
         --accent: #e08b52;
         --accent-soft: #2b2118;
-        --rail-bg: #0e0c09;
-        --rail-ink: #ece5da;
         --focus: #79b0f5;
     }
 }
@@ -136,8 +131,6 @@
     --line-strong: #c3b7a5;
     --accent: #8c3503;
     --accent-soft: #f6ebe2;
-    --rail-bg: #241f1b;
-    --rail-ink: #f6f1ea;
     --focus: #0b63c5;
 }
 
@@ -152,8 +145,6 @@
     --line-strong: #4d4437;
     --accent: #e08b52;
     --accent-soft: #2b2118;
-    --rail-bg: #0e0c09;
-    --rail-ink: #ece5da;
     --focus: #79b0f5;
 }
 
@@ -242,65 +233,29 @@ kbd {
 /* --------------------------------------------------------------------------
    Layout
 
-   .chrome            grid: icon rail | body
-     .chrome:nav      the rail
+   .chrome
      .chrome:body     header / content / footer
        .chrome:content  grid: sidebar | main   (main comes first in the DOM,
                                                 so the columns are assigned)
    -------------------------------------------------------------------------- */
-.chrome {
-    display: grid;
-    grid-template-columns: var(--rail) minmax(0, 1fr);
-    min-height: 100vh;
-}
-
-.chrome\:nav {
-    grid-column: 1;
+.chrome,
+.chrome\:body {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: var(--space-4);
-    padding: var(--space-4) var(--space-2);
-    background: var(--rail-bg);
-    color: var(--rail-ink);
-    position: sticky;
-    top: 0;
-    height: 100vh;
-}
-
-.chrome\:logo_nav_item img {
-    width: 28px;
-    height: 28px;
-    display: block;
-}
-
-.chrome\:logo_nav_item.bottom {
-    margin-top: auto;
-}
-
-.wip-badge {
-    font-family: var(--font-ui);
-    font-size: 0.6rem;
-    letter-spacing: 0.05em;
-    color: var(--rail-ink);
-    opacity: 0.65;
-    writing-mode: vertical-rl;
+    min-height: 100vh;
+    min-width: 0;
 }
 
 .chrome\:body {
-    grid-column: 2;
-    display: flex;
-    flex-direction: column;
-    min-width: 0;
+    flex: 1;
 }
 
 .chrome\:header {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: var(--space-5);
+    gap: var(--space-4);
     flex-wrap: wrap;
-    padding: var(--space-4) var(--space-6);
+    padding: var(--space-3) var(--space-6);
     border-bottom: 1px solid var(--line);
     background: var(--bg-raised);
     position: sticky;
@@ -308,15 +263,59 @@ kbd {
     z-index: 20;
 }
 
-.chrome\:header_title a {
+.chrome\:header_title {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    margin-right: auto;
     color: var(--ink);
     text-decoration: none;
+    min-width: 0;
+}
+
+.site-logo {
+    width: 52px;
+    height: 52px;
+    flex: none;
+    object-fit: contain;
 }
 
 .chrome\:header_title .text-3xl {
     font-size: clamp(1.1rem, 2.2vw, 1.5rem);
     font-weight: bold;
     letter-spacing: -0.01em;
+}
+
+/* Repository link, moved here from the old icon rail. */
+.repo-link {
+    display: grid;
+    place-items: center;
+    flex: none;
+}
+
+.repo-link img {
+    width: 26px;
+    height: 26px;
+    display: block;
+}
+
+.repo-link:hover img {
+    opacity: 0.7;
+}
+
+/* The mark is black artwork, so it has to be flipped for the dark theme. */
+@media (prefers-color-scheme: dark) {
+    .repo-link img {
+        filter: invert(1);
+    }
+}
+
+:root[data-theme="light"] .repo-link img {
+    filter: none;
+}
+
+:root[data-theme="dark"] .repo-link img {
+    filter: invert(1);
 }
 
 /* Search */
@@ -849,10 +848,6 @@ kbd {
 }
 
 @media (max-width: 60rem) {
-    :root {
-        --rail: 2.75rem;
-    }
-
     .chrome\:main {
         grid-column: 1 / -1;
         padding: var(--space-5) var(--space-4) var(--space-6);
@@ -870,16 +865,14 @@ kbd {
         grid-column: 1 / -1;
         grid-row: auto;
         position: fixed;
-        inset: 0 auto 0 var(--rail);
+        inset: 0 auto 0 0;
         width: min(20rem, 80vw);
         max-height: none;
         z-index: 40;
         background: var(--bg-raised);
         border-right: 1px solid var(--line-strong);
         box-shadow: 0 0 40px rgb(0 0 0 / 0.25);
-        /* Must clear the icon rail it is offset by, or the drawer's edge and
-           shadow stay visible over it when closed. */
-        transform: translateX(calc(-100% - var(--rail) - 1rem));
+        transform: translateX(calc(-100% - 1rem));
         visibility: hidden;
         transition: transform 0.2s ease, visibility 0.2s;
     }
@@ -914,7 +907,6 @@ kbd {
    Junicode carry the glyphs.
    -------------------------------------------------------------------------- */
 @media print {
-    .chrome\:nav,
     .chrome\:sidebar,
     .chrome\:header,
     .chrome\:footer,

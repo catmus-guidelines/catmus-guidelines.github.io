@@ -6,11 +6,10 @@
       </svg>
       Contents
    </button>
-   <div class="chrome:header_title">
-      <a href="/index.html">
+   <a class="chrome:header_title" href="/index.html">
+      <img class="site-logo" src="/assets/images/catmus.png" alt="">
       <span class="text-3xl">Consistent Approaches to Transcribing ManuScripts</span>
-      </a>
-   </div>
+   </a>
    <div class="chrome:header_item">
       <form id="search" class="center">
          <label class="visually-hidden" for="search_input_guidelines">Search in the guidelines</label>
@@ -29,4 +28,9 @@
       <span class="theme-toggle_light" aria-hidden="true">☀</span>
       <span class="theme-toggle_dark" aria-hidden="true">☾</span>
    </button>
+   {# The repository URL used to be built from abspath.split('/')[-1], which
+      produced an empty link on every local build. It now comes from meta.yml. #}
+   <a class="repo-link" href="{{ repository }}" target="_blank" rel="noreferrer noopener" title="GitHub repository">
+      <img src="/assets/images/github-mark.svg" alt="GitHub repository">
+   </a>
 </header>
